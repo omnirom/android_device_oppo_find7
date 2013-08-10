@@ -323,6 +323,22 @@ int camera_cancel_picture(struct camera_device * device)
     return VENDOR_CALL(device, cancel_picture);
 }
 
+#define MAX_LOG_LEN 512
+void split_log_write(char * logtext)
+{
+  unsigned int loglength;
+  unsigned int position;
+  char logbuf[MAX_LOG_LEN+1];
+
+  loglength = strlen(logtext);
+  for(position = 0; position < loglength; position += MAX_LOG_LEN)
+    {
+      strncpy(logbuf, &logtext[position], MAX_LOG_LEN);
+      logbuf[MAX_LOG_LEN]='\0';
+      __android_log_write(ANDROID_LOG_VERBOSE,LOG_TAG,logbuf);
+    }
+}
+
 int camera_set_parameters(struct camera_device * device, const char *params)
 {
     ALOGV("%s", __FUNCTION__);
@@ -335,7 +351,8 @@ int camera_set_parameters(struct camera_device * device, const char *params)
     tmp = camera_fixup_setparams(CAMERA_ID(device), params);
 
 #ifdef LOG_PARAMETERS
-    __android_log_write(ANDROID_LOG_VERBOSE, LOG_TAG, tmp+350);
+    //    __android_log_write(ANDROID_LOG_VERBOSE, LOG_TAG, tmp+350);
+    split_log_write(tmp);
 #endif
 
     int ret = VENDOR_CALL(device, set_parameters, tmp);
@@ -353,7 +370,8 @@ char* camera_get_parameters(struct camera_device * device)
     char* params = VENDOR_CALL(device, get_parameters);
 
 #ifdef LOG_PARAMETERS
-    __android_log_write(ANDROID_LOG_VERBOSE, LOG_TAG, params);
+    //    __android_log_write(ANDROID_LOG_VERBOSE, LOG_TAG, tmp+350);
+    split_log_write(tmp);
 #endif
 
     char * tmp = camera_fixup_getparams(CAMERA_ID(device), params);
@@ -361,7 +379,8 @@ char* camera_get_parameters(struct camera_device * device)
     params = tmp;
 
 #ifdef LOG_PARAMETERS
-    __android_log_write(ANDROID_LOG_VERBOSE, LOG_TAG, params);
+    //    __android_log_write(ANDROID_LOG_VERBOSE, LOG_TAG, tmp+350);
+    split_log_write(tmp);
 #endif
 
     return params;
