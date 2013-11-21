@@ -32,20 +32,14 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, vendor/omni/config/common.mk)
 
 # Inherit from hardware-specific part of the product configuration
-$(call inherit-product, device/oppo/find5/device.mk)
-
-# Inherit from those products. Most specific first.
 $(call inherit-product, device/oppo/n1/device.mk)
-# This is where we'd set a backup provider if we had one
-#$(call inherit-product, device/sample/products/backup_overlay.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
-
 
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := omni_n1
 PRODUCT_DEVICE := n1
 PRODUCT_BRAND := Oppo
 PRODUCT_MODEL := N1
+PRODUCT_MANUFACTURER := Oppo
 
 # Inline kernel
 TARGET_KERNEL_SOURCE := kernel/oppo/n1
