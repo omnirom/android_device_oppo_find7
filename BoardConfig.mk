@@ -25,24 +25,27 @@ TARGET_CPU_SMP := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 maxcpus=2
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 
 BOARD_KERNEL_BASE :=  0x80200000
 #BOARD_FORCE_RAMDISK_ADDRESS := 0x05000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
-#TARGET_KERNEL_CONFIG := N1_defconfig
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00A00000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00A00000
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x30000000
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x130000000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 805306368
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 5100273664
 BOARD_FLASH_BLOCK_SIZE := 131072
+
+TARGET_QCOM_DISPLAY_VARIANT := caf
 
 #TARGET_PREBUILT_KERNEL := device/oppo/N1/kernAl
 
 #TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
 
 # Recovery:Start
+
+TARGET_RECOVERY_FSTAB := device/oppo/n1/configs/fstab.n1
 
 # Use this flag if the board has a ext4 partition larger than 2gb
 BOARD_HAS_LARGE_FILESYSTEM := true
