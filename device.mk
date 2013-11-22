@@ -76,7 +76,7 @@ PRODUCT_PACKAGES += \
 	gralloc.msm8960 \
 	audio.primary.msm8960 \
 	audio_policy.msm8960 \
-	lights.msm8960
+	lights.n1
 
 
 # Properties
