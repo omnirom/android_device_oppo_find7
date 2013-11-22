@@ -47,6 +47,7 @@ PRODUCT_COPY_FILES += \
 # Audio config files
 PRODUCT_COPY_FILES += \
 	device/oppo/n1/configs/audio_policy.conf:system/etc/audio_policy.conf \
+	device/oppo/n1/media_codecs.xml:system/etc/media_codecs.xml \
 	device/oppo/n1/snd_soc_msm/snd_soc_msm_I2SFusion:system/etc/snd_soc_msm/snd_soc_msm_I2SFusion \
 	device/oppo/n1/snd_soc_msm/snd_soc_msm_Sitar:system/etc/snd_soc_msm/snd_soc_msm_Sitar \
 	device/oppo/n1/snd_soc_msm/snd_soc_msm_auxpcm:system/etc/snd_soc_msm/snd_soc_msm_auxpcm \
@@ -72,12 +73,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
         ro.sf.lcd_density=480
 
 PRODUCT_PROPERTY_OVERRIDES += \
+	rild.libpath=/system/lib/libril-qc-qmi-1.so \
 	rild.libargs=-d /dev/smd0
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	ro.oppo.version=US \
 	ro.xxversion=V1.0 \
 	ro.bootversion=V1.1
+
+PRODUCT_CHARACTERISTICS := nosdcard
 
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
