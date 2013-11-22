@@ -1,10 +1,10 @@
 USE_CAMERA_STUB := true
 
 # inherit from the proprietary version
--include vendor/oppo/N1/BoardConfigVendor.mk
+-include vendor/oppo/n1/BoardConfigVendor.mk
 
 TARGET_NO_BOOTLOADER := true
-TARGET_BOOTLOADER_BOARD_NAME := N1
+TARGET_BOOTLOADER_BOARD_NAME := n1
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8960
@@ -39,7 +39,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 TARGET_QCOM_DISPLAY_VARIANT := caf
 
-#TARGET_PREBUILT_KERNEL := device/oppo/N1/kernAl
+#TARGET_PREBUILT_KERNEL := device/oppo/n1/kernAl
 
 #TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
 
@@ -59,6 +59,6 @@ RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 #TW_BRIGHTNESS_PATH := /sys/devices/platform/msm_fb.590337/leds/lcd-backlight/brightness
 #TW_MAX_BRIGHTNESS := 255
-#TW_BOARD_CUSTOM_GRAPHICS := ../../../device/oppo/N1/recovery/graphics.c
+#TW_BOARD_CUSTOM_GRAPHICS := ../../../device/oppo/n1/recovery/graphics.c
 TW_NO_SCREEN_TIMEOUT := true
 
