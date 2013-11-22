@@ -23,6 +23,10 @@ PRODUCT_PACKAGES += \
         VisualizationWallpapers \
         librs_jni
 
+# Omni Packages
+PRODUCT_PACKAGES += \
+	OmniTorch
+
 # Ramdisk
 PRODUCT_COPY_FILES += \
         device/oppo/n1/configs/init.n1.rc:root/init.qcom.rc \
@@ -68,14 +72,18 @@ PRODUCT_PACKAGES += \
 
 
 # Properties
+# Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
         ro.opengles.version=131072 \
-        ro.sf.lcd_density=480
+        ro.sf.lcd_density=480 \
+	persist.hwc.mdpcomp.enable=true
 
+# Ril
 PRODUCT_PROPERTY_OVERRIDES += \
 	rild.libpath=/system/lib/libril-qc-qmi-1.so \
 	rild.libargs=-d /dev/smd0
 
+# Oppo-specific
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	ro.oppo.version=US \
 	ro.xxversion=V1.0 \
