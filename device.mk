@@ -70,13 +70,36 @@ PRODUCT_COPY_FILES += \
 	device/oppo/n1/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
 	device/oppo/n1/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh
 
+# Wifi config
+PRODUCT_COPY_FILES += \
+	device/oppo/n1/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+	device/oppo/n1/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+
+# These are the hardware-specific features
+PRODUCT_COPY_FILES += \
+        frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+        frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+        frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+        frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+        frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+        frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+        frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+        frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+        frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+        frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
+        frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+        frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+        frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+        frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+        frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml
+
 # Hardware modules to build
 PRODUCT_PACKAGES += \
 	hwcomposer.msm8960 \
 	gralloc.msm8960 \
 	audio.primary.msm8960 \
 	audio_policy.msm8960 \
-	lights.n1
+	lights.qcom
 
 
 # Properties
@@ -88,8 +111,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Ril
 PRODUCT_PROPERTY_OVERRIDES += \
-	rild.libpath=/system/lib/libril-qc-qmi-1.so \
-	rild.libargs=-d /dev/smd0
+	rild.libpath=/system/lib/libril-qc-qmi-1.so
 
 # Oppo-specific
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
