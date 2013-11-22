@@ -57,6 +57,14 @@ PRODUCT_COPY_FILES += \
 	device/oppo/n1/snd_soc_msm/snd_soc_msm_2x_Fusion3:system/etc/snd_soc_msm/snd_soc_msm_2x_Fusion3 \
 	device/oppo/n1/snd_soc_msm/snd_soc_msm_I2S:system/etc/snd_soc_msm/snd_soc_msm_I2S
 
+# Hardware modules to build
+PRODUCT_PACKAGES += \
+	hwcomposer.msm8960 \
+	gralloc.msm8960 \
+	audio.primary.msm8960 \
+	audio_policy.msm8960 \
+	lights.msm8960
+
 
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
