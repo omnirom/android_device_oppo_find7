@@ -275,6 +275,9 @@ on post-fs-data
 	chmod 0666 /sys/devices/system/cpu/cpuquiet/cpuquiet_driver/screen_off_cap
 	chmod 0666 /sys/devices/system/cpu/cpuquiet/cpuquiet_driver/screen_off_max_cpus
 
+    # camera led for torch
+    chmod 0666 /sys/class/leds/keyboard-backlight/brightness
+
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
