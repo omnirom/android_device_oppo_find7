@@ -101,6 +101,19 @@ PRODUCT_PACKAGES += \
 	audio_policy.msm8960 \
 	lights.qcom
 
+PRODUCT_PACKAGES += \
+	libmm-omxcore \
+	libdivxdrmdecrypt \
+	libOmxVdec \
+	libOmxVenc \
+	libOmxCore \
+	libOmxAacEnc \
+	libOmxAmrEnc \
+	libOmxEvrcEnc \
+	libOmxQcelp13Enc \
+	libstagefrighthw \
+	libc2dcolorconvert
+
 
 # Properties
 # Graphics
