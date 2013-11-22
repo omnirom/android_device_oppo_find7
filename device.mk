@@ -42,7 +42,7 @@ PRODUCT_COPY_FILES += \
 	device/oppo/n1/configs/keylayout/ue_rf4ce_remote.kl:system/usr/keylayout/ue_rf4ce_remote.kl \
 	device/oppo/n1/configs/keylayout/Vendor_046d_Product_c216.kl:system/usr/keylayout/Vendor_046d_Product_c216.kl \
 	device/oppo/n1/configs/keylayout/Vendor_05ac_Product_0239.kl:system/usr/keylayout/Vendor_05ac_Product_0239.kl \
-	device/oppo/n1/configs/keylayout/y8c20x66a-rmi-ts.idc:system/usr/idc/y8c20x66a-rmi-ts.idc
+	device/oppo/n1/configs/idc/y8c20x66a-rmi-ts.idc:system/usr/idc/y8c20x66a-rmi-ts.idc
 
 
 # Properties
