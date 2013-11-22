@@ -33,6 +33,7 @@ PRODUCT_COPY_FILES += \
         device/oppo/n1/configs/init.n1.usb.rc:root/init.n1.usb.rc \
         device/oppo/n1/configs/ueventd.qcom.rc:root/ueventd.qcom.rc \
         device/oppo/n1/configs/fstab.n1:root/fstab.qcom \
+        device/oppo/n1/configs/init.qcom.wcnss3660.sh:root/init.qcom.wcnss3660.sh \
         device/oppo/n1/configs/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Config files for touch and input
@@ -61,6 +62,13 @@ PRODUCT_COPY_FILES += \
 	device/oppo/n1/snd_soc_msm/snd_soc_msm_Sitar_auxpcm:system/etc/snd_soc_msm/snd_soc_msm_Sitar_auxpcm \
 	device/oppo/n1/snd_soc_msm/snd_soc_msm_2x_Fusion3:system/etc/snd_soc_msm/snd_soc_msm_2x_Fusion3 \
 	device/oppo/n1/snd_soc_msm/snd_soc_msm_I2S:system/etc/snd_soc_msm/snd_soc_msm_I2S
+
+# qcom init stuff
+PRODUCT_COPY_FILES += \
+	device/oppo/n1/init.qcom.post_fs.sh:system/etc/init.qcom.post_fs.sh \
+	device/oppo/n1/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
+	device/oppo/n1/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
+	device/oppo/n1/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh
 
 # Hardware modules to build
 PRODUCT_PACKAGES += \
