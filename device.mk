@@ -33,7 +33,6 @@ PRODUCT_COPY_FILES += \
         device/oppo/n1/configs/init.n1.usb.rc:root/init.n1.usb.rc \
         device/oppo/n1/configs/ueventd.qcom.rc:root/ueventd.qcom.rc \
         device/oppo/n1/configs/fstab.n1:root/fstab.qcom \
-        device/oppo/n1/configs/init.qcom.wcnss3660.sh:root/init.qcom.wcnss3660.sh \
         device/oppo/n1/configs/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Config files for touch and input
@@ -122,9 +121,19 @@ PRODUCT_PROPERTY_OVERRIDES += \
         ro.sf.lcd_density=480 \
 	persist.hwc.mdpcomp.enable=true
 
+# Do not power down SIM card when modem is sent to Low Power Mode.
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.radio.apm_sim_not_pwdn=1 \
+	persist.radio.eons.enabled=false
+
+# Ril sends only one RIL_UNSOL_CALL_RING, so set call_ring.multiple to false
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.telephony.call_ring.multiple=0
+
 # Ril
 PRODUCT_PROPERTY_OVERRIDES += \
-	rild.libpath=/system/lib/libril-qc-qmi-1.so
+	rild.libpath=/system/lib/libril-qc-qmi-1.so \
+	ril.subscription.types=NV,RUIM
 
 # Oppo-specific
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
