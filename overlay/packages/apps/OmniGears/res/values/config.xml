@@ -19,4 +19,7 @@
     <!-- Volume Rocker Wake Support. Some devices do not support (PMU) this.
          Setting to false will disable Volume Rocker Wake support -->
     <bool name="config_show_volumeRockerWake">true</bool>
+    
+    <!-- Whether device has hardware buttons -->
+    <bool name="config_has_hardware_buttons">true</bool>
 </resources>
