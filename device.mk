@@ -117,8 +117,8 @@ PRODUCT_PACKAGES += \
 # Properties
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
-        ro.opengles.version=131072 \
-        ro.sf.lcd_density=480 \
+    ro.opengles.version=131072 \
+    ro.sf.lcd_density=480 \
 	persist.hwc.mdpcomp.enable=true
 
 # Do not power down SIM card when modem is sent to Low Power Mode.
@@ -142,6 +142,22 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	ro.bootversion=V1.1
 
 PRODUCT_CHARACTERISTICS := nosdcard
+
+# qcom
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.qc.sdk.audio.ssr=false \
+	ro.qc.sdk.audio.fluencetype=fluence \
+	ro.qc.sdk.sensors.gestures=false
+
+# Audio Configuration
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.audio.handset.mic=dmic \
+	persist.audio.fluence.mode=endfire \
+	persist.audio.lowlatency.rec=false \
+	af.resampler.quality=4 \
+	lpa.decode=false \
+	tunnel.decode=false \
+	tunnel.audiovideo.decode=true
 
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
