@@ -12,6 +12,8 @@ DEVICE_PACKAGE_OVERLAYS := device/oppo/n1/overlay
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
+PRODUCT_CHARACTERISTICS := nosdcard
+
 PRODUCT_PACKAGES += \
     charger_res_images \
     charger
@@ -93,12 +95,18 @@ PRODUCT_COPY_FILES += \
         frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml
 
 # Hardware modules to build
+# maxwen: do we need copybit.msm8960???
 PRODUCT_PACKAGES += \
 	hwcomposer.msm8960 \
 	gralloc.msm8960 \
+	copybit.msm8960 \
 	audio.primary.msm8960 \
 	audio_policy.msm8960 \
-	lights.qcom
+	lights.qcom \
+	audio.a2dp.default \
+	audio.usb.default \
+	audio.r_submix.default \
+	libaudio-resampler
 
 PRODUCT_PACKAGES += \
 	libmm-omxcore \
@@ -113,8 +121,19 @@ PRODUCT_PACKAGES += \
 	libstagefrighthw \
 	libc2dcolorconvert
 
+# bluetooth
+PRODUCT_PACKAGES += \
+    bdAddrLoader
+
+PRODUCT_COPY_FILES += \
+	device/oppo/n1/configs/init.n1.bt.sh:system/etc/init.n1.bt.sh
 
 # Properties
+
+# bluetooth
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.qualcomm.bt.hci_transport=smd
+
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
@@ -135,13 +154,28 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	rild.libpath=/system/lib/libril-qc-qmi-1.so \
 	ril.subscription.types=NV,RUIM
 
+PRODUCT_PROPERTY_OVERRIDES += \
+	telephony.lteOnCdmaDevice=0
+
+PRODUCT_PROPERTY_OVERRIDES += \
+	drm.service.enabled=true
+
+PRODUCT_PROPERTY_OVERRIDES += \
+	wifi.interface=wlan0 \
+	wifi.supplicant_scan_interval=15
+
+# Enable AAC 5.1 output
+PRODUCT_PROPERTY_OVERRIDES += \
+    media.aac_51_output_enabled=true
+
+PRODUCT_PROPERTY_OVERRIDES += \
+        debug.egl.recordable.rgba8888=1
+
 # Oppo-specific
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	ro.oppo.version=US \
 	ro.xxversion=V1.0 \
 	ro.bootversion=V1.1
-
-PRODUCT_CHARACTERISTICS := nosdcard
 
 # qcom
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -158,6 +192,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	lpa.decode=false \
 	tunnel.decode=false \
 	tunnel.audiovideo.decode=true
+
+# QCOM
+PRODUCT_PROPERTY_OVERRIDES += \
+    com.qc.hardware=true
+
+# QC Perf
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.extension_library=/system/lib/libqc-opt.so
 
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)

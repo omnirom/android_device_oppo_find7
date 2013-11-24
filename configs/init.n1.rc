@@ -300,7 +300,7 @@ service rmt_storage /system/bin/rmt_storage
 #    group system bluetooth
 #    oneshot 
 
-service hciattach /system/bin/sh /system/etc/init.find5.bt.sh
+service hciattach /system/bin/sh /system/etc/init.n1.bt.sh
     class late_start
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin system
