@@ -128,6 +128,21 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
 	device/oppo/n1/configs/init.n1.bt.sh:system/etc/init.n1.bt.sh
 
+# NFC packages
+PRODUCT_PACKAGES += \
+    libnfc \
+    libnfc_jni \
+    Nfc \
+    Tag
+
+# NFC feature files
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml
+
+# GPS configuration
+PRODUCT_COPY_FILES += \
+	device/oppo/n1/configs/gps.conf:system/etc/gps.conf
+	
 # Properties
 
 # bluetooth
