@@ -107,6 +107,9 @@ WIFI_DRIVER_MODULE_NAME          := "wlan"
 
 BOARD_EGL_CFG := device/oppo/n1/configs/egl.cfg
 
+# Compatibility with pre-kitkat Qualcomm sensor HALs
+SENSORS_NEED_SETRATE_ON_ENABLE := true
+
 #TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
 
 # Recovery:Start
