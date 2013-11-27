@@ -110,6 +110,7 @@ PRODUCT_PACKAGES += \
 	audio.a2dp.default \
 	audio.usb.default \
 	audio.r_submix.default \
+        camera-wrapper.msm8960 \
 	libaudio-resampler
 
 PRODUCT_PACKAGES += \
