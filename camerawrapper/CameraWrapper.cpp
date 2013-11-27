@@ -112,6 +112,11 @@ char * camera_fixup_setparams(int id, const char * settings)
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
 
+    // allowing setting this to true will create the issue
+    // with continious auto focus and flash
+    params.set("auto-exposure-lock", "false");
+    params.set("auto-whitebalance-lock", "false");
+
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
 
