@@ -54,6 +54,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/oppo/n1/configs/audio_policy.conf:system/etc/audio_policy.conf \
 	device/oppo/n1/media_codecs.xml:system/etc/media_codecs.xml \
+	device/oppo/n1/media_profiles.xml:system/etc/media_profiles.xml \
 	device/oppo/n1/snd_soc_msm/snd_soc_msm_I2SFusion:system/etc/snd_soc_msm/snd_soc_msm_I2SFusion \
 	device/oppo/n1/snd_soc_msm/snd_soc_msm_Sitar:system/etc/snd_soc_msm/snd_soc_msm_Sitar \
 	device/oppo/n1/snd_soc_msm/snd_soc_msm_auxpcm:system/etc/snd_soc_msm/snd_soc_msm_auxpcm \
