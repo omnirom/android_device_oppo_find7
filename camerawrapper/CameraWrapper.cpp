@@ -58,7 +58,7 @@ camera_module_t HAL_MODULE_INFO_SYM = {
          version_major: 1,
          version_minor: 0,
          id: CAMERA_HARDWARE_MODULE_ID,
-         name: "Find5 Camera Wrapper",
+         name: "N1 Camera Wrapper",
          author: "The CyanogenMod Project",
          methods: &camera_module_methods,
          dso: NULL, /* remove compilation warnings */
@@ -95,6 +95,9 @@ static int check_vendor_module()
     return rv;
 }
 
+const static char * scene_mode_values[] =
+{"auto,hdr,asd,action,portrait,landscape,night,night-portrait,theatre,beach,snow,sunset,steadyphoto,fireworks,sports,party,candlelight,backlight,flowers,AR,hdr,macro,mix-illuminant,indoor"};
+
 static char * camera_fixup_getparams(int id, const char * settings)
 {
     android::CameraParameters params;
@@ -102,6 +105,16 @@ static char * camera_fixup_getparams(int id, const char * settings)
 
     // added video snapshot supported
     params.set(android::CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED, "true");
+
+    // add hdr scene mode to existing scene modes
+    params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES, scene_mode_values[id]);
+    if (params.get("ae-bracket-hdr")) {
+        const char* hdrMode = params.get("ae-bracket-hdr");
+        if (strcmp(hdrMode, "HDR") == 0) {
+            // Scene mode is HDR then (see fixup_setparams)
+            params.set("scene-mode", "hdr");
+        }
+    }
 
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
@@ -114,6 +127,25 @@ char * camera_fixup_setparams(int id, const char * settings)
 {
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
+
+    // fix params here
+    if (params.get("scene-mode")) {
+        const char* sceneMode = params.get("scene-mode");
+        if (strcmp(sceneMode, "hdr") == 0) {
+            // On n1 and find5, HDR works by setting 'ae-bracket-hdr' to 'HDR'
+            // ('AE-Bracket' exists too). We then use
+            // 'auto' scene mode as it's AOSP/Nexus behavior
+            params.set("ae-bracket-hdr", "HDR");
+            params.set("scene-mode", "auto");
+            params.set("scene-detect", "on");
+            ALOGD("Fixup: Hdr enabled");
+        } else {
+            // Remove HDR flag
+            params.set("ae-bracket-hdr", "Off");
+            params.set("scene-detect", "off");
+            ALOGD("Fixup: Hdr disabled");
+        }
+    }
 
     // allowing setting this to true will create the issue
     // with continious auto focus and flash
