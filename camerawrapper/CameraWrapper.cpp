@@ -371,7 +371,7 @@ char* camera_get_parameters(struct camera_device * device)
 
 #ifdef LOG_PARAMETERS
     //    __android_log_write(ANDROID_LOG_VERBOSE, LOG_TAG, tmp+350);
-    split_log_write(tmp);
+    split_log_write(params);
 #endif
 
     char * tmp = camera_fixup_getparams(CAMERA_ID(device), params);
