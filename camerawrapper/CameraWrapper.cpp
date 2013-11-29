@@ -100,6 +100,9 @@ static char * camera_fixup_getparams(int id, const char * settings)
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
 
+    // added video snapshot supported
+    params.set(android::CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED, "true");
+
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
 
@@ -120,7 +123,7 @@ char * camera_fixup_setparams(int id, const char * settings)
     if (params.get("recording-hint")) {
         const char* isRecording = params.get("recording-hint");
         const char* videoSize = params.get("video-size");
-        
+
         if (strcmp(isRecording, "true") == 0){
             params.set("picture-size", videoSize);
         }
