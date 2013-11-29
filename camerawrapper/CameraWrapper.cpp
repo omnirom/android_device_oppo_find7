@@ -117,6 +117,14 @@ char * camera_fixup_setparams(int id, const char * settings)
     params.set("auto-exposure-lock", "false");
     params.set("auto-whitebalance-lock", "false");
 
+    if (params.get("recording-hint")) {
+        const char* isRecording = params.get("recording-hint");
+        const char* videoSize = params.get("video-size");
+        
+        if (strcmp(isRecording, "true") == 0){
+            params.set("picture-size", videoSize);
+        }
+    }
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
 
