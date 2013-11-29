@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">N1</string> 
+
+    <string name="category_s2w_title">Sweep2Wake</string>
+    <string name="s2w_switch_title_head">Enable sweep to wake</string>
+    <string name="s2w_switch_summary_head">Switch phone screen on/off with a swipe over the capacitive buttons</string>
+    <string name="s2w_stroke_title_head">Direction</string>
+    <string name="s2w_stroke_summary_head">Set to "Direction dependent" to allow only a left-to-right swipe for turning on and a right-to-left swipe for turning off</string>
+    <string name="s2w_length_title_head">Minimum Length</string>
+    <string name="s2w_length_summary_head">Set the number of buttons that are needed to be swiped over for switching screen on/off</string>
+    <string name="category_s2w_double_tap_title">DoubleTap2Wake</string>
+    <string name="s2w_double_tap_wake_title_head">Enable double tap to wake</string>
+    <string name="s2w_double_tap_wake_summary_head">Switch phone screen on with a double tap on the screen</string>
+    <string name="s2w_double_tap_duration_title_head">Double tap duration</string>
+    <string name="s2w_double_tap_duration_summary_head">Minimal duration in ms between two taps to turn screen on</string>
+    <string name="s2w_double_tap_barrier_title_head">Double tap area</string>
+    <string name="s2w_double_tap_barrier_summary_head">Define the active screen area to accept double tap to wake</string>
+
+    <string name="category_vibrator">Vibrator</string>
+    <string name="vib_strength_title_head">Strength</string>
+    <string name="vib_strength_summary_head">Define the strength of the vibrator</string>
+    <string name="vib_test">Test</string>
+    <string name="category_suspend_cap">Suspend Limits</string>
+    <string name="suspend_cap_freq">Core frequeny limit</string>
+    <string name="suspend_cap_core">Core number limit</string>
+    
+    <string name="category_backtouch">Rear Touch Panel</string>
+    <string name="backtouch_title_head">Enable rear touch panel</string>
+    <string name="backtouch_summary_head">Enable usage of the the rear touch panel</string>
+</resources>
