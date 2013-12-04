@@ -40,6 +40,8 @@
     <!-- Different CPU speeds as reported in
          /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state -->
     <array name="cpu.speeds">
+        <value>162000</value> <!-- 162 MHz CPU speed -->
+        <value>270000</value> <!-- 270 MHz CPU speed -->
         <value>384000</value> <!-- 384 MHz CPU speed -->
         <value>486000</value> <!-- 486 MHz CPU speed -->
         <value>594000</value> <!-- 594 MHz CPU speed -->
@@ -51,13 +53,17 @@
         <value>1242000</value> <!-- 1242 MHz CPU speed -->
         <value>1350000</value> <!-- 1350 MHz CPU speed -->
         <value>1458000</value> <!-- 1458 MHz CPU speed -->
-        <value>1512000</value> <!-- 1512 MHz CPU speed -->
+        <value>1566000</value> <!-- 1566 MHz CPU speed -->
+        <value>1674000</value> <!-- 1674 MHz CPU speed -->
+        <value>1728000</value> <!-- 1728 MHz CPU speed -->
     </array>
     <!-- Power consumption when CPU is idle -->
     <item name="cpu.idle">3.5</item>
     <item name="cpu.awake">10.43</item>
     <!-- Power consumption at different speeds -->
     <array name="cpu.active">
+        <value>92.6</value> <!-- 162 MHz CPU speed -->
+        <value>92.6</value> <!-- 270 MHz CPU speed -->
         <value>92.6</value> <!-- 384 MHz CPU speed -->
         <value>108.6</value> <!-- 486 MHz CPU speed -->
         <value>118.8</value> <!-- 594 MHz CPU speed -->
@@ -70,7 +76,9 @@
         <value>228.5</value> <!-- 1350 MHz CPU speed -->
         <value>236.0</value> <!-- 1458 MHz CPU speed -->
         <value>239.7</value> <!-- 1512 MHz CPU speed -->
+        <value>239.7</value> <!-- 1674 MHz CPU speed -->
+        <value>239.7</value> <!-- 1728 MHz CPU speed -->
     </array>
     <!-- This is the battery capacity in mAh -->
-    <item name="battery.capacity">2500</item>
+    <item name="battery.capacity">3610</item>
 </device>
