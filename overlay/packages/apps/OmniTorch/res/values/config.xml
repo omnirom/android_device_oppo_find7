@@ -27,9 +27,9 @@
     <string name="flashDevice">/sys/class/leds/keyboard-backlight/brightness</string>
 
     <!-- normal setting -->
-    <integer name="valueLow">1</integer>
+    <integer name="valueLow">2</integer>
     <!-- high setting -->
-    <integer name="valueHigh">2</integer>
+    <integer name="valueHigh">5</integer>
 
 </resources>
 
