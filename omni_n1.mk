@@ -42,7 +42,7 @@ PRODUCT_MODEL := N1
 PRODUCT_MANUFACTURER := Oppo
 
 # Inline kernel
-TARGET_KERNEL_SOURCE := kernel/oppo/n1
+TARGET_KERNEL_SOURCE := kernel/oppo/apq8064
 TARGET_KERNEL_CONFIG := n1_defconfig
 
 # Inherit from proprietary blobs
