@@ -22,8 +22,8 @@
 */
 
 
-//#define LOG_NDEBUG 0
-//#define LOG_PARAMETERS
+#define LOG_NDEBUG 0
+#define LOG_PARAMETERS
 
 #define LOG_TAG "CameraWrapper"
 #include <cutils/log.h>
@@ -102,7 +102,7 @@ static char * camera_fixup_getparams(int id, const char * settings)
 {
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
-
+    /*
     // added video snapshot supported
     params.set(android::CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED, "true");
 
@@ -115,7 +115,7 @@ static char * camera_fixup_getparams(int id, const char * settings)
             params.set("scene-mode", "hdr");
         }
     }
-
+    */
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
 
@@ -127,7 +127,7 @@ char * camera_fixup_setparams(int id, const char * settings)
 {
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
-
+    /*
     // fix params here
     if (params.get("scene-mode")) {
         const char* sceneMode = params.get("scene-mode");
@@ -160,6 +160,8 @@ char * camera_fixup_setparams(int id, const char * settings)
             params.set("picture-size", videoSize);
         }
     }
+
+    */
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
 
