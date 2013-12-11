@@ -3746,6 +3746,31 @@ SectionDevice
 
 EndSection
 
+# maxwen: copy of Headset
+SectionDevice
+    Name "Voice Recognition Headset"
+    Comment "Headset Tx device for Voice recognition"
+
+	EnableSequence
+		'AIF1_CAP Mixer SLIM TX7':1:1
+		'SLIM_0_TX Channels':0:One
+		'SLIM TX7 MUX':0:DEC8
+		'DEC8 MUX':0:ADC2
+		'ADC2 Volume':1:100
+	EndSequence
+
+	DisableSequence
+		'AIF1_CAP Mixer SLIM TX7':1:0
+		'SLIM TX7 MUX':0:ZERO
+		'DEC8 MUX':0:ZERO
+		'ADC2 Volume':1:0
+	EndSequence
+
+	ACDBID	41:2
+	EffectsMixerCTL "SRS TruMedia"
+
+EndSection
+
 SectionDevice
         Name "HeadsetVM Tx"
         Comment "Headset Tx device"
