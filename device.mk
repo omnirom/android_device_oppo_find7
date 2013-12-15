@@ -148,6 +148,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/oppo/n1/configs/gps.conf:system/etc/gps.conf
 	
+PRODUCT_PACKAGES += \
+	N1Parts
+
 # Properties
 
 # bluetooth

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Find5</string>
+    <string name="category_s2w_title">Attiva schermo con uno sweep</string>
+    <string name="s2w_switch_title_head">Attiva sweep</string>
+    <string name="s2w_switch_summary_head">Accenderai e spegnerai lo schermo effettuando uno swipe sopra i pulsanti capacitivi</string>
+    <string name="s2w_stroke_title_head">Direzione</string>
+    <string name="s2w_stroke_summary_head">Se hai attivato la funzione Direzione Fissa sarà ammesso solo uno swipe da sinistra a destra per attivare e uno swipe da destra a sinistra per disattivare</string>
+    <string name="s2w_length_title_head">Lunghezza minima</string>
+    <string name="s2w_length_summary_head">Seleziona il numero di pulsanti capacitivi necessari per lo swipe</string>
+    <string name="category_s2w_double_tap_title">Attiva schermo con un doppio tocco</string>
+    <string name="s2w_double_tap_wake_title_head">Attiva doppio tocco</string>
+    <string name="s2w_double_tap_wake_summary_head">Accenderai e spegnerai lo schermo effettuando un doppio tocco sullo schermo intero o su un\'area selezionata</string>
+    <string name="s2w_double_tap_duration_title_head">Durata doppio tocco</string>
+    <string name="s2w_double_tap_duration_summary_head">Durata minima doppio tocco</string>
+    <string name="s2w_double_tap_barrier_title_head">Area doppio tocco</string>
+    <string name="s2w_double_tap_barrier_summary_head">Definisci l\'area attiva dello schermo dove per effettuare il doppio tocco</string>
+    <string name="category_vibrator">Vibrazione</string>
+    <string name="vib_strength_title_head">Lunghezza</string>
+    <string name="vib_strength_summary_head">Definisci la lunghezza della vibrazione</string>
+    <string name="vib_test">Prova</string>
+    <string name="category_suspend_cap">Sospendere limiti</string>
+    <string name="suspend_cap_freq">Limite frequenza CPU</string>
+    <string name="suspend_cap_core">Limite numero CPU</string>
+</resources>
