@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Find5</string>
+    <string name="app_name">N1</string>
     <string name="category_s2w_title">Attiva schermo con uno sweep</string>
     <string name="s2w_switch_title_head">Attiva sweep</string>
     <string name="s2w_switch_summary_head">Accenderai e spegnerai lo schermo effettuando uno swipe sopra i pulsanti capacitivi</string>
