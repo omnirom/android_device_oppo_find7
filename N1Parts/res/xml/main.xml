@@ -1,52 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<!-- defaultValues need to be in sync with the default kernel values! -->
-
-	<!--<PreferenceCategory
-        android:title="@string/category_s2w_title">
-	    <CheckBoxPreference
-	        android:key="s2w_switch"
-	        android:title="@string/s2w_switch_title_head"
-	        android:summary="@string/s2w_switch_summary_head" />
-	    <ListPreference
-	        android:key="s2w_stroke"
-	        android:title="@string/s2w_stroke_title_head"
-	        android:summary="@string/s2w_stroke_summary_head"
-            android:dependency="s2w_switch"
-	        android:entries="@array/s2w_stroke_entries"
-	        android:entryValues="@array/s2w_stroke_entries_values" />
-	    <ListPreference
-	        android:key="s2w_length"
-	        android:title="@string/s2w_length_title_head"
-	        android:summary="@string/s2w_length_summary_head"
-            android:dependency="s2w_switch"
-	        android:entries="@array/s2w_length_entries"
-	        android:entryValues="@array/s2w_length_entries_values" />
-	</PreferenceCategory>-->
-
-	<PreferenceCategory
-        android:title="@string/category_s2w_double_tap_title">
-	    <!-- s2w dopuble tap Options -->
-	    <CheckBoxPreference
-	        android:key="s2w_double_tap_wake"
-	        android:title="@string/s2w_double_tap_wake_title_head"
-	        android:summary="@string/s2w_double_tap_wake_summary_head" />
-	    <ListPreference
-	        android:key="s2w_double_tap_duration"
-	        android:title="@string/s2w_double_tap_duration_title_head"
-	        android:summary="@string/s2w_double_tap_duration_summary_head"
-            android:dependency="s2w_double_tap_wake"
-	        android:entries="@array/s2w_double_tap_duration_entries"
-	        android:entryValues="@array/s2w_double_tap_duration_values" />
-	    <!--<ListPreference
-	        android:key="s2w_double_tap_barrier"
-	        android:title="@string/s2w_double_tap_barrier_title_head"
-	        android:summary="@string/s2w_double_tap_barrier_summary_head"
-            android:dependency="s2w_double_tap_wake"
-	        android:entries="@array/s2w_double_tap_barrier_entries"
-	        android:entryValues="@array/s2w_double_tap_barrier_values" />-->
+	<PreferenceCategory android:title="@string/category_gestures_title" >
+		<CheckBoxPreference
+			android:key="double_tap"
+			android:summary="@string/double_tap_wake_summary_head"
+			android:title="@string/double_tap_wake_title_head" />
+		<CheckBoxPreference
+			android:key="camera"
+			android:summary="@string/camera_summary_head"
+			android:title="@string/camera_title_head" />
+		<CheckBoxPreference
+			android:key="music"
+			android:summary="@string/music_summary_head"
+			android:title="@string/music_title_head" />
+		<CheckBoxPreference
+			android:key="torch"
+			android:summary="@string/torch_summary_head"
+			android:title="@string/torch_title_head" />
 	</PreferenceCategory>
-
 	<PreferenceCategory
         android:title="@string/category_backtouch">
 	    <CheckBoxPreference

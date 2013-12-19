@@ -23,9 +23,9 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
-public class DoubleTap2WakeSwitch implements OnPreferenceChangeListener {
+public class CameraGestureSwitch implements OnPreferenceChangeListener {
 
-    private static final String FILE = "/sys/android_touch/dt2w_enabled";
+    private static final String FILE = "/proc/touchpanel/camera_enable";
 
     public static boolean isSupported() {
         return Utils.fileWritable(FILE);
@@ -34,7 +34,7 @@ public class DoubleTap2WakeSwitch implements OnPreferenceChangeListener {
     public static boolean isEnabled(Context context) {
         boolean enabled = Utils.getFileValueAsBoolean(FILE, false);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPrefs.getBoolean(DeviceSettings.KEY_DOUBLETAB2WAKE_SWITCH, enabled);     
+        return sharedPrefs.getBoolean(DeviceSettings.KEY_DOUBLETAB_SWITCH, enabled);     
     }
 
     /**

@@ -23,9 +23,9 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
-public class Sweep2WakeSwitch implements OnPreferenceChangeListener {
+public class DoubleTapSwitch implements OnPreferenceChangeListener {
 
-    private static final String FILE = "/sys/android_touch/s2w_enabled";
+    private static final String FILE = "/proc/touchpanel/double_tap_enable";
 
     public static boolean isSupported() {
         return Utils.fileWritable(FILE);
@@ -34,11 +34,11 @@ public class Sweep2WakeSwitch implements OnPreferenceChangeListener {
     public static boolean isEnabled(Context context) {
         boolean enabled = Utils.getFileValueAsBoolean(FILE, false);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPrefs.getBoolean(DeviceSettings.KEY_S2WSWITCH, enabled);
+        return sharedPrefs.getBoolean(DeviceSettings.KEY_DOUBLETAB_SWITCH, enabled);     
     }
 
     /**
-     * Restore Sweep2Wake setting from SharedPreferences. (Write to kernel.)
+     * Restore setting from SharedPreferences. (Write to kernel.)
      * @param context       The context to read the SharedPreferences from
      */
     public static void restore(Context context) {

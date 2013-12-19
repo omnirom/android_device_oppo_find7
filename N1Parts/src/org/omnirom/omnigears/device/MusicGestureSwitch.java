@@ -23,22 +23,22 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
-public class Sweep2WakeStroke implements OnPreferenceChangeListener {
+public class MusicGestureSwitch implements OnPreferenceChangeListener {
 
-    private static final String FILE = "/sys/android_touch/s2w_allow_stroke";
+    private static final String FILE = "/proc/touchpanel/music_enable";
 
     public static boolean isSupported() {
         return Utils.fileWritable(FILE);
     }
 
-    public static String getValue(Context context) {
-        String value = Utils.getFileValue(FILE, "1");
+    public static boolean isEnabled(Context context) {
+        boolean enabled = Utils.getFileValueAsBoolean(FILE, false);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPrefs.getString(DeviceSettings.KEY_S2WSTROKE, value);
+        return sharedPrefs.getBoolean(DeviceSettings.KEY_DOUBLETAB_SWITCH, enabled);     
     }
 
     /**
-     * Restore Sweep2Wake stroke setting from SharedPreferences. (Write to kernel.)
+     * Restore setting from SharedPreferences. (Write to kernel.)
      * @param context       The context to read the SharedPreferences from
      */
     public static void restore(Context context) {
@@ -46,13 +46,20 @@ public class Sweep2WakeStroke implements OnPreferenceChangeListener {
             return;
         }
 
-        String value = getValue(context);
-        Utils.writeValue(FILE, value);
+        boolean enabled = isEnabled(context);
+        if(enabled)
+            Utils.writeValue(FILE, "1");
+        else
+            Utils.writeValue(FILE, "0");
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        Utils.writeValue(FILE, (String) newValue);
+        Boolean enabled = (Boolean) newValue;
+        if(enabled)
+            Utils.writeValue(FILE, "1");
+        else
+            Utils.writeValue(FILE, "0");
         return true;
     }
 
