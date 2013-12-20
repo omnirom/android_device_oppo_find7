@@ -69,8 +69,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/oppo/n1/init.qcom.post_fs.sh:system/etc/init.qcom.post_fs.sh \
 	device/oppo/n1/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
-	device/oppo/n1/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
-	device/oppo/n1/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh
+	device/oppo/n1/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh
 
 # Wifi config
 PRODUCT_COPY_FILES += \
