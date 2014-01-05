@@ -25,4 +25,10 @@
              android:primary="true"
              android:removable="false"
              android:allowMassStorage="false" />
+    <!-- external USB OTG storage -->
+    <storage android:mountPoint="/storage/usbdisk"
+             android:storageDescription="@string/storage_usb"
+             android:primary="false"
+             android:removable="true"
+             android:allowMassStorage="false" />
 </StorageList>

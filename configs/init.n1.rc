@@ -25,9 +25,6 @@ on early-init
     mount ext4 /dev/block/platform/msm_sdcc.1/by-name/cache /cache wait rw nosuid noatime noauto_da_alloc
     mount debugfs debugfs /sys/kernel/debug
 
-on early-boot
-    exec /system/bin/sh /init.qcom.wcnss3660.sh ${ro.board.platform} ${ro.serialno}
-
 on init
     export EXTERNAL_STORAGE /storage/sdcard0
 
@@ -37,6 +34,12 @@ on init
     # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
+
+    # USB otg
+    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+    mkdir /storage/usbdisk 0700 root root
+    symlink /mnt/media_rw/usbdisk /usbdisk
+    symlink /mnt/media_rw/usbdisk /mnt/usbdisk
 
 on init
     # Set permissions for persist partition
@@ -463,3 +466,6 @@ service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard0 /s
     class late_start
     disabled
 
+service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/usbdisk /storage/usbdisk
+    class late_start
+    disabled

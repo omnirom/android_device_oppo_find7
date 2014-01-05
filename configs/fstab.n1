@@ -21,5 +21,5 @@
 /dev/block/platform/msm_sdcc.1/by-name/rpm /rpm emmc defaults defaults
 /dev/block/platform/msm_sdcc.1/by-name/aboot /aboot emmc defaults defaults
 /devices/platform/msm_sdcc.1/mmc_host/mmc0/mmc0:0001/block/mmcblk0 auto vfat defaults voldmanaged=sdcard0:29,nonremovable,noemulatedsd
-
+/devices/platform/msm_hsusb_host auto auto defaults voldmanaged=usbdisk:auto
 
