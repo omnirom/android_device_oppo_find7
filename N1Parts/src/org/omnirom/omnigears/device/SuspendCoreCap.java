@@ -48,13 +48,13 @@ public class SuspendCoreCap extends ListPreference implements OnPreferenceChange
 
     private void initList(){
         CharSequence[] entries = new CharSequence[5];
-        entries[0]="Disabled";
+        entries[0]=getContext().getResources().getString(R.string.disabled);
         int numCpus = getNumOfCpus();
         for (int i = 1; i <numCpus+1; i++){
             if (i == 1){
-                entries[i]= String.valueOf(i) + " core";
+                entries[i]= String.valueOf(i) + " " + getContext().getResources().getString(R.string.core);
             } else {
-                entries[i]= String.valueOf(i) + " cores";
+                entries[i]= String.valueOf(i) + " " + getContext().getResources().getString(R.string.cores);
             }
         }
 

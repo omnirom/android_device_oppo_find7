@@ -52,9 +52,9 @@ public class SuspendFreqCap extends ListPreference implements OnPreferenceChange
             String[] frequencies = availableFrequenciesLine.split(" ");
 
             List<String> entriesList = new ArrayList<String>();
-            entriesList.add("Disabled");
+            entriesList.add(getContext().getResources().getString(R.string.disabled));
             for (int i = 0; i < frequencies.length; i++){
-                entriesList.add(new Integer(frequencies[i]).intValue()/1000 + " Mhz");
+                entriesList.add(new Integer(frequencies[i]).intValue()/1000 + " " + getContext().getResources().getString(R.string.mhz));
             }
 
             CharSequence[] entries = entriesList.toArray(new CharSequence[entriesList.size()]);
