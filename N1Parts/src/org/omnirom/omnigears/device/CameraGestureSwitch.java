@@ -34,7 +34,7 @@ public class CameraGestureSwitch implements OnPreferenceChangeListener {
     public static boolean isEnabled(Context context) {
         boolean enabled = Utils.getFileValueAsBoolean(FILE, false);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPrefs.getBoolean(DeviceSettings.KEY_DOUBLETAB_SWITCH, enabled);     
+        return sharedPrefs.getBoolean(DeviceSettings.KEY_CAMERA_SWITCH, enabled);
     }
 
     /**
