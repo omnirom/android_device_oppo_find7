@@ -24,4 +24,8 @@
     <string name="core">core</string>
     <string name="cores">cores</string>
     <string name="mhz" translateable="false">MHz</string>
+    <string name="category_oclick">O-Click</string>
+    <string name="oclick_title_head">Setup</string>    
+    <string name="oclick_summary_head">Configure O-Click support</string>
+
 </resources>
