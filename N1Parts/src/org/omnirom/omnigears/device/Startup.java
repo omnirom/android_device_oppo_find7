@@ -32,6 +32,6 @@ public class Startup extends BroadcastReceiver {
         VibratorStrengthPreference.restore(context);
         SuspendFreqCap.restore(context);
         SuspendCoreCap.restore(context);
-        BackTouchSwitch.restore(context);
+        //BackTouchSwitch.restore(context);
     }
 }

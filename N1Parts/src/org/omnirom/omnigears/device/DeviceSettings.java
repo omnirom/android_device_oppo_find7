@@ -40,7 +40,7 @@ public class DeviceSettings extends PreferenceActivity  {
 
     private SuspendFreqCap mSuspendFreqCap;
     private SuspendCoreCap mSuspendCoreCap;
-    private TwoStatePreference mBackTouchSwitch;
+    //private TwoStatePreference mBackTouchSwitch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,10 +77,10 @@ public class DeviceSettings extends PreferenceActivity  {
         mSuspendCoreCap.setValue(SuspendCoreCap.getValue(this));
         mSuspendCoreCap.setOnPreferenceChangeListener(mSuspendCoreCap);
 
-        mBackTouchSwitch= (TwoStatePreference) findPreference(KEY_BACKTOUCH);
+        /*mBackTouchSwitch= (TwoStatePreference) findPreference(KEY_BACKTOUCH);
         mBackTouchSwitch.setEnabled(BackTouchSwitch.isSupported());
         mBackTouchSwitch.setChecked(BackTouchSwitch.isEnabled(this));
-        mBackTouchSwitch.setOnPreferenceChangeListener(new BackTouchSwitch());
+        mBackTouchSwitch.setOnPreferenceChangeListener(new BackTouchSwitch());*/
     }
 
     @Override
