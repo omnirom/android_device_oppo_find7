@@ -340,15 +340,8 @@ public class OClickBLEService extends Service implements
         filter.addAction(ACTION_STOP_ALERT);
         registerReceiver(mReceiver, filter);
 
-        Uri currentRingtone = RingtoneManager.getActualDefaultRingtoneUri(this,
-                RingtoneManager.TYPE_RINGTONE);
-        String currentRingtoneString = mPrefs.getString(
-                OClickControlActivity.OCLICK_FIND_PHONE_ALERT_TONE_KEY, null);
-        if (currentRingtoneString != null) {
-            currentRingtone = Uri.parse(currentRingtoneString);
-        }
-        mRingtone = RingtoneManager.getRingtone(getApplicationContext(),
-                currentRingtone);
+        setFindMeAlertRingtone(mPrefs);
+
         mIsRunning = true;
         initialize();
 
@@ -373,6 +366,12 @@ public class OClickBLEService extends Service implements
     @Override
     public IBinder onBind(Intent intent) {
         return mBinder;
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        super.onStartCommand(intent, flags, startId);
+        return START_STICKY;
     }
 
     @Override
@@ -577,6 +576,10 @@ public class OClickBLEService extends Service implements
     }
 
     private void handleFindMeAlert() {
+        if (mRingtone == null){
+            return;
+        }
+
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (mRingtone.isPlaying()) {
@@ -733,14 +736,25 @@ public class OClickBLEService extends Service implements
             }
         }
         if (key.equals(OClickControlActivity.OCLICK_FIND_PHONE_ALERT_TONE_KEY)) {
-            String currentRingtoneString = sharedPreferences.getString(
-                    OClickControlActivity.OCLICK_FIND_PHONE_ALERT_TONE_KEY,
-                    null);
-            if (currentRingtoneString != null) {
-                Uri currentRingtone = Uri.parse(currentRingtoneString);
-                mRingtone = RingtoneManager.getRingtone(
-                        getApplicationContext(), currentRingtone);
-            }
+            setFindMeAlertRingtone(sharedPreferences);
+        }
+    }
+
+    private void setFindMeAlertRingtone(SharedPreferences sharedPreferences) {
+        String currentRingtoneString = sharedPreferences.getString(
+                OClickControlActivity.OCLICK_FIND_PHONE_ALERT_TONE_KEY, null);
+        
+        // this is null if default ringtone is set to none
+        Uri currentRingtone = RingtoneManager.getActualDefaultRingtoneUri(this,
+                    RingtoneManager.TYPE_RINGTONE);
+
+        if (currentRingtoneString != null) {
+            currentRingtone = Uri.parse(currentRingtoneString);
+        }
+        if(currentRingtone != null){
+            mRingtone = RingtoneManager.getRingtone(getApplicationContext(), currentRingtone);
+        } else {
+            mRingtone = null;
         }
     }
 }

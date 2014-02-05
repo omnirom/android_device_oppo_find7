@@ -32,6 +32,7 @@
 	<string name="snap_picture_title">Single click to take picture</string>
 	<string name="find_phone_alert_title">Double click to find phone</string>
 	<string name="find_phone_alert_tone_title">Ringtone</string>
+	<string name="find_phone_alert_tone_none">None</string>
 	<string name="find_phone_alert_notification_title">Phone locator alert</string>
 	<string name="find_phone_alert_notification_text">Tap to dismiss</string>
 	<string name="music_control_title">Music control</string>

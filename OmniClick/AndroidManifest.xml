@@ -37,12 +37,14 @@
 	<uses-permission android:name="android.permission.INJECT_EVENTS" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 	<uses-permission android:name="android.permission.GET_TASKS" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<application
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name"
-		android:launchMode="singleTask">
+		android:persistent="true" >
 		<activity
 			android:name="org.omnirom.omniclick.OClickControlActivity"
+			android:launchMode="singleTop"
 			android:label="@string/app_name" >
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />

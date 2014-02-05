@@ -451,6 +451,7 @@ public class OClickControlActivity extends Activity {
         // Launch the ringtone picker
         Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, false);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
         Uri currentRingtone = getCurrentRingtone();
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI,
                 currentRingtone);
@@ -489,15 +490,18 @@ public class OClickControlActivity extends Activity {
         CharSequence summary = null;
         try {
             Uri currentRingtone = getCurrentRingtone();
-            Cursor cursor = getContentResolver().query(currentRingtone,
-                    new String[] { MediaStore.Audio.Media.TITLE }, null, null,
-                    null);
-            if (cursor != null) {
-                if (cursor.moveToFirst()) {
-                    summary = cursor.getString(0);
-                    mFindPhoneAlertTone.setText(summary);
+            mFindPhoneAlertTone.setText(getResources().getString(R.string.find_phone_alert_tone_none));
+            if(currentRingtone != null){
+                Cursor cursor = getContentResolver().query(currentRingtone,
+                        new String[] { MediaStore.Audio.Media.TITLE }, null, null,
+                        null);
+                if (cursor != null) {
+                    if (cursor.moveToFirst()) {
+                        summary = cursor.getString(0);
+                        mFindPhoneAlertTone.setText(summary);
+                    }
+                    cursor.close();
                 }
-                cursor.close();
             }
         } catch (SQLiteException sqle) {
             Log.d(TAG, "", sqle);
@@ -521,12 +525,11 @@ public class OClickControlActivity extends Activity {
     private Uri getCurrentRingtone() {
         String currentRingtoneString = mPrefs.getString(
                 OClickControlActivity.OCLICK_FIND_PHONE_ALERT_TONE_KEY, null);
-        Uri currentRingtone = null;
+        // this is null if default ringtone is set to none
+        Uri currentRingtone = RingtoneManager.getActualDefaultRingtoneUri(this,
+                    RingtoneManager.TYPE_RINGTONE);
         if (currentRingtoneString != null) {
             currentRingtone = Uri.parse(currentRingtoneString);
-        } else {
-            currentRingtone = RingtoneManager.getActualDefaultRingtoneUri(this,
-                    RingtoneManager.TYPE_RINGTONE);
         }
         return currentRingtone;
     }
