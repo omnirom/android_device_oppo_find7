@@ -103,6 +103,7 @@ PRODUCT_PACKAGES += \
 	hwcomposer.msm8960 \
 	gralloc.msm8960 \
 	copybit.msm8960 \
+	memtrack.msm8960 \
 	audio.primary.msm8960 \
 	audio_policy.msm8960 \
 	lights.qcom \
