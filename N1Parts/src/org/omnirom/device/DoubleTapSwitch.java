@@ -15,7 +15,7 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package org.omnirom.omnigears.device;
+package org.omnirom.device;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -23,9 +23,9 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
-public class MusicGestureSwitch implements OnPreferenceChangeListener {
+public class DoubleTapSwitch implements OnPreferenceChangeListener {
 
-    private static final String FILE = "/proc/touchpanel/music_enable";
+    private static final String FILE = "/proc/touchpanel/double_tap_enable";
 
     public static boolean isSupported() {
         return Utils.fileWritable(FILE);
@@ -34,7 +34,7 @@ public class MusicGestureSwitch implements OnPreferenceChangeListener {
     public static boolean isEnabled(Context context) {
         boolean enabled = Utils.getFileValueAsBoolean(FILE, false);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPrefs.getBoolean(DeviceSettings.KEY_MUSIC_SWITCH, enabled);
+        return sharedPrefs.getBoolean(DeviceSettings.KEY_DOUBLETAB_SWITCH, enabled);     
     }
 
     /**

@@ -15,7 +15,7 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package org.omnirom.omnigears.device;
+package org.omnirom.device;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
