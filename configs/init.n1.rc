@@ -57,8 +57,6 @@ on early-boot
     setrlimit 8 67108864 67108864
 
 on boot
-    exec system/bin/btnvtool -O
-
     #Oppo nv dump stuff - probably needed for BT MAC address.
     #hci_qcomm_init does want to look here
     mkdir /data/opponvitems  0771 radio radio
@@ -146,6 +144,7 @@ on boot
     write /proc/sys/net/core/wmem_max  1220608
 
     start qcamerasvr
+    start config_bluetooth
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -153,7 +152,6 @@ on post-fs-data
     # We chown/chmod /persist again so because mount is run as root + defaults
     chown system system /persist
 
-    mkdir /data/misc/wifi/prima 0775 wifi wifi
     start qcom-post-fs
 
     # Create the directories used by the Wireless subsystem
@@ -302,6 +300,11 @@ service rmt_storage /system/bin/rmt_storage
 #    user bluetooth
 #    group system bluetooth
 #    oneshot 
+
+service config_bluetooth /system/bin/sh /system/etc/init.n1.bt.sh "onboot"
+    class core
+    user root
+    oneshot
 
 service hciattach /system/bin/sh /system/etc/init.n1.bt.sh
     class late_start

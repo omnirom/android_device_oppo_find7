@@ -126,9 +126,9 @@ PRODUCT_PACKAGES += \
 	libstagefrighthw \
 	libc2dcolorconvert
 
-# bluetooth
+# wifi
 PRODUCT_PACKAGES += \
-    bdAddrLoader
+    mac-update
 
 PRODUCT_COPY_FILES += \
 	device/oppo/n1/configs/init.n1.bt.sh:system/etc/init.n1.bt.sh
@@ -203,9 +203,11 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # qcom
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.qc.sdk.audio.ssr=false \
-	ro.qc.sdk.audio.fluencetype=fluence \
-	ro.qc.sdk.sensors.gestures=false
+    ro.qc.sdk.audio.ssr=false \
+    ro.qc.sdk.audio.fluencetype=fluence \
+    ro.qc.sdk.sensors.gestures=false \
+    ro.qc.sdk.camera.facialproc=true \
+    ro.qc.sdk.gestures.camera=false
 
 # Audio Configuration
 PRODUCT_PROPERTY_OVERRIDES += \
