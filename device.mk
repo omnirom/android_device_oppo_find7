@@ -15,8 +15,8 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 PRODUCT_CHARACTERISTICS := nosdcard
 
 PRODUCT_PACKAGES += \
-    charger_res_images \
-    charger
+    charger_res_images_n1 \
+    charger_n1
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
