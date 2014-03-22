@@ -152,8 +152,6 @@ on post-fs-data
     # We chown/chmod /persist again so because mount is run as root + defaults
     chown system system /persist
 
-    start qcom-post-fs
-
     # Create the directories used by the Wireless subsystem
     mkdir /data/misc/wifi 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
@@ -198,8 +196,6 @@ on post-fs-data
 
     mkdir /persist/sensors
     chmod 775 /persist/sensors
-
-    start sensors
 
     #Provide the access to hostapd.conf only to root and group
     chmod 0660 /data/hostapd/hostapd.conf
@@ -281,6 +277,9 @@ on post-fs-data
 
     # camera led for torch
     chmod 0666 /sys/class/leds/keyboard-backlight/brightness
+
+    start sensors
+    start qcom-post-fs
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
@@ -427,11 +426,11 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
 #service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
 #    class main
 
-service conn_init /system/bin/logwrapper /system/bin/conn_init
-    class late_start
-    user system
-    group system wifi
-    oneshot
+#service conn_init /system/bin/logwrapper /system/bin/conn_init
+#    class late_start
+#    user system
+#    group system wifi
+#    oneshot
 
 service qcom-post-fs /system/bin/sh /system/etc/init.qcom.post_fs.sh
     class core
