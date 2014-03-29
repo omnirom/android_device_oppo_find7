@@ -59,6 +59,7 @@ TARGET_QCOM_AUDIO_VARIANT := caf
 BOARD_HAVE_LOW_LATENCY_AUDIO := true
 TARGET_QCOM_MEDIA_VARIANT := caf
 BOARD_USES_FLUENCE_INCALL := true
+BOARD_USES_FLUENCE_FOR_VOIP := true
 # maxwen: this is actually only needed because
 # of a bug in audio-caf when BOARD_USES_FLUENCE_INCALL := true
 # to enter the default else path
