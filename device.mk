@@ -99,7 +99,6 @@ PRODUCT_COPY_FILES += \
 
 
 # Hardware modules to build
-# maxwen: do we need copybit.msm8960???
 PRODUCT_PACKAGES += \
 	hwcomposer.msm8960 \
 	gralloc.msm8960 \
@@ -178,6 +177,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	rild.libpath=/system/lib/libril-qc-qmi-1.so \
 	ril.subscription.types=NV,RUIM
+
+# Cell Broadcasts
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.cellbroadcast.emergencyids=0-65534 
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	telephony.lteOnCdmaDevice=0
