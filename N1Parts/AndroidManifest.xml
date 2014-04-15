@@ -3,6 +3,7 @@
 	package="org.omnirom.device" >
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.WRITE_SETTINGS" />
 	<uses-sdk
 		android:minSdkVersion="18"
 		android:targetSdkVersion="18" />

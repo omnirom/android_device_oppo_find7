@@ -18,6 +18,7 @@
 			android:summary="@string/torch_summary_head"
 			android:title="@string/torch_title_head" />
 	</PreferenceCategory>
+
 	<PreferenceCategory
         android:title="@string/category_oclick">
 	    <Preference
@@ -30,6 +31,7 @@
                 android:targetClass="org.omnirom.omniclick.OClickControlActivity"/>
 	    </Preference>
 	</PreferenceCategory>
+
 	<!--<PreferenceCategory
         android:title="@string/category_backtouch">
 	    <CheckBoxPreference
@@ -37,6 +39,14 @@
 	        android:title="@string/backtouch_title_head"
 	        android:summary="@string/backtouch_summary_head" />
 	</PreferenceCategory>-->
+
+	<PreferenceCategory
+        android:title="@string/category_camera">
+	    <CheckBoxPreference
+	        android:key="camera_flip"
+	        android:title="@string/camera_flip_title_head"
+	        android:summary="@string/camera_flip_summary_head" />
+	</PreferenceCategory>
 
 	<PreferenceCategory
         android:title="@string/category_vibrator">

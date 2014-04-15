@@ -32,12 +32,13 @@ public class DeviceSettings extends PreferenceActivity  {
     public static final String KEY_SUSPEND_CAP_FREQ = "suspend_cap_freq";
     public static final String KEY_SUSPEND_CAP_CORE = "suspend_cap_core";
     public static final String KEY_BACKTOUCH = "backtouch";
+    public static final String KEY_CAMERA_FLIP = "camera_flip";
 
     private TwoStatePreference mDoubleTapSwitch;
     private TwoStatePreference mCameraSwitch;
     private TwoStatePreference mMusicSwitch;
     private TwoStatePreference mTorchSwitch;
-
+    private TwoStatePreference mCameraFlipSwitch;
     private SuspendFreqCap mSuspendFreqCap;
     private SuspendCoreCap mSuspendCoreCap;
     //private TwoStatePreference mBackTouchSwitch;
@@ -81,6 +82,11 @@ public class DeviceSettings extends PreferenceActivity  {
         mBackTouchSwitch.setEnabled(BackTouchSwitch.isSupported());
         mBackTouchSwitch.setChecked(BackTouchSwitch.isEnabled(this));
         mBackTouchSwitch.setOnPreferenceChangeListener(new BackTouchSwitch());*/
+
+        mCameraFlipSwitch = (TwoStatePreference) findPreference(KEY_CAMERA_FLIP);
+        mCameraFlipSwitch.setEnabled(CameraFlipSwitch.isSupported());
+        mCameraFlipSwitch.setChecked(CameraFlipSwitch.isEnabled(this));
+        mCameraFlipSwitch.setOnPreferenceChangeListener(new CameraFlipSwitch(this));
     }
 
     @Override

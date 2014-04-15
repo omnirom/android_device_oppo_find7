@@ -42,4 +42,7 @@
     <string name="oclick_title_head">Setup</string>    
     <string name="oclick_summary_head">Configure O-Click support</string>
     <string name="advanced_settings">Advanced</string>
+    <string name="category_camera">Camera</string>
+    <string name="camera_flip_title_head">Camera flip activation</string>
+    <string name="camera_flip_summary_head">Start camera app when camera is rotated</string>
 </resources>
