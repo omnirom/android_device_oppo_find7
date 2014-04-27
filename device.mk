@@ -1,9 +1,9 @@
-# This file includes all definitions that apply to ALL n1 devices, and
-# are also specific to n1 devices
+# This file includes all definitions that apply to ALL find7a devices, and
+# are also specific to find7a devices
 #
 # Everything in this directory will become public
 
-DEVICE_PACKAGE_OVERLAYS := device/oppo/n1/overlay
+DEVICE_PACKAGE_OVERLAYS := device/oppo/find7a/overlay
 
 # This device is xhdpi.  However the platform doesn't
 # currently contain all of the bitmaps at xhdpi density so
@@ -15,8 +15,8 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 PRODUCT_CHARACTERISTICS := nosdcard
 
 PRODUCT_PACKAGES += \
-    charger_res_images_n1 \
-    charger_n1
+    charger_res_images_find7a \
+    charger_find7a
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -31,51 +31,51 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-        device/oppo/n1/configs/init.n1.rc:root/init.qcom.rc \
-        device/oppo/n1/configs/init.n1.usb.rc:root/init.n1.usb.rc \
-        device/oppo/n1/configs/ueventd.qcom.rc:root/ueventd.qcom.rc \
-        device/oppo/n1/configs/fstab.n1:root/fstab.qcom \
-        device/oppo/n1/configs/twrp.fstab:recovery/root/etc/twrp.fstab
+        device/oppo/find7a/configs/init.find7a.rc:root/init.qcom.rc \
+        device/oppo/find7a/configs/init.find7a.usb.rc:root/init.find7a.usb.rc \
+        device/oppo/find7a/configs/ueventd.qcom.rc:root/ueventd.qcom.rc \
+        device/oppo/find7a/configs/fstab.find7a:root/fstab.qcom \
+        device/oppo/find7a/configs/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Config files for touch and input
 PRODUCT_COPY_FILES += \
-	device/oppo/n1/configs/keylayout/keypad_8960_liquid.kl:system/usr/keylayout/keypad_8960_liquid.kl \
-	device/oppo/n1/configs/keylayout/keypad_8960.kl:system/usr/keylayout/keypad_8960.kl \
-	device/oppo/n1/configs/keylayout/Button_Jack.kl:system/usr/keylayout/Button_Jack.kl \
-	device/oppo/n1/configs/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-	device/oppo/n1/configs/keylayout/cyttsp-i2c.kl:system/usr/keylayout/cyttsp-i2c.kl \
-	device/oppo/n1/configs/keylayout/atmel_mxt_ts.kl:system/usr/keylayout/atmel_mxt_ts.kl \
-	device/oppo/n1/configs/keylayout/ue_rf4ce_remote.kl:system/usr/keylayout/ue_rf4ce_remote.kl \
-	device/oppo/n1/configs/keylayout/Vendor_046d_Product_c216.kl:system/usr/keylayout/Vendor_046d_Product_c216.kl \
-	device/oppo/n1/configs/keylayout/Vendor_05ac_Product_0239.kl:system/usr/keylayout/Vendor_05ac_Product_0239.kl \
-	device/oppo/n1/configs/idc/y8c20x66a-rmi-ts.idc:system/usr/idc/y8c20x66a-rmi-ts.idc
+	device/oppo/find7a/configs/keylayout/keypad_8960_liquid.kl:system/usr/keylayout/keypad_8960_liquid.kl \
+	device/oppo/find7a/configs/keylayout/keypad_8960.kl:system/usr/keylayout/keypad_8960.kl \
+	device/oppo/find7a/configs/keylayout/Button_Jack.kl:system/usr/keylayout/Button_Jack.kl \
+	device/oppo/find7a/configs/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
+	device/oppo/find7a/configs/keylayout/cyttsp-i2c.kl:system/usr/keylayout/cyttsp-i2c.kl \
+	device/oppo/find7a/configs/keylayout/atmel_mxt_ts.kl:system/usr/keylayout/atmel_mxt_ts.kl \
+	device/oppo/find7a/configs/keylayout/ue_rf4ce_remote.kl:system/usr/keylayout/ue_rf4ce_remote.kl \
+	device/oppo/find7a/configs/keylayout/Vendor_046d_Product_c216.kl:system/usr/keylayout/Vendor_046d_Product_c216.kl \
+	device/oppo/find7a/configs/keylayout/Vendor_05ac_Product_0239.kl:system/usr/keylayout/Vendor_05ac_Product_0239.kl \
+	device/oppo/find7a/configs/idc/y8c20x66a-rmi-ts.idc:system/usr/idc/y8c20x66a-rmi-ts.idc
 
 # Audio config files
 PRODUCT_COPY_FILES += \
-	device/oppo/n1/configs/audio_policy.conf:system/etc/audio_policy.conf \
-	device/oppo/n1/media_codecs.xml:system/etc/media_codecs.xml \
-	device/oppo/n1/media_profiles.xml:system/etc/media_profiles.xml \
-	device/oppo/n1/snd_soc_msm/snd_soc_msm_I2SFusion:system/etc/snd_soc_msm/snd_soc_msm_I2SFusion \
-	device/oppo/n1/snd_soc_msm/snd_soc_msm_Sitar:system/etc/snd_soc_msm/snd_soc_msm_Sitar \
-	device/oppo/n1/snd_soc_msm/snd_soc_msm_auxpcm:system/etc/snd_soc_msm/snd_soc_msm_auxpcm \
-	device/oppo/n1/snd_soc_msm/snd_soc_msm_2x:system/etc/snd_soc_msm/snd_soc_msm_2x \
-	device/oppo/n1/snd_soc_msm/snd_soc_msm_Sitar_Sglte:system/etc/snd_soc_msm/snd_soc_msm_Sitar_Sglte \
-	device/oppo/n1/snd_soc_msm/snd_soc_msm_2x_Fusion3_auxpcm:system/etc/snd_soc_msm/snd_soc_msm_2x_Fusion3_auxpcm \
-	device/oppo/n1/snd_soc_msm/snd_soc_msm_Sitar_auxpcm:system/etc/snd_soc_msm/snd_soc_msm_Sitar_auxpcm \
-	device/oppo/n1/snd_soc_msm/snd_soc_msm_2x_Fusion3:system/etc/snd_soc_msm/snd_soc_msm_2x_Fusion3 \
-	device/oppo/n1/snd_soc_msm/snd_soc_msm_I2S:system/etc/snd_soc_msm/snd_soc_msm_I2S
+	device/oppo/find7a/configs/audio_policy.conf:system/etc/audio_policy.conf \
+	device/oppo/find7a/media_codecs.xml:system/etc/media_codecs.xml \
+	device/oppo/find7a/media_profiles.xml:system/etc/media_profiles.xml \
+	device/oppo/find7a/snd_soc_msm/snd_soc_msm_I2SFusion:system/etc/snd_soc_msm/snd_soc_msm_I2SFusion \
+	device/oppo/find7a/snd_soc_msm/snd_soc_msm_Sitar:system/etc/snd_soc_msm/snd_soc_msm_Sitar \
+	device/oppo/find7a/snd_soc_msm/snd_soc_msm_auxpcm:system/etc/snd_soc_msm/snd_soc_msm_auxpcm \
+	device/oppo/find7a/snd_soc_msm/snd_soc_msm_2x:system/etc/snd_soc_msm/snd_soc_msm_2x \
+	device/oppo/find7a/snd_soc_msm/snd_soc_msm_Sitar_Sglte:system/etc/snd_soc_msm/snd_soc_msm_Sitar_Sglte \
+	device/oppo/find7a/snd_soc_msm/snd_soc_msm_2x_Fusion3_auxpcm:system/etc/snd_soc_msm/snd_soc_msm_2x_Fusion3_auxpcm \
+	device/oppo/find7a/snd_soc_msm/snd_soc_msm_Sitar_auxpcm:system/etc/snd_soc_msm/snd_soc_msm_Sitar_auxpcm \
+	device/oppo/find7a/snd_soc_msm/snd_soc_msm_2x_Fusion3:system/etc/snd_soc_msm/snd_soc_msm_2x_Fusion3 \
+	device/oppo/find7a/snd_soc_msm/snd_soc_msm_I2S:system/etc/snd_soc_msm/snd_soc_msm_I2S
 
 # qcom init stuff
 PRODUCT_COPY_FILES += \
-	device/oppo/n1/init.qcom.post_fs.sh:system/etc/init.qcom.post_fs.sh \
-	device/oppo/n1/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
-	device/oppo/n1/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
-	device/oppo/n1/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh
+	device/oppo/find7a/init.qcom.post_fs.sh:system/etc/init.qcom.post_fs.sh \
+	device/oppo/find7a/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
+	device/oppo/find7a/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
+	device/oppo/find7a/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh
 
 # Wifi config
 PRODUCT_COPY_FILES += \
-	device/oppo/n1/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-	device/oppo/n1/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+	device/oppo/find7a/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+	device/oppo/find7a/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -131,7 +131,7 @@ PRODUCT_PACKAGES += \
     mac-update
 
 PRODUCT_COPY_FILES += \
-	device/oppo/n1/configs/init.n1.bt.sh:system/etc/init.n1.bt.sh
+	device/oppo/find7a/configs/init.find7a.bt.sh:system/etc/init.find7a.bt.sh
 
 # NFC packages
 PRODUCT_PACKAGES += \
@@ -146,12 +146,8 @@ PRODUCT_COPY_FILES += \
 
 # GPS configuration
 PRODUCT_COPY_FILES += \
-	device/oppo/n1/configs/gps.conf:system/etc/gps.conf
+	device/oppo/find7a/configs/gps.conf:system/etc/gps.conf
 	
-PRODUCT_PACKAGES += \
-    N1Parts \
-    OmniClick
-
 # Properties
 
 # bluetooth

@@ -1,8 +1,2 @@
 [
-  {
-    "remote": "omnirom",
-    "repository": "android_kernel_oppo_apq8064",
-    "target_path": "kernel/oppo/apq8064",
-    "revision": "android-4.4"
-  }
 ]

@@ -10,7 +10,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_CFLAGS += -DCHARGER_ENABLE_SUSPEND
 
-LOCAL_MODULE := charger_n1
+LOCAL_MODULE := charger_find7a
 LOCAL_MODULE_TAGS := optional
 LOCAL_FORCE_STATIC_EXECUTABLE := true
 LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)
@@ -24,9 +24,9 @@ LOCAL_STATIC_LIBRARIES += libz libstdc++ libcutils liblog libm libc
 
 include $(BUILD_EXECUTABLE)
 
-define _add-n1-charger-image
+define _add-find7a-charger-image
 include $$(CLEAR_VARS)
-LOCAL_MODULE := device_oppo_n1_charger_$(notdir $(1))
+LOCAL_MODULE := device_oppo_find7a_charger_$(notdir $(1))
 LOCAL_MODULE_STEM := $(notdir $(1))
 _img_modules += $$(LOCAL_MODULE)
 LOCAL_SRC_FILES := $1
@@ -39,10 +39,10 @@ endef
 _img_modules :=
 _images :=
 $(foreach _img, $(call find-subdir-subdir-files, "images", "*.png"), \
-  $(eval $(call _add-n1-charger-image,$(_img))))
+  $(eval $(call _add-find7a-charger-image,$(_img))))
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := charger_res_images_n1
+LOCAL_MODULE := charger_res_images_find7a
 LOCAL_MODULE_TAGS := optional
 LOCAL_REQUIRED_MODULES := $(_img_modules)
 include $(BUILD_PHONY_PACKAGE)
