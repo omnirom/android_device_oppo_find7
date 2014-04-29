@@ -39,16 +39,10 @@ PRODUCT_COPY_FILES += \
 
 # Config files for touch and input
 PRODUCT_COPY_FILES += \
-	device/oppo/find7a/configs/keylayout/keypad_8960_liquid.kl:system/usr/keylayout/keypad_8960_liquid.kl \
-	device/oppo/find7a/configs/keylayout/keypad_8960.kl:system/usr/keylayout/keypad_8960.kl \
-	device/oppo/find7a/configs/keylayout/Button_Jack.kl:system/usr/keylayout/Button_Jack.kl \
 	device/oppo/find7a/configs/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-	device/oppo/find7a/configs/keylayout/cyttsp-i2c.kl:system/usr/keylayout/cyttsp-i2c.kl \
 	device/oppo/find7a/configs/keylayout/atmel_mxt_ts.kl:system/usr/keylayout/atmel_mxt_ts.kl \
-	device/oppo/find7a/configs/keylayout/ue_rf4ce_remote.kl:system/usr/keylayout/ue_rf4ce_remote.kl \
 	device/oppo/find7a/configs/keylayout/Vendor_046d_Product_c216.kl:system/usr/keylayout/Vendor_046d_Product_c216.kl \
-	device/oppo/find7a/configs/keylayout/Vendor_05ac_Product_0239.kl:system/usr/keylayout/Vendor_05ac_Product_0239.kl \
-	device/oppo/find7a/configs/idc/y8c20x66a-rmi-ts.idc:system/usr/idc/y8c20x66a-rmi-ts.idc
+	device/oppo/find7a/configs/keylayout/Vendor_05ac_Product_0239.kl:system/usr/keylayout/Vendor_05ac_Product_0239.kl
 
 # Audio config files
 PRODUCT_COPY_FILES += \

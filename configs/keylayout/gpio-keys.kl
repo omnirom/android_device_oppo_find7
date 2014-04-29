@@ -26,16 +26,6 @@
 
 key 115   VOLUME_UP         WAKE_DROPPED
 key 114   VOLUME_DOWN       WAKE_DROPPED
-key 102   HOME             VIRTUAL
+key 102   HOME              WAKE_DROPPED
 key 528   FOCUS             WAKE_DROPPED
 key 766   CAMERA            WAKE_DROPPED
-key 139   MENU              VIRTUAL  
-key 158   BACK              VIRTUAL
-key 59    F1                WAKE_DROPPED
-key 60    F2                WAKE_DROPPED
-key 61    F3                WAKE_DROPPED
-key 62    F4                WAKE_DROPPED
-key 63    F5                WAKE_DROPPED
-key 64    F6                WAKE_DROPPED
-key 65    F7                WAKE_DROPPED
-key 66    F8                WAKE_DROPPED
