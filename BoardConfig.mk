@@ -112,12 +112,8 @@ TARGET_USERIMAGES_USE_EXT4 := true
 
 # TWRP specific build flags
 DEVICE_RESOLUTION := 1080x1920
-#RECOVERY_SDCARD_ON_DATA := true
-BOARD_HAS_NO_REAL_SDCARD := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-#TW_BRIGHTNESS_PATH := /sys/devices/platform/msm_fb.590337/leds/lcd-backlight/brightness
-#TW_MAX_BRIGHTNESS := 255
-#TW_BOARD_CUSTOM_GRAPHICS := ../../../device/oppo/find7a/recovery/graphics.c
-TW_NO_SCREEN_TIMEOUT := true
-
+TW_NO_USB_STORAGE := true
+TW_INCLUDE_JB_CRYPTO := true
+TW_NO_SCREEN_BLANK := true
