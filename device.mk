@@ -120,7 +120,8 @@ PRODUCT_PACKAGES += \
 
 # wifi
 PRODUCT_PACKAGES += \
-    mac-update
+    mac-update \
+    wcnss_service
 
 PRODUCT_COPY_FILES += \
 	device/oppo/find7a/configs/init.find7a.bt.sh:system/etc/init.find7a.bt.sh
