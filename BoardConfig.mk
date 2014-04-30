@@ -1,6 +1,8 @@
 # inherit from the proprietary version
 -include vendor/oppo/find7a/BoardConfigVendor.mk
 
+LOCAL_PATH := device/oppo/find7a
+
 TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := find7a
 TARGET_OTA_ASSERT_DEVICE := find7a
@@ -42,7 +44,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 5100273664
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # global
-TARGET_SPECIFIC_HEADER_PATH := device/oppo/find7a/include
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_USES_QCOM_BSP := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSP
@@ -80,7 +82,7 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/oppo/find7a/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
@@ -104,7 +106,7 @@ SENSORS_NEED_SETRATE_ON_ENABLE := true
 
 # Recovery:Start
 
-TARGET_RECOVERY_FSTAB := device/oppo/find7a/configs/fstab.find7a
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/configs/fstab.find7a
 
 # Use this flag if the board has a ext4 partition larger than 2gb
 BOARD_HAS_LARGE_FILESYSTEM := true
