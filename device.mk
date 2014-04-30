@@ -92,17 +92,17 @@ PRODUCT_COPY_FILES += \
 
 # Hardware modules to build
 PRODUCT_PACKAGES += \
-	hwcomposer.msm8960 \
-	gralloc.msm8960 \
-	copybit.msm8960 \
-	memtrack.msm8960 \
-	audio.primary.msm8960 \
-	audio_policy.msm8960 \
+	hwcomposer.msm8974 \
+	gralloc.msm8974 \
+	copybit.msm8974 \
+	memtrack.msm8974 \
+	audio.primary.msm8974 \
+	audio_policy.msm8974 \
 	lights.qcom \
 	audio.a2dp.default \
 	audio.usb.default \
 	audio.r_submix.default \
-        camera-wrapper.msm8960 \
+        camera-wrapper.msm8974 \
 	libaudio-resampler
 
 PRODUCT_PACKAGES += \
