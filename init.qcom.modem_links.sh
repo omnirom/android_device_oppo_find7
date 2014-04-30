@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2011-2012, Code Aurora Forum. All rights reserved.
+# Copyright (c) 2012, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -10,7 +10,7 @@
 #       copyright notice, this list of conditions and the following
 #       disclaimer in the documentation and/or other materials provided
 #       with the distribution.
-#     * Neither the name of Code Aurora Forum, Inc. nor the names of its
+#     * Neither the name of The Linux Foundation nor the names of its
 #       contributors may be used to endorse or promote products derived
 #       from this software without specific prior written permission.
 #
@@ -38,15 +38,13 @@ cd /firmware/image
 # Get the list of files in /firmware/image
 # for which sym links have to be created
 
-fwfiles=`ls modem* q6* wcnss* dsps* tzapps* gss*`
-modem_fwfiles=`ls modem_fw.mdt`
+fwfiles=`ls modem* adsp* wcnss* mba*`
 
 # Check if the links with similar names
 # have been created in /system/etc/firmware
 
 cd /system/etc/firmware
 linksNeeded=0
-fixModemFirmware=0
 
 # For everyfile in fwfiles check if
 # the corresponding file exists
@@ -72,64 +70,30 @@ for fwfile in $fwfiles; do
 
 done
 
-case `ls $modem_fwfiles` in
-   $modem_fwfiles)
-      break;;
-   *)
-      # file with $fwfile does not exist
-      # need to rename the right set of firmware based on chip version
-      fixModemFirmware=1
-      break;;
-esac
-
 case $linksNeeded in
    1)
       cd /firmware/image
-
-      # Check if need to select modem firmware and do rename in first boot
-      case $fixModemFirmware in
-      1)
-        # Check chip version
-        case `cat /sys/devices/system/soc/soc0/version 2>/dev/null` in
-          "1.0" | "1.1")
-            for file in modem_f1.* ; do
-              newname=modem_fw.${file##*.}
-              ln -s /firmware/image/$file /system/etc/firmware/$newname 2>/dev/null
-            done
-            break;;
-
-          *)
-            for file in modem_f2.* ; do
-              newname=modem_fw.${file##*.}
-              ln -s /firmware/image/$file /system/etc/firmware/$newname 2>/dev/null
-            done
-         esac;;
-
-      *)
-        # Nothing to do.
-        break;;
-      esac
 
       case `ls modem.mdt 2>/dev/null` in
          modem.mdt)
             for imgfile in modem*; do
                ln -s /firmware/image/$imgfile /system/etc/firmware/$imgfile 2>/dev/null
             done
-            break;;
+            ;;
         *)
             # trying to log here but nothing will be logged since it is
             # early in the boot process. Is there a way to log this message?
-            log -p w -t PIL 8960 device but no modem image found;;
+            log -p w -t PIL no modem image found;;
       esac
 
-      case `ls q6.mdt 2>/dev/null` in
-         q6.mdt)
-            for imgfile in q6*; do
+      case `ls adsp.mdt 2>/dev/null` in
+         adsp.mdt)
+            for imgfile in adsp*; do
                ln -s /firmware/image/$imgfile /system/etc/firmware/$imgfile 2>/dev/null
             done
-            break;;
+            ;;
          *)
-            log -p w -t PIL 8960 device but no q6 image found;;
+            log -p w -t PIL no adsp image found;;
       esac
 
       case `ls wcnss.mdt 2>/dev/null` in
@@ -137,46 +101,26 @@ case $linksNeeded in
             for imgfile in wcnss*; do
                ln -s /firmware/image/$imgfile /system/etc/firmware/$imgfile 2>/dev/null
             done
-            break;;
+            ;;
          *)
-            log -p w -t PIL 8960 device but no wcnss image found;;
+            log -p w -t PIL no wcnss image found;;
       esac
 
-      case `ls dsps.mdt 2>/dev/null` in
-         dsps.mdt)
-            for imgfile in dsps*; do
+      case `ls mba.mdt 2>/dev/null` in
+         mba.mdt)
+            for imgfile in mba*; do
                ln -s /firmware/image/$imgfile /system/etc/firmware/$imgfile 2>/dev/null
             done
-            break;;
+            ;;
          *)
-            log -p w -t PIL 8960 device but no dsps image found;;
+            log -p w -t PIL no mba image found;;
       esac
 
-      case `ls tzapps.mdt 2>/dev/null` in
-         tzapps.mdt)
-            for imgfile in tzapps*; do
-               ln -s /firmware/image/$imgfile /system/etc/firmware/$imgfile 2>/dev/null
-            done
-            break;;
-         *)
-            log -p w -t PIL 8960 device but no tzapps image found;;
-      esac
-
-      case `ls gss.mdt 2>/dev/null` in
-         gss.mdt)
-            for imgfile in gss*; do
-               ln -s /firmware/image/$imgfile /system/etc/firmware/$imgfile 2>/dev/null
-            done
-            break;;
-         *)
-            log -p w -t No gss image found;;
-      esac
-      break;;
+      ;;
 
    *)
       # Nothing to do. No links needed
-      break;;
+      ;;
 esac
 
 cd /
-
