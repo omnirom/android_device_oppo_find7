@@ -63,6 +63,10 @@ PRODUCT_COPY_FILES += \
 	device/oppo/find7a/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
 	device/oppo/find7a/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh
 
+#thermal-engine
+PRODUCT_COPY_FILES += \
+        device/oppo/find7a/configs/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf
+
 # Wifi config
 PRODUCT_COPY_FILES += \
 	device/oppo/find7a/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
