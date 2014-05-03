@@ -242,4 +242,7 @@
     <integer name="config_deviceHardwareKeys">7</integer>
 
     <bool name="config_offscreenGestureSupport">true</bool>
+
+    <!-- Disable lockscreen translucent decor by default -->
+    <bool name="config_enableLockScreenTranslucentDecor">true</bool>
 </resources>
