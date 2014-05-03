@@ -81,7 +81,7 @@ on boot
 
     #Start rmnet_usb driver
     write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
-		
+
     # Allow QMUX daemon to assign port open wait time
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
 
@@ -269,19 +269,19 @@ on post-fs-data
     write /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/suspend_enabled 1
     write /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/idle_enabled 1
 
-	# block
-	write /sys/block/mmcblk0/queue/read_ahead_kb 1024
-	write /sys/block/mmcblk0/bdi/read_ahead_kb 1024
-	
-	# silene cgroup warnings
-	chmod 0660 /dev/cpuctl
+    # block
+    write /sys/block/mmcblk0/queue/read_ahead_kb 1024
+    write /sys/block/mmcblk0/bdi/read_ahead_kb 1024
 
-	# suspend cap sysfs
-	chmod 0666 /sys/kernel/cpufreq_cap/screen_off_cap
-	chmod 0666 /sys/kernel/cpufreq_cap/screen_off_max_freq
+    # silene cgroup warnings
+    chmod 0660 /dev/cpuctl
 
-	chmod 0666 /sys/devices/system/cpu/cpuquiet/cpuquiet_driver/screen_off_cap
-	chmod 0666 /sys/devices/system/cpu/cpuquiet/cpuquiet_driver/screen_off_max_cpus
+    # suspend cap sysfs
+    chmod 0666 /sys/kernel/cpufreq_cap/screen_off_cap
+    chmod 0666 /sys/kernel/cpufreq_cap/screen_off_max_freq
+
+    chmod 0666 /sys/devices/system/cpu/cpuquiet/cpuquiet_driver/screen_off_cap
+    chmod 0666 /sys/devices/system/cpu/cpuquiet/cpuquiet_driver/screen_off_max_cpus
 
     # camera led for torch
     chmod 0666 /sys/class/leds/keyboard-backlight/brightness
