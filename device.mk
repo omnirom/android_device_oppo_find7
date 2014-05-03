@@ -18,6 +18,9 @@ PRODUCT_PACKAGES += \
     charger_res_images_find7a \
     charger_find7a
 
+PRODUCT_PACKAGES += \
+    com.android.future.usb.accessory
+
 # Live Wallpapers
 PRODUCT_PACKAGES += \
     LiveWallpapers \
