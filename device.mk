@@ -57,13 +57,7 @@ PRODUCT_COPY_FILES += \
 # Audio config files
 PRODUCT_COPY_FILES += \
     device/oppo/find7a/configs/audio_policy.conf:system/etc/audio_policy.conf \
-    device/oppo/find7a/snd_soc_msm/snd_soc_apq_Taiko_DB:system/etc/snd_soc_msm/snd_soc_apq_Taiko_DB \
-    device/oppo/find7a/snd_soc_msm/snd_soc_msm_Taiko:system/etc/snd_soc_msm/snd_soc_msm_Taiko \
-    device/oppo/find7a/snd_soc_msm/snd_soc_msm_Taiko_CDP:system/etc/snd_soc_msm/snd_soc_msm_Taiko_CDP \
-    device/oppo/find7a/snd_soc_msm/snd_soc_msm_Taiko_ES325:system/etc/snd_soc_msm/snd_soc_msm_Taiko_ES325 \
-    device/oppo/find7a/snd_soc_msm/snd_soc_msm_Taiko_Fluid:system/etc/snd_soc_msm/snd_soc_msm_Taiko_Fluid \
-    device/oppo/find7a/snd_soc_msm/snd_soc_msm_Taiko_liquid:system/etc/snd_soc_msm/snd_soc_msm_Taiko_liquid \
-    device/oppo/find7a/snd_soc_msm/snd_soc_msm_Taiko_OnePlus:system/etc/snd_soc_msm/snd_soc_msm_Taiko_OnePlus
+    device/oppo/find7a/mixer_paths.xml:/system/etc/mixer_paths.xml
 
 # MSM IPC Router security configuration
 PRODUCT_COPY_FILES += \
@@ -216,13 +210,15 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # qcom
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.audio.ssr=false \
-    ro.qc.sdk.audio.fluencetype=fluence \
     ro.qc.sdk.sensors.gestures=false \
     ro.qc.sdk.camera.facialproc=true \
     ro.qc.sdk.gestures.camera=false
 
 # Audio Configuration
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qc.sdk.audio.fluencetype=fluence \
+    persist.audio.fluence.voicecall=true \
+    persist.audio.fluence.speaker=true \
     persist.audio.lowlatency.rec=false \
     af.resampler.quality=4 \
     lpa.decode=false \
