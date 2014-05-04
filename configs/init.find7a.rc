@@ -297,6 +297,9 @@ on post-fs-data
     chmod 664 /sys/devices/system/cpu/cpu3/online
     write /dev/cpuctl/apps/cpu.notify_on_migrate 1
 
+    start sensors
+    start qcom_syspart_fixup
+
 on charger
     # Enable Power modes and set the CPU Freq Sampling rates
     write /sys/module/lpm_levels/enable_low_power/l2 4
@@ -328,9 +331,6 @@ on charger
 
     # camera led for torch
     chmod 0666 /sys/class/leds/keyboard-backlight/brightness
-
-    start sensors
-    start qcom_syspart_fixup
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
