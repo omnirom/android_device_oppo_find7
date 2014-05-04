@@ -67,6 +67,10 @@ PRODUCT_COPY_FILES += \
     device/oppo/find7a/snd_soc_msm/snd_soc_msm_Taiko_liquid:system/etc/snd_soc_msm/snd_soc_msm_Taiko_liquid \
     device/oppo/find7a/snd_soc_msm/snd_soc_msm_Taiko_OnePlus:system/etc/snd_soc_msm/snd_soc_msm_Taiko_OnePlus
 
+# MSM IPC Router security configuration
+PRODUCT_COPY_FILES += \
+    device/oppo/find7a/configs/sec_config:system/etc/sec_config
+
 # qcom init stuff
 PRODUCT_COPY_FILES += \
     device/oppo/find7a/init.qcom.syspart_fixup.sh:system/etc/init.qcom.syspart_fixup.sh \
