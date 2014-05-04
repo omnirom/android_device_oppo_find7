@@ -44,11 +44,14 @@ PRODUCT_COPY_FILES += \
     device/oppo/find7a/configs/keylayout/Vendor_046d_Product_c216.kl:system/usr/keylayout/Vendor_046d_Product_c216.kl \
     device/oppo/find7a/configs/keylayout/Vendor_05ac_Product_0239.kl:system/usr/keylayout/Vendor_05ac_Product_0239.kl
 
+# Media config files
+PRODUCT_COPY_FILES += \
+    device/oppo/find7a/media_codecs.xml:system/etc/media_codecs.xml \
+    device/oppo/find7a/media_profiles.xml:system/etc/media_profiles.xml
+
 # Audio config files
 PRODUCT_COPY_FILES += \
     device/oppo/find7a/configs/audio_policy.conf:system/etc/audio_policy.conf \
-    device/oppo/find7a/media_codecs.xml:system/etc/media_codecs.xml \
-    device/oppo/find7a/media_profiles.xml:system/etc/media_profiles.xml \
     device/oppo/find7a/snd_soc_msm/snd_soc_apq_Taiko_DB:system/etc/snd_soc_msm/snd_soc_apq_Taiko_DB \
     device/oppo/find7a/snd_soc_msm/snd_soc_msm_Taiko:system/etc/snd_soc_msm/snd_soc_msm_Taiko \
     device/oppo/find7a/snd_soc_msm/snd_soc_msm_Taiko_CDP:system/etc/snd_soc_msm/snd_soc_msm_Taiko_CDP \
