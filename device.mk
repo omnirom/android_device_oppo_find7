@@ -68,6 +68,10 @@ PRODUCT_COPY_FILES += \
     device/oppo/find7a/init.qcom.syspart_fixup.sh:system/etc/init.qcom.syspart_fixup.sh \
     device/oppo/find7a/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh
 
+#sdcard permissions fix
+PRODUCT_COPY_FILES += \
+    device/oppo/find7a/configs/init.sdcard_perms.sh:system/etc/init.sdcard_perms.sh
+
 #thermal-engine
 PRODUCT_COPY_FILES += \
     device/oppo/find7a/configs/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf

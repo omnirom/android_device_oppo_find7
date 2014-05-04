@@ -552,7 +552,7 @@ service diag_mdlog /system/bin/diag_mdlog -s 100
 # on property:gsm.sim.state=READY
 #    start diag_mdlog
 
-service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
+service fuse_sdcard0 /system/bin/sh /system/etc/init.sdcard_perms.sh
     class late_start
     disabled
 
