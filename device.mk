@@ -152,7 +152,7 @@ PRODUCT_COPY_FILES += \
 
 # GPS configuration
 PRODUCT_COPY_FILES += \
-    device/oppo/find7a/configs/gps.conf:system/etc/gps.conf
+    device/oppo/find7a/gps/gps.conf:system/etc/gps.conf
 
 # Sensor configuration from Oppo
 PRODUCT_COPY_FILES += \
