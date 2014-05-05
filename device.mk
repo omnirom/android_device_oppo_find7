@@ -12,8 +12,6 @@ DEVICE_PACKAGE_OVERLAYS := device/oppo/find7a/overlay
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
-PRODUCT_CHARACTERISTICS := nosdcard
-
 PRODUCT_PACKAGES += \
     charger_res_images_find7a \
     charger_find7a
