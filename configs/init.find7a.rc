@@ -236,6 +236,9 @@ on post-fs-data
     mount tmpfs tmpfs /data/qcks size=20m,mode=0750,gid=1000
     chown system /dev/block/platform/msm_sdcc.1/by-name
 
+    # Create /data/time folder for time-services
+    mkdir /data/time/ 0700 system system
+
     setprop vold.post_fs_data_done 1
 
     rm /data/local/tmp/adreno_config.txt
