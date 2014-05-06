@@ -247,8 +247,8 @@ on post-fs-data
     chown system system /sys/class/leds/red/device/lock
 
     # communicate with mpdecision and thermald
-    #mkdir /dev/socket/mpdecision 0770 system system
-    #chmod 2770 /dev/socket/mpdecision
+    mkdir /dev/socket/mpdecision 0770 system system
+    chmod 2770 /dev/socket/mpdecision
 
     # Tombstone dropboxes
     mkdir /data/tombstones 0771 system system
