@@ -377,6 +377,14 @@ service rmt_storage /system/bin/rmt_storage
     class core
     user root
 
+service rfs_access /system/bin/rfs_access
+   class core
+   user system
+   group system net_raw
+
+on property:ro.boot.emmc=true
+    start rfs_access
+
 # Update WIFI MAC address
 #service mac-update /system/bin/mac-update
 #    class main
