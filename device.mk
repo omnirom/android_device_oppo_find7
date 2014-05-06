@@ -155,6 +155,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/oppo/find7a/configs/gps.conf:system/etc/gps.conf
 
+# Sensor configuration from Oppo
+PRODUCT_COPY_FILES += \
+    device/oppo/find7a/sensor/sensor_def_qcomdev.conf:system/etc/sensor_def_qcomdev.conf
+
 # Properties
 
 # bluetooth
