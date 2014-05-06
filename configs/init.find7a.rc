@@ -506,9 +506,9 @@ service bugreport /system/bin/bugmailer.sh -v
     keycodes 114 115 116
 
 service qseecomd /system/bin/qseecomd
-    class late_start
-    user system
-    group system
+    class core
+    user root
+    group root
 
 service wcnss-service /system/bin/wcnss_service
    class late_start
