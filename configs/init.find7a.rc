@@ -298,7 +298,6 @@ on post-fs-data
     write /dev/cpuctl/apps/cpu.notify_on_migrate 1
 
     start sensors
-    start qcom_syspart_fixup
 
 on charger
     # Enable Power modes and set the CPU Freq Sampling rates
@@ -491,12 +490,6 @@ service mpdecision /system/bin/mpdecision --avg_comp
 #    user system
 #    group system wifi
 #    oneshot
-
-service qcom_syspart_fixup /system/bin/sh /system/etc/init.qcom.syspart_fixup.sh ${ro.board.platform} ${ro.serialno}
-    class core
-    user root
-    disabled
-    oneshot
 
 #service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
 #    class late_start
