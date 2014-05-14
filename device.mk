@@ -70,7 +70,7 @@ PRODUCT_COPY_FILES += \
 
 #thermal-engine
 PRODUCT_COPY_FILES += \
-        device/oppo/find7a/configs/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf
+    device/oppo/find7a/configs/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf
 
 # Wifi config
 PRODUCT_COPY_FILES += \
