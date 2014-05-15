@@ -114,7 +114,8 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     audio.r_submix.default \
     camera-wrapper.msm8974 \
-    libaudio-resampler
+    libaudio-resampler \
+    audiod
 
 PRODUCT_PACKAGES += \
     libmm-omxcore \
@@ -225,9 +226,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.fluence.speaker=true \
     persist.audio.lowlatency.rec=false \
     af.resampler.quality=4 \
-    lpa.decode=false \
-    tunnel.decode=false \
-    tunnel.audiovideo.decode=true
+    ro.qc.sdk.audio.ssr=false \
+    audio.offload.buffer.size.kb=32 \
+    audio.offload.gapless.enabled=true \
+    av.offload.enable=true
 
 # QCOM
 PRODUCT_PROPERTY_OVERRIDES += \
