@@ -250,6 +250,8 @@ on post-fs-data
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
 
+    setprop qcom.audio.init complete
+
     setprop vold.post_fs_data_done 1
 
     rm /data/local/tmp/adreno_config.txt
