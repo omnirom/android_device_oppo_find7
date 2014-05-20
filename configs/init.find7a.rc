@@ -553,6 +553,11 @@ service time_daemon /system/bin/time_daemon
     user root
     group root radio qcom_diag
 
+service adsprpcd /system/bin/adsprpcd
+   class main
+   user media
+   group media
+
 service diag_mdlog /system/bin/diag_mdlog -s 100
     class late_start
     disabled
