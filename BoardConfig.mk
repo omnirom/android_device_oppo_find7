@@ -9,7 +9,7 @@ TARGET_OTA_ASSERT_DEVICE := find7a
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8974
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno300
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
 
 # Architecture
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
