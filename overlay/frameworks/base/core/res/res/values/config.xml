@@ -261,4 +261,7 @@
 
     <!-- Disable lockscreen translucent decor by default -->
     <bool name="config_enableLockScreenTranslucentDecor">true</bool>
+
+    <!-- screen-off gestures such as dt2w -->
+    <bool name="config_offscreenGestureSupport">true</bool>
 </resources>
