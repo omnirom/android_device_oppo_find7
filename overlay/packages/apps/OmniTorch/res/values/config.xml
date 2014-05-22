@@ -21,15 +21,6 @@
      for different hardware and product builds. -->
 <resources>
     <!-- If there is no sysfs-based control mechanism, enable this -->
-    <bool name="useCameraInterface">false</bool>
-
-    <!-- Full path to the sysfs toggle -->
-    <string name="flashDevice">/sys/class/leds/keyboard-backlight/brightness</string>
-
-    <!-- normal setting -->
-    <integer name="valueLow">2</integer>
-    <!-- high setting -->
-    <integer name="valueHigh">5</integer>
-
+    <bool name="useCameraInterface">true</bool>
 </resources>
 
