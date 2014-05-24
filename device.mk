@@ -145,6 +145,10 @@ PRODUCT_PACKAGES += \
     Nfc \
     Tag
 
+# Device settings
+PRODUCT_PACKAGES += \
+    Find7Parts
+
 # NFC feature files
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml
