@@ -37,9 +37,15 @@ $(call inherit-product, device/oppo/find7a/device.mk)
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := omni_find7a
 PRODUCT_DEVICE := find7a
-PRODUCT_BRAND := Oppo
-PRODUCT_MODEL := Find7a
-PRODUCT_MANUFACTURER := Oppo
+PRODUCT_BRAND := OPPO
+PRODUCT_MODEL := FIND7
+PRODUCT_MANUFACTURER := OPPO
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    BUILD_PRODUCT=FIND7 \
+    TARGET_DEVICE=FIND7 \
+    BUILD_FINGERPRINT="4.3/JLS36C/1390465867:user/release-keys" \
+    PRIVATE_BUILD_DESC="msm8974-user 4.3 JLS36C eng.root.20140510.152835 release-keys"
 
 # Inline kernel
 TARGET_KERNEL_SOURCE := kernel/oppo/msm8974
