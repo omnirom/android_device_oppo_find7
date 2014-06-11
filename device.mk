@@ -194,7 +194,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.cellbroadcast.emergencyids=0-65534
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    telephony.lteOnCdmaDevice=0
+    telephony.lteOnGSMDevice=1 \
+    ro.telephony.default_network=9
 
 PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true
