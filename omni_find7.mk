@@ -35,8 +35,8 @@ $(call inherit-product, vendor/omni/config/common.mk)
 $(call inherit-product, device/oppo/find7a/device.mk)
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := omni_find7a
-PRODUCT_DEVICE := find7a
+PRODUCT_NAME := omni_find7
+PRODUCT_DEVICE := find7
 PRODUCT_BRAND := OPPO
 PRODUCT_MODEL := FIND7
 PRODUCT_MANUFACTURER := OPPO
