@@ -32,7 +32,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, vendor/omni/config/common.mk)
 
 # Inherit from hardware-specific part of the product configuration
-$(call inherit-product, device/oppo/find7a/device.mk)
+$(call inherit-product, device/oppo/find7/device.mk)
 
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := omni_find7
