@@ -17,6 +17,9 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
+#Libinit - handle find7a vs find7s
+TARGET_INIT_VENDOR_LIB := libinit_find7
+
 # Recovery:Start
 
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/configs/fstab.find7
