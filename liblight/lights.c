@@ -42,14 +42,8 @@ static struct light_state_t g_notification;
 static struct light_state_t g_battery;
 static struct light_state_t g_attention;
 
-char const*const RED_LED_FILE
-        = "/sys/class/leds/red/brightness";
-
-char const*const GREEN_LED_FILE
-        = "/sys/class/leds/green/brightness";
-
 char const*const BLUE_LED_FILE
-        = "/sys/class/leds/blue/brightness";
+        = "/sys/class/leds/rgb_blue/brightness";
 
 char const*const LCD_FILE
         = "/sys/class/leds/lcd-backlight/brightness";
@@ -57,14 +51,10 @@ char const*const LCD_FILE
 char const*const BUTTONS_FILE
         = "/sys/class/leds/button-backlight/brightness";
 
-char const*const RED_FREQ_FILE
-        = "/sys/class/leds/red/device/grpfreq";
+char const*const BLUE_BLINK_FILE
+        = "/sys/class/leds/rgb_blue/blink";
 
-char const*const RED_PWM_FILE
-        = "/sys/class/leds/red/device/grppwm";
-
-char const*const RED_BLINK_FILE
-        = "/sys/class/leds/red/device/blink";
+#define LED_BRIGHTNESS 128
 
 /**
  * device methods
@@ -103,6 +93,7 @@ write_int(char const* path, int value)
     if (fd >= 0) {
         char buffer[20];
         int bytes = sprintf(buffer, "%d\n", value);
+        //ALOGD("write_int %s %d\n", path, value);
         int amt = write(fd, buffer, bytes);
         close(fd);
         return amt == -1 ? -errno : 0;
@@ -149,77 +140,46 @@ set_speaker_light_locked(struct light_device_t* dev,
 {
 
     int len;
-    int alpha, red, green, blue;
-    int blink, freq, pwm;
+    int blue;
+    int blink;
     int onMS, offMS;
-    unsigned int colorRGB;
 
     if(state == NULL) {
-        red = 0;
-        green = 0;
         blue = 0;
         onMS = 0;
         onMS = 0;
         blink = 0;
-        freq = 0;
-        pwm = 0;
     } else {
         switch (state->flashMode) {
             case LIGHT_FLASH_TIMED:
                 onMS = state->flashOnMS;
                 offMS = state->flashOffMS;
+                blue = 0;
                 break;
             case LIGHT_FLASH_NONE:
+                onMS = 0;
+                offMS = 0;
+                blue = LED_BRIGHTNESS;
+                break;
             default:
                 onMS = 0;
                 offMS = 0;
+                blue = 0;
                 break;
         }
 
-        colorRGB = state->color;
-
-#if 0
-        ALOGD("set_speaker_light_locked mode %d, colorRGB=%08X, onMS=%d, offMS=%d\n",
-                state->flashMode, colorRGB, onMS, offMS);
-#endif
-
-        red = (colorRGB >> 16) & 0xFF;
-        green = (colorRGB >> 8) & 0xFF;
-        blue = colorRGB & 0xFF;
-
         if (onMS > 0 && offMS > 0) {
-            int totalMS = onMS + offMS;
-
-            // the LED appears to blink about once per second if freq is 20
-            // 1000ms / 20 = 50
-            freq = totalMS / 50;
-            // pwm specifies the ratio of ON versus OFF
-            // pwm = 0 -> always off
-            // pwm = 255 => always on
-            pwm = (onMS * 255) / totalMS;
-
-            // the low 4 bits are ignored, so round up if necessary
-            if (pwm > 0 && pwm < 16)
-                pwm = 16;
-
             blink = 1;
         } else {
             blink = 0;
-            freq = 0;
-            pwm = 0;
         }
     }
 
-    write_int(RED_LED_FILE, red);
-    write_int(GREEN_LED_FILE, green);
     write_int(BLUE_LED_FILE, blue);
-
     if (blink) {
-        write_int(RED_FREQ_FILE, freq);
-        write_int(RED_PWM_FILE, pwm);
+        // writing 0 to blink will always kill led
+        write_int(BLUE_BLINK_FILE, blink);
     }
-    write_int(RED_BLINK_FILE, blink);
-
     return 0;
 }
 
@@ -366,7 +326,7 @@ struct hw_module_t HAL_MODULE_INFO_SYM = {
     .version_major = 1,
     .version_minor = 0,
     .id = LIGHTS_HARDWARE_MODULE_ID,
-    .name = "N1 lights module",
+    .name = "find7 lights module",
     .author = "Google, Inc., OmniROM",
     .methods = &lights_module_methods,
 };
