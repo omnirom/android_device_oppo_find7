@@ -34,6 +34,13 @@
 
 #include <hardware/lights.h>
 
+#ifndef min
+#define min(a,b) ((a)<(b)?(a):(b))
+#endif
+#ifndef max
+#define max(a,b) ((a)<(b)?(b):(a))
+#endif
+
 /******************************************************************************/
 
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
@@ -41,6 +48,7 @@ static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 static struct light_state_t g_notification;
 static struct light_state_t g_battery;
 static struct light_state_t g_attention;
+static int g_is_find7s = 0;
 
 char const*const RED_LED_FILE
         = "/sys/class/leds/red/brightness";
@@ -50,6 +58,24 @@ char const*const GREEN_LED_FILE
 
 char const*const BLUE_LED_FILE
         = "/sys/class/leds/blue/brightness";
+
+char const*const QPNP_RED_LED_FILE
+        = "/sys/class/leds/rgb_red/brightness";
+
+char const*const QPNP_GREEN_LED_FILE
+        = "/sys/class/leds/rgb_green/brightness";
+
+char const*const QPNP_BLUE_LED_FILE
+        = "/sys/class/leds/rgb_blue/brightness";
+
+char const*const QPNP_RAMP_STEP_FILE
+        = "/sys/class/leds/rgb_red/ramp_step_ms";
+
+char const*const QPNP_DUTY_FILE
+        = "/sys/class/leds/rgb_red/duty_pcts";
+
+char const*const QPNP_BLINK_FILE
+        = "/sys/class/leds/rgb_red/blink";
 
 char const*const LCD_FILE
         = "/sys/class/leds/lcd-backlight/brightness";
@@ -66,6 +92,9 @@ char const*const RED_PWM_FILE
 char const*const RED_BLINK_FILE
         = "/sys/class/leds/red/device/blink";
 
+//The maximum LUT size is 63 steps
+#define QPNP_DUTY_STEPS 63
+
 /**
  * device methods
  */
@@ -76,43 +105,45 @@ void init_globals(void)
     pthread_mutex_init(&g_lock, NULL);
 }
 
-static int
-read_int(char const* path)
+static int is_find7s(void)
 {
-    int fd;
-    fd = open(path, O_RDONLY);
-    if (fd >= 0) {
-        char buffer[5] = {0,0,0,0,0};
-        read(fd, buffer, 5);
-        close(fd);
+    char value[PROPERTY_VALUE_MAX] = {'\0'};
 
-        return atoi(buffer);
-    } else {
-        ALOGE("Error reading path %s", path);
-        return 0;
+    if (property_get("ro.oppo.device", value, NULL)) {
+        if (!strcmp(value, "find7s")) {
+	    return 1;
+	}
     }
+    return 0;
 }
 
 static int
-write_int(char const* path, int value)
+write_str(char const* path, const char *buf)
 {
     int fd;
     static int already_warned = 0;
 
     fd = open(path, O_RDWR);
     if (fd >= 0) {
-        char buffer[20];
-        int bytes = sprintf(buffer, "%d\n", value);
-        int amt = write(fd, buffer, bytes);
+        int bytes = strlen(buf);
+        int amt = write(fd, buf, bytes);
         close(fd);
         return amt == -1 ? -errno : 0;
     } else {
         if (already_warned == 0) {
-            ALOGE("write_int failed to open %s\n", path);
+            ALOGE("write_str failed to open %s\n", path);
             already_warned = 1;
         }
         return -errno;
     }
+}
+
+static int
+write_int(char const* path, int value)
+{
+    char buffer[20];
+    sprintf(buffer, "%d\n", value);
+    return write_str(path, buffer);
 }
 
 static int
@@ -144,7 +175,7 @@ set_light_backlight(struct light_device_t* dev,
 }
 
 static int
-set_speaker_light_locked(struct light_device_t* dev,
+set_speaker_light_locked_shineled(struct light_device_t* dev,
         struct light_state_t const* state)
 {
 
@@ -221,6 +252,101 @@ set_speaker_light_locked(struct light_device_t* dev,
     write_int(RED_BLINK_FILE, blink);
 
     return 0;
+}
+
+static int
+set_speaker_light_locked_qpnp(struct light_device_t* dev,
+        struct light_state_t const* state)
+{
+
+    int len;
+    int red, green, blue;
+    int onMS, offMS;
+    unsigned int colorRGB;
+
+    if(state == NULL) {
+        len = 0;
+        red = 0;
+        green = 0;
+        blue = 0;
+        onMS = 0;
+        offMS = 0;
+    } else {
+        switch (state->flashMode) {
+            case LIGHT_FLASH_TIMED:
+                onMS = state->flashOnMS;
+                offMS = state->flashOffMS;
+                break;
+            case LIGHT_FLASH_NONE:
+            default:
+                onMS = 0;
+                offMS = 0;
+                break;
+        }
+
+        colorRGB = state->color;
+
+        red = (colorRGB >> 16) & 0xFF;
+        green = (colorRGB >> 8) & 0xFF;
+        blue = colorRGB & 0xFF;
+
+#if 1
+        ALOGD("set_speaker_light_locked_qpnp mode %d, colorRGB=%08X, onMS=%d, offMS=%d\n",
+                state->flashMode, colorRGB, onMS, offMS);
+#endif
+
+        if (onMS > 0 && offMS > 0) {
+	    char dutystr[4*(QPNP_DUTY_STEPS+1)];
+            char* p = dutystr;
+            int totalMS = onMS + offMS;
+            int stepMS = totalMS/QPNP_DUTY_STEPS;
+	    int onSteps = onMS/stepMS;
+            int i;
+
+	    //FIXME - This math makes my head hurt and it's been a long week
+            p += sprintf(p, "0");
+            for(i = 1; i <= onSteps/2; i++) {
+              p += sprintf(p, ",%d", min(((100*i)/(onSteps/2)), 100));
+            }
+            for(; i <= onSteps; i++) {
+	      p += sprintf(p, ",%d", min(((100*(onSteps-i))/(onSteps/2)), 100));
+            }
+            for(; i < QPNP_DUTY_STEPS - 1; i++) {
+              p += sprintf(p, ",0");
+            }
+            sprintf(p,"\n");
+#if 1
+            ALOGD("set_speaker_light_locked_qpnp stepMS = %d, onSteps = %d, dutystr \"%s\"\n",
+		  stepMS, onSteps, dutystr);
+#endif
+            write_int(QPNP_RED_LED_FILE, 0);
+            write_int(QPNP_GREEN_LED_FILE, 0);
+            write_int(QPNP_BLUE_LED_FILE, 0);
+            write_str(QPNP_DUTY_FILE, dutystr);
+            write_int(QPNP_RAMP_STEP_FILE, stepMS);
+            write_int(QPNP_BLINK_FILE, 1);
+        } else {
+#if 1
+            ALOGD("set_speaker_light_locked_qpnp red = %d\n",
+		  red);
+#endif
+            write_int(QPNP_BLINK_FILE, 0);
+            write_int(QPNP_RED_LED_FILE, red);
+            write_int(QPNP_GREEN_LED_FILE, green);
+            write_int(QPNP_BLUE_LED_FILE, blue);
+        }
+    }
+
+    return 0;
+}
+
+static int
+set_speaker_light_locked(struct light_device_t* dev,
+        struct light_state_t const* state)
+{
+    if(g_is_find7s)
+        return set_speaker_light_locked_qpnp(dev, state);
+    return set_speaker_light_locked_shineled(dev, state);        
 }
 
 static void
@@ -351,6 +477,9 @@ static int open_lights(const struct hw_module_t* module, char const* name,
     dev->set_light = set_light;
 
     *device = (struct hw_device_t*)dev;
+
+    g_is_find7s = is_find7s();
+
     return 0;
 }
 
