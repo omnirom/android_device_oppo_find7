@@ -14,7 +14,9 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.find7.rc:root/init.qcom.rc \
     $(LOCAL_PATH)/configs/fstab.find7:root/fstab.qcom \
-    $(LOCAL_PATH)/configs/twrp.fstab:recovery/root/etc/twrp.fstab
+    $(LOCAL_PATH)/configs/twrp.fstab:recovery/root/etc/twrp.fstab \
+    $(LOCAL_PATH)/configs/init.recovery.find7.rc:root/init.recovery.find7.rc \
+    $(LOCAL_PATH)/configs/qhdcp.sh:recovery/root/sbin/qhdcp.sh
 
 #sdcard permissions fix
 PRODUCT_COPY_FILES += \

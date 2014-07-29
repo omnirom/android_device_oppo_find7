@@ -24,3 +24,4 @@ TARGET_INIT_VENDOR_LIB := libinit_find7
 
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/configs/fstab.find7
 
+BOARD_CUSTOM_BOOTIMG_MK := device/oppo/find7/custombootimg.mk

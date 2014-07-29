@@ -1,0 +1,8 @@
+on init
+
+service qhdcp /sbin/qhdcp.sh
+    oneshot
+    disabled
+
+on property:ro.oppo.device=find7s
+    start qhdcp
