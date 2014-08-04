@@ -191,6 +191,9 @@ on post-fs-data
     chown dhcp system /data/misc/dhcp
 
     # Update WIFI MAC address
+    mkdir /data/misc/wifi/prima 0775 wifi wifi
+    exec /system/bin/mac-update
+
     write /dev/wcnss_wlan 1
     write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
 
