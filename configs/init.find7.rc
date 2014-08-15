@@ -190,9 +190,7 @@ on post-fs-data
     # to observe dnsmasq.leases file for dhcp information of soft ap.
     chown dhcp system /data/misc/dhcp
 
-    # Update WIFI MAC address
     mkdir /data/misc/wifi/prima 0775 wifi wifi
-    exec /system/bin/mac-update
 
     write /dev/wcnss_wlan 1
     write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
@@ -315,6 +313,9 @@ on post-fs-data
     #start mpdecision
     start sensors
 
+    # Update WIFI MAC address
+    start mac-update
+
 on charger
     # Enable Power modes and set the CPU Freq Sampling rates
     write /sys/module/lpm_levels/enable_low_power/l2 4
@@ -351,10 +352,10 @@ on property:ro.boot.emmc=true
     start rfs_access
 
 # Update WIFI MAC address
-#service mac-update /system/bin/mac-update
-#    class main
-#    user wifi
-#    oneshot
+service mac-update /system/bin/logwrapper /system/bin/mac-update
+    class main
+    user root
+    oneshot
     
 #service bdAddrLoader /system/bin/bdAddrLoader -f /persist/bluetooth/.bdaddr -h -x
 #    class main
