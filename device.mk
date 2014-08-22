@@ -16,6 +16,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/fstab.find7:root/fstab.qcom \
     $(LOCAL_PATH)/configs/twrp.fstab:recovery/root/etc/twrp.fstab
 
+# LVM
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/lvm/lvm:root/sbin/lvm
+    $(LOCAL_PATH)/lvm/lvm.conf:root/lvm/etc/lvm.conf
+
 #sdcard permissions fix
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.sdcard_perms.sh:system/etc/init.sdcard_perms.sh
