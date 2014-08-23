@@ -23,4 +23,4 @@ TARGET_INIT_VENDOR_LIB := libinit_find7
 # Recovery:Start
 
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/configs/fstab.find7
-
+RECOVERY_SDCARD_ON_DATA := true

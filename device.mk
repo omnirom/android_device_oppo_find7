@@ -14,11 +14,12 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.find7.rc:root/init.qcom.rc \
     $(LOCAL_PATH)/configs/fstab.find7:root/fstab.qcom \
+    $(LOCAL_PATH)/configs/init.recovery.find7.rc:root/init.recovery.qcom.rc \
     $(LOCAL_PATH)/configs/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # LVM
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/lvm/lvm:root/sbin/lvm
+    $(LOCAL_PATH)/lvm/lvm:root/sbin/lvm \
     $(LOCAL_PATH)/lvm/lvm.conf:root/lvm/etc/lvm.conf
 
 #sdcard permissions fix
