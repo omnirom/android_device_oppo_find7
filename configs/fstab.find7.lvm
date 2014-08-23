@@ -1,0 +1,26 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+#TODO: Add 'check' as fs_mgr_flags with data partition.
+# Currently we dont have e2fsck compiled. So fs check would failed.
+
+#<src>                                                <mnt_point>  <type>  <mnt_flags and options>                     <fs_mgr_flags>
+/dev/block/platform/msm_sdcc.1/by-name/system         /system      ext4    ro,barrier=1                                wait
+#We've commented out the physical userdata partition and are using the LVM one instead
+#/dev/block/platform/msm_sdcc.1/by-name/userdata       /data        ext4    nosuid,nodev,barrier=1,noauto_da_alloc      wait,check,encryptable=footer
+/dev/lvpool/userdata       /data        ext4    nosuid,nodev,barrier=1,noauto_da_alloc      wait,check,encryptable=footer
+/dev/block/platform/msm_sdcc.1/by-name/boot /boot emmc defaults defaults
+/dev/block/platform/msm_sdcc.1/by-name/recovery /recovery emmc defaults defaults
+/dev/block/platform/msm_sdcc.1/by-name/misc /misc emmc defaults defaults
+/dev/block/platform/msm_sdcc.1/by-name/modem /radio emmc defaults defaults
+/dev/block/platform/msm_sdcc.1/by-name/sbl1 /sbl1 emmc defaults defaults
+/dev/block/platform/msm_sdcc.1/by-name/sbl2 /sbl2 emmc defaults defaults
+/dev/block/platform/msm_sdcc.1/by-name/sbl3 /sbl3 emmc defaults defaults
+/dev/block/platform/msm_sdcc.1/by-name/tz /tz emmc defaults defaults
+/dev/block/platform/msm_sdcc.1/by-name/rpm /rpm emmc defaults defaults
+/dev/block/platform/msm_sdcc.1/by-name/aboot /aboot emmc defaults defaults
+#The internal SD is commented out, since we're using emulated storage
+#/devices/msm_sdcc.1/mmc_host/mmc0/mmc0:0001/block/mmcblk0 auto auto defaults voldmanaged=sdcard0:29,nonremovable,noemulatedsd
+/devices/msm_sdcc.2/mmc_host/mmc1 auto       auto      defaults      voldmanaged=sdcard1:auto
+/devices/platform/xhci-hcd              auto        auto    defaults     voldmanaged=usbdisk:auto

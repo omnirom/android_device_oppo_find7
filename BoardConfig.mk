@@ -22,5 +22,8 @@ TARGET_INIT_VENDOR_LIB := libinit_find7
 
 # Recovery:Start
 
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/configs/fstab.find7
-
+#TODO: Need to determine just how this is used.  There's a slight
+#chance this could cause some small issues on LVM configs
+#but overall, TWRP doesn't use this and the rest of the build system
+#does
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/configs/fstab.find7.std

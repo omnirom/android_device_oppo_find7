@@ -20,39 +20,61 @@ on early-init
     mkdir /firmware 0771 system system
     symlink /data/tombstones /tombstones
     mount debugfs debugfs /sys/kernel/debug
+# LVM: set up LVM volumes
+    #First wait for the physical volumes to be available.  Init appears to
+    #start before the MMC driver comes up and creates the block devices
+    wait /dev/block/platform/msm_sdcc.1/by-name/userdata
+    wait /dev/block/platform/msm_sdcc.1/by-name/sdcard
+    #Scan for LVM partitions.  Our lvm.conf restricts this to the userdata and sdcard partitions
+    exec /sbin/lvm vgscan --mknodes --ignorelockingfailure
+    #Activate any partitions found
+    exec /sbin/lvm vgchange -aly --ignorelockingfailure
+    #Detect if LVM is active and copy the appropriate fstabs and environment RCs for
+    #the detected configuration.  See the script source for details
+    #Requires busybox to be added to the initial ramdisk of the kernel,
+    #AOSP's toolbox+sh should also work
+    exec /sbin/busybox sh /lvm_init.sh
 
 on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
-    export EXTERNAL_STORAGE /storage/sdcard0
-    export SECONDARY_STORAGE /storage/sdcard1
+    #We make all directories and symlinks for both storage configurations,
+    #except for ones that are incompatible/will conflict (mostly sdcard0-related)
+    #The extra directories are harmless and unused if the other storage
+    #config is present
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage/emulated 0555 root root
+    mkdir /mnt/media_rw/usbdisk 0555 root root
+    mkdir /storage/usbdisk 0775 system system
 
-    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
-    mkdir /storage/sdcard0 0700 root root
+    mkdir /mnt/media_rw/sdcard0 0775 media_rw media_rw
 
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 root root
+    mkdir /mnt/media_rw/sdcard1 0775 media_rw media_rw
+    mkdir /storage/sdcard1 0775 root root
+
+    #This file was copied as part of lvm_init, and determines some of the
+    #storage configuration environment variables
+    export_rc init.fs.rc
 
     # for backwards compatibility
-    symlink /storage/sdcard0 /sdcard
-    symlink /storage/sdcard0 /mnt/sdcard
-
+    # Some symlinks conflict with each other, so handle them with a shell script
+    # These can't be in lvm_init.sh as that's too early
+    exec /sbin/busybox sh /lvm_symlinks.sh
     symlink /storage/sdcard1 /extSdCard
     symlink /storage/sdcard1 /mnt/extSdCard
 
-    # USB otg
-    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
-    mkdir /storage/usbdisk 0700 root root
-    symlink /mnt/media_rw/usbdisk /usbdisk
-    symlink /mnt/media_rw/usbdisk /mnt/usbdisk
+    symlink /storage/usbdisk /usbdisk
+    symlink /storage/usbdisk /mnt/usbdisk
 
     # bluetooth
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
-
-
 on fs
+    #This will safely error out on non-lvm configs
+    restorecon /dev/mapper/lvpool-userdata
+
+    #this fstab was also copied by lvm_init.sh
     mount_all ./fstab.qcom
 
     # Keeping following partitions outside fstab file. As user may not have
@@ -69,6 +91,13 @@ on fs
     mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
 
 on early-boot
+    #Last phase of LVM configuration.  setprop requires property service
+    #to be started so we can't put it in lvm_init.sh or lvm_symlinks.sh
+    #Currently we're using the system shell as /system is mounted,
+    #but this may need to be reworked to use toolbox+sh to support
+    #recovery
+    exec /system/bin/logwrapper /system/bin/sh /lvm_setprop.sh
+
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
     write /sys/kernel/boot_adsp/boot 1
@@ -531,6 +560,23 @@ service diag_mdlog /system/bin/diag_mdlog -s 100
 # on property:gsm.sim.state=READY
 #    start diag_mdlog
 
+# virtual sdcard daemon running as media_rw (1023)
+# Init doesn't handle conditionals well, so we can't disable this depending on if LVM is present or not
+# Fortunately, the emulated storage daemon is harmless if it runs on a non-emulated (non-LVM) configuration.
+# /data/media is empty and no one looks at /mnt/shell/emulated in a non-emulated configuration
+service fuse /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
+    class late_start
+
+#However, this daemon will really screw up LVM configurations.  There's good news though:
+#Unlike the sdcard daemon for emulated storage, these daemons (which are required in KitKat
+#but not 4.3 and earlier) are only run after vold mounts the volume (the name of the
+#service that runs is determined by the fstab)
+#Also - notice that instead of using Oppo's special ext4 driver to make DOS-like permissions, we're
+#using the fuse daemon in a similar manner to emulated storage.  Oppo's ext4 driver really fouls
+#up the underlying permissions, so we do a recursive chown on boot before firing up the daemon.
+#This is dependent on some vold patches to support ext4 - Omni has added support for ext4, exfat,
+#and a few other file systems to vold so people can use those on external SD cards, but it can
+#also be used for internal storage
 service fuse_sdcard0 /system/bin/sh /system/etc/init.sdcard_perms.sh
     class late_start
     disabled
