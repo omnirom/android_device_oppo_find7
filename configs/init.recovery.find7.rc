@@ -1,0 +1,14 @@
+on early-init
+# set up LVM volumes
+    exec /sbin/lvm vgscan --mknodes --ignorelockingfailure
+    exec /sbin/lvm vgchange -aly --ignorelockingfailure
+    exec /sbin/sh /lvm_configure.sh
+
+on init
+
+service qhdcp /sbin/qhdcp.sh
+    oneshot
+    disabled
+
+on property:ro.oppo.device=find7s
+    start qhdcp
