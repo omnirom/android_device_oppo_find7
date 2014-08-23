@@ -20,39 +20,46 @@ on early-init
     mkdir /firmware 0771 system system
     symlink /data/tombstones /tombstones
     mount debugfs debugfs /sys/kernel/debug
+# LVM: set up LVM volumes
+    wait /dev/block/platform/msm_sdcc.1/by-name/userdata
+    wait /dev/block/platform/msm_sdcc.1/by-name/sdcard
+    exec /sbin/lvm vgscan --mknodes --ignorelockingfailure
+    exec /sbin/lvm vgchange -aly --ignorelockingfailure
+    exec /sbin/busybox sh /lvm_init.sh
 
 on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
-    export EXTERNAL_STORAGE /storage/sdcard0
-    export SECONDARY_STORAGE /storage/sdcard1
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage/emulated 0555 root root
+    mkdir /mnt/media_rw/usbdisk 0555 root root
+    mkdir /storage/usbdisk 0775 system system
 
-    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
-    mkdir /storage/sdcard0 0700 root root
+    mkdir /mnt/media_rw/sdcard0 0775 media_rw media_rw
 
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 root root
+    mkdir /mnt/media_rw/sdcard1 0775 media_rw media_rw
+    mkdir /storage/sdcard1 0775 root root
+
+    export_rc init.fs.rc
 
     # for backwards compatibility
-    symlink /storage/sdcard0 /sdcard
-    symlink /storage/sdcard0 /mnt/sdcard
-
+    # Some symlinks conflict with each other, so handle them with a shell script
+    # These can't be in lvm_init.sh as that's too early
+    exec /sbin/busybox sh /lvm_symlinks.sh
     symlink /storage/sdcard1 /extSdCard
     symlink /storage/sdcard1 /mnt/extSdCard
 
-    # USB otg
-    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
-    mkdir /storage/usbdisk 0700 root root
-    symlink /mnt/media_rw/usbdisk /usbdisk
-    symlink /mnt/media_rw/usbdisk /mnt/usbdisk
+    symlink /storage/usbdisk /usbdisk
+    symlink /storage/usbdisk /mnt/usbdisk
 
     # bluetooth
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
-
-
 on fs
+    #This will safely error out on non-lvm configs
+    restorecon /dev/mapper/lvpool-userdata
+
     mount_all ./fstab.qcom
 
     # Keeping following partitions outside fstab file. As user may not have
@@ -69,6 +76,10 @@ on fs
     mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
 
 on early-boot
+    #Last phase of LVM configuration.  setprop requires property service
+    #to be started so we can't put it in lvm_init.sh or lvm_symlinks.sh
+    exec /system/bin/logwrapper /system/bin/sh /lvm_setprop.sh
+
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
     write /sys/kernel/boot_adsp/boot 1
@@ -530,6 +541,11 @@ service diag_mdlog /system/bin/diag_mdlog -s 100
 
 # on property:gsm.sim.state=READY
 #    start diag_mdlog
+
+# virtual sdcard daemon running as media_rw (1023)
+service fuse /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
+    class late_start
+    disabled
 
 service fuse_sdcard0 /system/bin/sh /system/etc/init.sdcard_perms.sh
     class late_start
