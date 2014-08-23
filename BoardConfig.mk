@@ -22,5 +22,4 @@ TARGET_INIT_VENDOR_LIB := libinit_find7
 
 # Recovery:Start
 
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/configs/fstab.find7
-
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/configs/fstab.find7.std
