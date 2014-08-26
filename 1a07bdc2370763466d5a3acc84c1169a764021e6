@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b49054d_b5912a56",
+        "filename": "device.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000067
+      },
+      "writtenOn": "2014-08-26T19:19:56Z",
+      "side": 1,
+      "message": "missing \"\\\" at the end",
+      "revId": "1a07bdc2370763466d5a3acc84c1169a764021e6",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    }
+  ]
+}
