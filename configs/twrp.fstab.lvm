@@ -14,7 +14,7 @@
 /aboot         emmc     /dev/block/platform/msm_sdcc.1/by-name/aboot
 /boot		   emmc		/dev/block/platform/msm_sdcc.1/by-name/boot
 /system		   ext4		/dev/block/platform/msm_sdcc.1/by-name/system
-#/data		   ext4		/dev/block/platform/msm_sdcc.1/by-name/userdata
+/raw_data		   ext4		/dev/block/platform/msm_sdcc.1/by-name/userdata	flags=wipeingui
 /data		   ext4		/dev/lvpool/userdata
 /cache		   ext4		/dev/block/platform/msm_sdcc.1/by-name/cache
 /misc		   emmc		/dev/block/platform/msm_sdcc.1/by-name/misc
@@ -24,6 +24,6 @@
 /reserve4      emmc     /dev/block/platform/msm_sdcc.1/by-name/reserve4
 
 #OPPO 2014-01-26 hewei modify for 13077  mount  T-card and sdcard
-#/internal_sd		   ext4		/dev/block/platform/msm_sdcc.1/by-name/sdcard
+/raw_sd		   ext4		/dev/block/platform/msm_sdcc.1/by-name/sdcard	flags=wipeingui
 /external_sd		   vfat		/dev/block/mmcblk1p1	 /dev/block/mmcblk1
 
