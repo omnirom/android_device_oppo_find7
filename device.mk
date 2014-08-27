@@ -17,6 +17,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.fs.rc.lvm:root/init.fs.rc.lvm \
     $(LOCAL_PATH)/configs/fstab.find7.std:root/fstab.qcom.std \
     $(LOCAL_PATH)/configs/fstab.find7.lvm:root/fstab.qcom.lvm \
+    $(LOCAL_PATH)/configs/init.recovery.find7.rc:root/init.recovery.qcom.rc \
     $(LOCAL_PATH)/configs/twrp.fstab.lvm:recovery/root/etc/twrp.fstab.lvm \
     $(LOCAL_PATH)/configs/twrp.fstab.std:recovery/root/etc/twrp.fstab.std
 

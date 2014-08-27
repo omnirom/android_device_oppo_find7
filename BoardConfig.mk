@@ -34,3 +34,9 @@ BOARD_SEPOLICY_DIRS += \
 
 BOARD_SEPOLICY_UNION += \
     file_contexts
+
+#Temporary hack to make TWRP support emulated storage
+#On non-emulated configurations it results in a usable
+#but somewhat confusing user interface
+#We need to make TWRP autodetect
+RECOVERY_SDCARD_ON_DATA := true
