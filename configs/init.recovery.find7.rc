@@ -1,0 +1,19 @@
+#These are used to set up LVM
+on early-init
+# set up LVM volumes
+    wait /dev/block/platform/msm_sdcc.1/by-name/userdata
+    wait /dev/block/platform/msm_sdcc.1/by-name/sdcard
+    exec /sbin/lvm vgscan --mknodes --ignorelockingfailure
+    exec /sbin/lvm vgchange -aly --ignorelockingfailure
+    exec /sbin/sh /lvm_init.sh
+
+#These are used to handle find7a vs. find7s
+#and used to be in init.recovery.rc in device/oppo/msm8974-common
+on init
+
+service qhdcp /sbin/qhdcp.sh
+    oneshot
+    disabled
+
+on property:ro.oppo.device=find7s
+    start qhdcp

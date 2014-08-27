@@ -27,3 +27,9 @@ TARGET_INIT_VENDOR_LIB := libinit_find7
 #but overall, TWRP doesn't use this and the rest of the build system
 #does
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/configs/fstab.find7.std
+
+#Temporary hack to make TWRP support emulated storage
+#On non-emulated configurations it results in a usable
+#but somewhat confusing user interface
+#We need to make TWRP autodetect
+RECOVERY_SDCARD_ON_DATA := true
