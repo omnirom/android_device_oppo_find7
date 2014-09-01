@@ -16,9 +16,8 @@
 /system		   ext4		/dev/block/platform/msm_sdcc.1/by-name/system
 #We still have the raw physical partition in the LVM configuration to allow users to wipe the partition
 #and move back to standard storage
-#Right now this causes TWRP to spam mounting errors though, we need to find a better way
-#to handle this
-/raw_data		   ext4		/dev/block/platform/msm_sdcc.1/by-name/userdata	flags=wipeingui
+#We mark these as removable as a hack to quiet down various mounting errors
+/raw_data		   ext4		/dev/block/platform/msm_sdcc.1/by-name/userdata	flags=wipeingui;removable
 /data		   ext4		/dev/lvpool/userdata
 /cache		   ext4		/dev/block/platform/msm_sdcc.1/by-name/cache
 /misc		   emmc		/dev/block/platform/msm_sdcc.1/by-name/misc
@@ -30,8 +29,7 @@
 #OPPO 2014-01-26 hewei modify for 13077  mount  T-card and sdcard
 #We still have the raw physical partition in the LVM configuration to allow users to wipe the partition
 #and move back to standard storage
-#Right now this causes TWRP to spam mounting errors though, we need to find a better way
-#to handle this
-/raw_sd		   ext4		/dev/block/platform/msm_sdcc.1/by-name/sdcard	flags=wipeingui
+#We mark these as removable as a hack to quiet down various mounting errors
+/raw_sd		   ext4		/dev/block/platform/msm_sdcc.1/by-name/sdcard	flags=wipeingui;removable
 /external_sd		   vfat		/dev/block/mmcblk1p1	 /dev/block/mmcblk1
 
