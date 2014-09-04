@@ -1,0 +1,41 @@
+# We shifted /data/data stuff around
+/data/data2/.*                                      u:object_r:app_data_file:s0
+/datadata                                           u:object_r:system_data_file:s0
+/data/data2/com.android.providers.downloads/cache   u:object_r:download_file:s0
+
+# RIL
+/dev/s3c2410_serial3                                u:object_r:radio_device:s0
+/dev/onedram                                        u:object_r:radio_device:s0
+/radio(/.*)?                                        u:object_r:rild_file:s0
+
+# Bluetooth
+/dev/s3c2410_serial0                                u:object_r:hci_attach_dev:s0
+
+# GFX
+/system/vendor/bin/pvrsrvinit                       u:object_r:pvrsrvinit_exec:s0
+
+# Sensors
+/system/vendor/bin/geomagneticd                     u:object_r:geomagneticd_exec:s0
+/system/vendor/bin/orientationd                     u:object_r:orientationd_exec:s0
+
+# GPS
+/dev/s3c2410_serial1                                u:object_r:gps_device:s0
+
+# TV-Out
+/system/bin/tvoutserver                             u:object_r:tvoutserver_exec:s0
+/system/bin/tvouthack                               u:object_r:tvouthack_exec:s0
+
+# Bluetooth
+/system/bin/bdaddr_read                             u:object_r:bdaddr_read_exec:s0
+
+# Advanced settings
+# TODO: sysfs_writable may not be a good choice
+/sys/class/misc/notification/bl_timeout             u:object_r:sysfs_writable:s0
+/sys/class/misc/pwm_duty/pwm_duty                   u:object_r:sysfs_writable:s0
+/sys/class/mdnieset_ui/switch_mdnieset_ui/mdnieset_ui_file_cmd  u:object_r:sysfs_writable:s0
+/sys/class/misc/dockaudio/(.*)_enable               u:object_r:sysfs_writable:s0
+/sys/devices/virtual/misc/color_tuning/(.*)         u:object_r:sysfs_writable:s0
+/sys/devices/virtual/misc/voodoo_sound/(.*)         u:object_r:sysfs_writable:s0
+
+# LVM
+/dev/mapper/lvpool-(.*)                             u:object_r:block_device:s0

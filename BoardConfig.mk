@@ -27,3 +27,10 @@ TARGET_INIT_VENDOR_LIB := libinit_find7
 #but overall, TWRP doesn't use this and the rest of the build system
 #does
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/configs/fstab.find7.std
+
+#SELinux
+BOARD_SEPOLICY_DIRS += \
+    $(LOCAL_PATH)/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    file_contexts
