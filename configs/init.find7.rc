@@ -31,9 +31,8 @@ on early-init
     exec /sbin/lvm vgchange -aly --ignorelockingfailure
     #Detect if LVM is active and copy the appropriate fstabs and environment RCs for
     #the detected configuration.  See the script source for details
-    #Requires busybox to be added to the initial ramdisk of the kernel,
-    #AOSP's toolbox+sh should also work
-    exec /sbin/busybox sh /lvm_init.sh
+    #Requires busybox to be added to the initial ramdisk of the kernel
+    exec /sbin/bb sh /lvm_init.sh
 
 on init
     # Set permissions for persist partition
@@ -60,7 +59,7 @@ on init
     # for backwards compatibility
     # Some symlinks conflict with each other, so handle them with a shell script
     # These can't be in lvm_init.sh as that's too early
-    exec /sbin/busybox sh /lvm_symlinks.sh
+    exec /sbin/bb sh /lvm_symlinks.sh
     symlink /storage/sdcard1 /extSdCard
     symlink /storage/sdcard1 /mnt/extSdCard
 
