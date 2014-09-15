@@ -3,6 +3,10 @@ set +x
 _PATH="$PATH"
 export PATH=/sbin
 
+/sbin/static/busybox touch /path0.txt
+/sbin/lvm vgscan --mknodes --ignorelockingfailure
+/sbin/lvm vgchange -aly --ignorelockingfailure
+
 #don't use -f here - this is not a regular file
 #Check if an LV for userdata exists, if it does
 #this is an LVM configuration and copy LVM fstabs
