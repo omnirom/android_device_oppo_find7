@@ -17,12 +17,14 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.fs.rc.lvm:root/init.fs.rc.lvm \
     $(LOCAL_PATH)/configs/fstab.find7.std:root/fstab.qcom.std \
     $(LOCAL_PATH)/configs/fstab.find7.lvm:root/fstab.qcom.lvm \
+    $(LOCAL_PATH)/configs/init.recovery.find7.rc:root/init.recovery.qcom.rc \
     $(LOCAL_PATH)/configs/twrp.fstab.lvm:recovery/root/etc/twrp.fstab.lvm \
     $(LOCAL_PATH)/configs/twrp.fstab.std:recovery/root/etc/twrp.fstab.std
 
 # LVM
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lvm/lvm_init.sh:root/lvm_init.sh \
+    $(LOCAL_PATH)/lvm/lvm_init_recovery.sh:recovery/root/sbin/lvm_init_recovery.sh \
     $(LOCAL_PATH)/lvm/lvm_symlinks.sh:root/lvm_symlinks.sh \
     $(LOCAL_PATH)/lvm/lvm_setprop.sh:root/lvm_setprop.sh \
     $(LOCAL_PATH)/lvm/lvm:root/sbin/lvm \
