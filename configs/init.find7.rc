@@ -117,10 +117,7 @@ on boot
     chmod 2770 /dev/socket/qmux_gps
 
     #Light Permissions
-    chown system system /sys/class/leds/button-backlight1/brightness
-    chown system system /sys/class/leds/red/brightness
-    chown system system /sys/class/leds/blue/brightness
-    chown system system /sys/class/leds/green/brightness
+    #below are additions to the AOSP init.rc. Entries for button-backlight are located there.
     chown system system /sys/class/leds/rgb_red/blink
     chown system system /sys/class/leds/rgb_red/duty_pcts
     chown system system /sys/class/leds/rgb_red/ramp_step_ms
