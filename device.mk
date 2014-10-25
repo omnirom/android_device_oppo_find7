@@ -15,11 +15,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.find7.rc:root/init.qcom.rc \
     $(LOCAL_PATH)/configs/init.fs.rc.std:root/init.fs.rc.std \
     $(LOCAL_PATH)/configs/init.fs.rc.lvm:root/init.fs.rc.lvm \
+    $(LOCAL_PATH)/configs/init.fs.rc.ufd:root/init.fs.rc.ufd \
     $(LOCAL_PATH)/configs/fstab.find7.std:root/fstab.qcom.std \
     $(LOCAL_PATH)/configs/fstab.find7.lvm:root/fstab.qcom.lvm \
+    $(LOCAL_PATH)/configs/fstab.find7.ufd:root/fstab.qcom.ufd \
     $(LOCAL_PATH)/configs/init.recovery.find7.rc:root/init.recovery.qcom.rc \
     $(LOCAL_PATH)/configs/twrp.fstab.lvm:recovery/root/etc/twrp.fstab.lvm \
-    $(LOCAL_PATH)/configs/twrp.fstab.std:recovery/root/etc/twrp.fstab.std
+    $(LOCAL_PATH)/configs/twrp.fstab.std:recovery/root/etc/twrp.fstab.std \
+    $(LOCAL_PATH)/configs/twrp.fstab.ufd:recovery/root/etc/twrp.fstab.ufd
+
 
 # LVM
 PRODUCT_COPY_FILES += \
