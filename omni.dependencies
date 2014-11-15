@@ -3,30 +3,30 @@
     "remote": "omnirom",
     "repository": "android_hardware_qcom_display-caf-bfam",
     "target_path": "hardware/qcom/display-caf-bfam",
-    "revision": "android-4.4"
+    "revision": "android-5.0"
   },
   {
     "remote": "omnirom",
     "repository": "android_hardware_qcom_media-caf-bfam",
     "target_path": "hardware/qcom/media-caf-bfam",
-    "revision": "android-4.4"
+    "revision": "android-5.0"
   },
   {
     "remote": "omnirom",
     "repository": "android_hardware_qcom_audio-caf-bfam",
     "target_path": "hardware/qcom/audio-caf-bfam",
-    "revision": "android-4.4"
+    "revision": "android-5.0"
   },
   {
     "remote": "omnirom",
     "repository": "android_device_oppo_msm8974-common",
     "target_path": "device/oppo/msm8974-common",
-    "revision": "android-4.4"
+    "revision": "android-5.0"
   },
   {
     "remote": "omnirom",
     "repository": "android_kernel_oppo_msm8974",
     "target_path": "kernel/oppo/msm8974",
-    "revision": "android-4.4"
+    "revision": "android-5.0"
   }
 ]
