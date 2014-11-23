@@ -169,6 +169,13 @@ set_light_backlight(struct light_device_t* dev,
 
     pthread_mutex_lock(&g_lock);
     err = write_int(LCD_FILE, brightness);
+
+    // TODO for now use same as screen
+    // everything below 50 is not really visible
+    if (brightness != 0) {
+        brightness = max(50, brightness);
+    }
+    write_int(BUTTONS_FILE, brightness);
     pthread_mutex_unlock(&g_lock);
 
     return err;
@@ -290,7 +297,7 @@ set_speaker_light_locked_qpnp(struct light_device_t* dev,
         green = (colorRGB >> 8) & 0xFF;
         blue = colorRGB & 0xFF;
 
-#if 1
+#if 0
         ALOGD("set_speaker_light_locked_qpnp mode %d, colorRGB=%08X, onMS=%d, offMS=%d\n",
                 state->flashMode, colorRGB, onMS, offMS);
 #endif
@@ -315,7 +322,7 @@ set_speaker_light_locked_qpnp(struct light_device_t* dev,
               p += sprintf(p, ",0");
             }
             sprintf(p,"\n");
-#if 1
+#if 0
             ALOGD("set_speaker_light_locked_qpnp stepMS = %d, onSteps = %d, dutystr \"%s\"\n",
 		  stepMS, onSteps, dutystr);
 #endif
@@ -326,7 +333,7 @@ set_speaker_light_locked_qpnp(struct light_device_t* dev,
             write_int(QPNP_RAMP_STEP_FILE, stepMS);
             write_int(QPNP_BLINK_FILE, 1);
         } else {
-#if 1
+#if 0
             ALOGD("set_speaker_light_locked_qpnp red = %d\n",
 		  red);
 #endif
