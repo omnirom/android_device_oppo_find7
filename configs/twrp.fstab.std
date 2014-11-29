@@ -15,7 +15,7 @@
 /aboot         emmc     /dev/block/platform/msm_sdcc.1/by-name/aboot
 /boot		   emmc		/dev/block/platform/msm_sdcc.1/by-name/boot
 /system		   ext4		/dev/block/platform/msm_sdcc.1/by-name/system
-/data		   ext4		/dev/block/platform/msm_sdcc.1/by-name/userdata
+/data		   ext4		/dev/block/platform/msm_sdcc.1/by-name/userdata length=-16384
 /cache		   ext4		/dev/block/platform/msm_sdcc.1/by-name/cache
 /misc		   emmc		/dev/block/platform/msm_sdcc.1/by-name/misc
 /recovery	   emmc		/dev/block/platform/msm_sdcc.1/by-name/recovery
