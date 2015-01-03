@@ -247,6 +247,9 @@ on boot
     # cpuquiet
     chown system system /sys/devices/system/cpu/cpuquiet/cpuquiet_driver/max_cpus
 
+    # GPU
+    chown system system /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+
     start qcamerasvr
     start config_bluetooth
     #start mpdecision
