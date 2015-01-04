@@ -26,13 +26,15 @@ on early-init
     wait /dev/block/platform/msm_sdcc.1/by-name/userdata
     wait /dev/block/platform/msm_sdcc.1/by-name/sdcard
     #Scan for LVM partitions.  Our lvm.conf restricts this to the userdata and sdcard partitions
-    exec /sbin/lvm vgscan --mknodes --ignorelockingfailure
+    exec_context u:r:lvm:s0 /sbin/lvm vgscan --mknodes --ignorelockingfailure
     #Activate any partitions found
-    exec /sbin/lvm vgchange -aly --ignorelockingfailure
+    exec_context u:r:lvm:s0 /sbin/lvm vgchange -aly --ignorelockingfailure
     #Detect if LVM is active and copy the appropriate fstabs and environment RCs for
     #the detected configuration.  See the script source for details
     #Requires busybox to be added to the initial ramdisk of the kernel
+    setcon u:r:lvm:s0
     exec /sbin/static/busybox sh /lvm_init.sh
+    setcon u:r:init:s0
 
 on init
     # Set permissions for persist partition

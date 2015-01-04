@@ -1,0 +1,15 @@
+# lvm support
+
+type lvm, domain;
+domain_trans(init,rootfs,lvm)
+typeattribute lvm lvm_placeholder;
+allow lvm rootfs:file execute_no_trans;
+allow lvm proc:file r_file_perms;
+allow lvm proc:dir search;
+allow lvm rootfs:file create_file_perms;
+allow lvm rootfs:dir create_dir_perms;
+allow lvm kmem_device:chr_file getattr;
+allow lvm tmpfs:chr_file rw_file_perms;
+allow lvm self:process setcurrent;
+allow lvm init:process dyntransition;
+
