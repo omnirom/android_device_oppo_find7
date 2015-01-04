@@ -23,8 +23,8 @@ PRODUCT_COPY_FILES += \
 
 # LVM
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/lvm/lvm_init.sh:root/lvm_init.sh \
-    $(LOCAL_PATH)/lvm/lvm_init_recovery.sh:recovery/root/sbin/lvm_init_recovery.sh \
+    $(LOCAL_PATH)/lvm/lvm_init.sh:root/sbin/lvm_init.sh \
+    $(LOCAL_PATH)/lvm/lvm_init.sh:recovery/root/sbin/lvm_init.sh \
     $(LOCAL_PATH)/lvm/lvm_symlinks.sh:root/lvm_symlinks.sh \
     $(LOCAL_PATH)/lvm/lvm_setprop.sh:root/lvm_setprop.sh \
     $(LOCAL_PATH)/lvm/lvm:root/sbin/lvm \
