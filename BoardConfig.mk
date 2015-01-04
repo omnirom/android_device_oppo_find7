@@ -20,6 +20,9 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 #Libinit - handle find7a vs find7s
 TARGET_INIT_VENDOR_LIB := libinit_find7
 
+BOARD_SEPOLICY_DIRS += \
+    $(LOCAL_PATH)/sepolicy
+
 # Recovery:Start
 
 #TODO: Need to determine just how this is used.  There's a slight
