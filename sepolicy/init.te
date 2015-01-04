@@ -1,0 +1,5 @@
+# lvm support
+
+allow init lvm_placeholder:process dyntransition;
+allow init self:process setcurrent;
+
