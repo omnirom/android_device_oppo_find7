@@ -1,0 +1,6 @@
+###########################
+# OmniROM common sepolicy
+#
+
+allow init rootfs:file create_file_perms;
+allow init kmem_device:chr_file getattr;
