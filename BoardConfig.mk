@@ -20,6 +20,8 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 #Libinit - handle find7a vs find7s
 TARGET_INIT_VENDOR_LIB := libinit_find7
 
+TARGET_BOOTANIMATION_NAME := 1080x720
+
 # Recovery:Start
 
 #TODO: Need to determine just how this is used.  There's a slight
