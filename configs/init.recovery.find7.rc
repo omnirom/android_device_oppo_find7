@@ -9,12 +9,3 @@ service lvm_init /sbin/lvm_init_recovery.sh
     oneshot
     disabled
 
-#These are used to handle find7a vs. find7s
-#and used to be in init.recovery.rc in device/oppo/msm8974-common
-
-service qhdcp /sbin/qhdcp.sh
-    oneshot
-    disabled
-
-on property:ro.oppo.device=find7s
-    start qhdcp
