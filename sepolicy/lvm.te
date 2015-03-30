@@ -1,6 +1,7 @@
 ###########################
-# OmniROM sepolicy
+# OmniROM find7 sepolicy
 #
+
 type lvm, domain;
 domain_trans(init,rootfs,lvm)
 typeattribute lvm lvm_placeholder;
@@ -63,14 +64,14 @@ allow lvm gpu_device:chr_file { getattr };
 allow lvm camera_device:chr_file { getattr };
 allow lvm hci_attach_dev:chr_file { getattr };
 allow lvm gps_device:chr_file { getattr };
-allow lvm audio_device:dir { read open getattr };
+allow lvm audio_device:dir { read open getattr search };
 allow lvm audio_device:chr_file { getattr };
 allow lvm property_socket:sock_file { getattr };
 allow lvm adbd_socket:sock_file { getattr };
 allow lvm log_device:dir { read open getattr search };
 allow lvm qdsp_device:chr_file { getattr };
 allow lvm mmc_block_device:blk_file { getattr };
-allow lvm modem_block_device:blk_file { getattr };
+allow lvm modem_block_device:blk_file { getattr read write };
 allow lvm modem_efs_partition_device:blk_file { getattr };
 allow lvm rpmb_device:blk_file { getattr };
 allow lvm device_latency:chr_file { getattr };
@@ -91,3 +92,5 @@ allow lvm wcnss_device:chr_file { getattr };
 allow lvm ramdump_device:chr_file { getattr };
 allow lvm video_device:dir { read open getattr search };
 allow lvm modem_block_device:blk_file { getattr read open ioctl };
+allow lvm self:capability { sys_admin ipc_lock sys_nice };
+

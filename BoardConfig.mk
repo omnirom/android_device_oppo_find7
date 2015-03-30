@@ -26,7 +26,10 @@ BOARD_SEPOLICY_DIRS += \
 
 BOARD_SEPOLICY_UNION += \
     lvm.te \
-    init.te
+    init.te \
+    init_shell.te \
+    file_contexts \
+    device.te
 
 # Recovery:Start
 

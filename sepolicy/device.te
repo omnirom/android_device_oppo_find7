@@ -1,0 +1,5 @@
+###########################
+# OmniROM find7 sepolicy
+#
+
+type lvm_device, dev_type;
