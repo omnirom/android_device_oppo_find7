@@ -17,7 +17,7 @@ echo "Setprop start!"
 if [ -e /dev/lvpool/userdata ]; then
     echo "Setting storage_legacy to 1!"
     /system/bin/setprop sys.storage_legacy 1
-    /system/bin/setprop ro.crypto.fuse_sdcard 1
+    /system/bin/setprop ro.crypto.fuse_sdcard true
     echo "Set storage_legacy to 1!"
 else
     echo "Setting storage_legacy to 0"
