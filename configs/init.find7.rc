@@ -228,7 +228,6 @@ on boot
     write /sys/module/msm_pm/modes/cpu1/retention/idle_enabled 1
     write /sys/module/msm_pm/modes/cpu2/retention/idle_enabled 1
     write /sys/module/msm_pm/modes/cpu3/retention/idle_enabled 1
-    write /sys/module/msm_thermal/core_control/enabled 1
     chown root.system /sys/devices/system/cpu/cpu1/online
     chown root.system /sys/devices/system/cpu/cpu2/online
     chown root.system /sys/devices/system/cpu/cpu3/online
@@ -251,6 +250,14 @@ on boot
 
     # GPU
     chown system system /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+
+    # kernel thermal config
+    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/module/msm_thermal/core_control/limit_temp 80
+    write /sys/module/msm_thermal/freq_control/limit_temp 70
+    write /sys/module/msm_thermal/freq_control/poll_ms 750
+    write /sys/module/msm_thermal/freq_control/freq_step 1
+    write /sys/module/msm_thermal/parameters/enabled 1
 
     start qcamerasvr
     start config_bluetooth
@@ -345,8 +352,8 @@ on post-fs-data
     chown system system /sys/class/leds/red/device/lock
 
     # communicate with mpdecision and thermald
-    mkdir /dev/socket/mpdecision 0770 system system
-    chmod 2770 /dev/socket/mpdecision
+    #mkdir /dev/socket/mpdecision 0770 system system
+    #chmod 2770 /dev/socket/mpdecision
 
     # Tombstone dropboxes
     mkdir /data/tombstones 0771 system system
@@ -514,13 +521,13 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     user camera
     group camera system inet input graphics
 
-service thermal-engine /system/bin/thermal-engine
-   class main
-   user root
-   group root
-   socket thermal-send-client stream 0666 system system
-   socket thermal-recv-client stream 0660 system system
-   socket thermal-recv-passive-client stream 0666 system system
+#service thermal-engine /system/bin/thermal-engine
+#   class main
+#   user root
+#   group root
+#   socket thermal-send-client stream 0666 system system
+#   socket thermal-recv-client stream 0660 system system
+#   socket thermal-recv-passive-client stream 0666 system system
 
 #service mpdecision /system/bin/mpdecision --avg_comp
 #   class core
