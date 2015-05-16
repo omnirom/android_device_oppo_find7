@@ -264,9 +264,6 @@ on boot
     #start mpdecision
     start sensors
 
-    # Update WIFI MAC address
-    start mac-update
-
 # msm specific files that need to be created on /data
 on post-fs-data
     # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
@@ -280,11 +277,6 @@ on post-fs-data
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     # to observe dnsmasq.leases file for dhcp information of soft ap.
     chown dhcp system /data/misc/dhcp
-
-    mkdir /data/misc/wifi/prima 0775 wifi wifi
-
-    write /dev/wcnss_wlan 1
-    write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
 
     # NFC: create data/nfc for nv storage
     mkdir /data/nfc 770 nfc nfc
@@ -395,12 +387,6 @@ service rfs_access /system/bin/rfs_access
 
 on property:ro.boot.emmc=true
     start rfs_access
-
-# Update WIFI MAC address
-service mac-update /system/bin/logwrapper /system/bin/mac-update
-    class main
-    user root
-    oneshot
     
 #service bdAddrLoader /system/bin/bdAddrLoader -f /persist/bluetooth/.bdaddr -h -x
 #    class main
@@ -559,11 +545,17 @@ service qseecomd /system/bin/qseecomd
     user root
     group root
 
+service mac-update /system/bin/mac-update
+    class late_start
+    user system
+    group system wifi
+    oneshot
+
 service wcnss-service /system/bin/wcnss_service
-   class late_start
-   user root
-   group system wifi
-   oneshot
+    class late_start
+    user system
+    group system wifi
+    oneshot
 
 service time_daemon /system/bin/logwrapper /system/bin/time_daemon
     class late_start
