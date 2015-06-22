@@ -19,8 +19,13 @@ if [ -e /dev/lvpool/userdata ]; then
     /system/bin/setprop sys.storage_legacy 1
     /system/bin/setprop ro.crypto.fuse_sdcard true
     echo "Set storage_legacy to 1!"
-else
+elif [ -e /dev/block/platform/msm_sdcc.1/by-name/sdcard ]; then
     echo "Setting storage_legacy to 0"
     /system/bin/setprop sys.storage_legacy 0
     echo "Set storage_legacy to 0"
+else
+    echo "Setting storage_legacy to 1!"
+    /system/bin/setprop sys.storage_legacy 1
+    /system/bin/setprop ro.crypto.fuse_sdcard true
+    echo "Set storage_legacy to 1!"
 fi
