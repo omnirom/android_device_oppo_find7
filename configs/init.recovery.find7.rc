@@ -8,4 +8,4 @@ on early-init
 service lvm_init /sbin/lvm_init_recovery.sh
     oneshot
     disabled
-
+    seclabel u:r:recovery:s0
