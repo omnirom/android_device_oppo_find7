@@ -256,7 +256,7 @@ on boot
     write /sys/module/msm_thermal/core_control/limit_temp 80
     write /sys/module/msm_thermal/freq_control/limit_temp 70
     write /sys/module/msm_thermal/freq_control/poll_ms 500
-    write /sys/module/msm_thermal/freq_control/freq_step 2
+    write /sys/module/msm_thermal/freq_control/freq_step 1
     write /sys/module/msm_thermal/parameters/enabled 1
 
     start qcamerasvr
