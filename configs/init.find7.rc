@@ -241,9 +241,11 @@ on boot
     write /sys/block/mmcblk0/bdi/read_ahead_kb 1024
 
     # touchscreen
-    chown system system /sys/kernel/touchscreen/camera_enable
-    chown system system /sys/kernel/touchscreen/flashlight_enable
+    chown system system /sys/kernel/touchscreen/gesture_enable
+    chown system system /sys/kernel/touchscreen/circle_enable
+    chown system system /sys/kernel/touchscreen/arrow_enable
     chown system system /sys/kernel/touchscreen/double_tap_enable
+    chown system system /sys/kernel/touchscreen/coordinates
 
     # cpuquiet
     chown system system /sys/devices/system/cpu/cpuquiet/cpuquiet_driver/max_cpus
