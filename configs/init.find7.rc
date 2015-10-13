@@ -259,10 +259,8 @@ on boot
     write /sys/module/msm_thermal/freq_control/freq_step 1
     write /sys/module/msm_thermal/parameters/enabled 1
 
-    start qcamerasvr
     start config_bluetooth
     #start mpdecision
-    start sensors
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -318,20 +316,13 @@ on post-fs-data
     mkdir /data/audio 0770 media audio
     chmod 2770 /data/audio
 
-    #Create directories for gpsone_daemon services
-    mkdir /data/misc/gpsone_d 0770 system gps
-
-    #Create directories for QuIPS
-    mkdir /data/misc/quipc 0770 gps system
-
     #Create directories for Location services
     mkdir /data/misc/location 0770 gps gps
     mkdir /data/misc/location/mq 0770 gps gps
     mkdir /data/misc/location/xtwifi 0770 gps gps
-
-    # kickstart
-    mkdir /data/qcks 0770 system system
-    chown system /dev/block/platform/msm_sdcc.1/by-name
+    mkdir /data/misc/location/gpsone_d 0770 system gps
+    mkdir /data/misc/location/quipc 0770 gps system
+    mkdir /data/misc/location/gsiff 0770 gps gps
 
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
@@ -353,6 +344,9 @@ on post-fs-data
     mkdir /data/tombstones/lpass 0771 system system
     mkdir /data/tombstones/wcnss 0771 system system
     mkdir /data/tombstones/dsps 0771 system system
+
+    # camera sockets
+    mkdir /data/misc/camera 0770 camera camera
 
     setprop vold.post_fs_data_done 1
 
@@ -435,7 +429,6 @@ service sensors /system/bin/sensors.qcom
     class late_start
     user root
     group root
-    disabled
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
@@ -501,7 +494,6 @@ service charger /sbin/healthd -c
     critical
     seclabel u:r:healthd:s0
 
-#start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
@@ -602,3 +594,9 @@ service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1
 service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
     class late_start
     disabled
+
+service loc_launcher /system/bin/loc_launcher
+    #loc_launcher will start as root and set its uid to gps
+    class late_start
+    group gps qcom_oncrpc inet net_raw qcom_diag net_admin wifi
+
