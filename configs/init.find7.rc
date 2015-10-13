@@ -259,10 +259,8 @@ on boot
     write /sys/module/msm_thermal/freq_control/freq_step 1
     write /sys/module/msm_thermal/parameters/enabled 1
 
-    start qcamerasvr
     start config_bluetooth
     #start mpdecision
-    start sensors
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -353,6 +351,9 @@ on post-fs-data
     mkdir /data/tombstones/lpass 0771 system system
     mkdir /data/tombstones/wcnss 0771 system system
     mkdir /data/tombstones/dsps 0771 system system
+
+    # camera sockets
+    mkdir /data/misc/camera 0770 camera camera
 
     setprop vold.post_fs_data_done 1
 
@@ -501,7 +502,6 @@ service charger /sbin/healthd -c
     critical
     seclabel u:r:healthd:s0
 
-#start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
