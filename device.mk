@@ -46,4 +46,5 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sensor/sensor_def_qcomdev.conf:system/etc/sensor_def_qcomdev.conf
 
 # Properties
-
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.camera.4k2k.enable=1
