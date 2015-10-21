@@ -11,16 +11,9 @@
 #is in use based on the fstab.  CWM automatically detects from fstab, unsure about
 #Oppo recovery
 
-#These properties are used by https://gerrit.omnirom.org/#/c/9273/ to determine
-#the storage configuration to use
 echo "Setprop start!"
 if [ -e /dev/lvpool/userdata ]; then
-    echo "Setting storage_legacy to 1!"
-    /system/bin/setprop sys.storage_legacy 1
     /system/bin/setprop ro.crypto.fuse_sdcard true
-    echo "Set storage_legacy to 1!"
 else
-    echo "Setting storage_legacy to 0"
-    /system/bin/setprop sys.storage_legacy 0
-    echo "Set storage_legacy to 0"
+    /system/bin/setprop ro.vold.primary_physical 1
 fi

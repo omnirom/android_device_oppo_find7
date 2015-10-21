@@ -44,32 +44,33 @@ on init
     #except for ones that are incompatible/will conflict (mostly sdcard0-related)
     #The extra directories are harmless and unused if the other storage
     #config is present
-    mkdir /mnt/shell/emulated 0700 shell shell
-    mkdir /storage/emulated 0555 root root
-    mkdir /mnt/media_rw/usbdisk 0555 root root
-    mkdir /storage/usbdisk 0775 system system
+    #mkdir /mnt/shell/emulated 0700 shell shell
+    #mkdir /storage/emulated 0555 root root
+    #mkdir /mnt/media_rw/sdcard0 0775 media_rw media_rw
 
-    mkdir /mnt/media_rw/sdcard0 0775 media_rw media_rw
+    # Support legacy paths
+    symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
 
-    mkdir /mnt/media_rw/sdcard1 0775 media_rw media_rw
-    mkdir /storage/sdcard1 0775 root root
-
-    #This file was copied as part of lvm_init, and determines some of the
-    #storage configuration environment variables
-    export_rc init.fs.rc
+    #mkdir /mnt/media_rw/sdcard1 0775 media_rw media_rw
+    #mkdir /storage/sdcard1 0775 root root
+    #mkdir /mnt/media_rw/usbdisk 0555 root root
+    #mkdir /storage/usbdisk 0775 system system
 
     # for backwards compatibility
     # Some symlinks conflict with each other, so handle them with a shell script
     # These can't be in lvm_init.sh as that's too early
-    exec /sbin/static/busybox sh /lvm_symlinks.sh
-    symlink /storage/sdcard1 /extSdCard
-    symlink /storage/sdcard1 /mnt/extSdCard
+    #exec /sbin/static/busybox sh /lvm_symlinks.sh
+    #symlink /storage/sdcard1 /extSdCard
+    #symlink /storage/sdcard1 /mnt/extSdCard
 
-    symlink /storage/usbdisk /usbdisk
-    symlink /storage/usbdisk /mnt/usbdisk
+    #symlink /storage/usbdisk /usbdisk
+    #symlink /storage/usbdisk /mnt/usbdisk
 
     # bluetooth
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
+    
+    # TODO with non lvm we need setprop ro.vold.primary_physical 1
 
 on fs
     #This will safely error out on non-lvm configs
@@ -578,8 +579,8 @@ service diag_mdlog /system/bin/diag_mdlog -s 100
 # Init doesn't handle conditionals well, so we can't disable this depending on if LVM is present or not
 # Fortunately, the emulated storage daemon is harmless if it runs on a non-emulated (non-LVM) configuration.
 # /data/media is empty and no one looks at /mnt/shell/emulated in a non-emulated configuration
-service fuse /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
-    class late_start
+#service fuse /system/bin/sdcard -u 1023 -g 1023 /data/media /mnt/shell/emulated
+#    class late_start
 
 #However, this daemon will really screw up LVM configurations.  There's good news though:
 #Unlike the sdcard daemon for emulated storage, these daemons (which are required in KitKat
@@ -591,14 +592,14 @@ service fuse /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulat
 #This is dependent on some vold patches to support ext4 - Omni has added support for ext4, exfat,
 #and a few other file systems to vold so people can use those on external SD cards, but it can
 #also be used for internal storage
-service fuse_sdcard0 /system/bin/sh /system/etc/init.sdcard_perms.sh
-    class late_start
-    disabled
+#service fuse_sdcard0 /system/bin/sh /system/etc/init.sdcard_perms.sh
+#    class late_start
+#    disabled
 
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
-    disabled
+#service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
+#    class late_start
+#    disabled
 
-service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
-    class late_start
-    disabled
+#service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/usbdisk /storage/usbdisk
+#    class late_start
+#    disabled
