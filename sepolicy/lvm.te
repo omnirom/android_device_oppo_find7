@@ -70,7 +70,6 @@ allow lvm property_socket:sock_file { getattr };
 allow lvm adbd_socket:sock_file { getattr };
 allow lvm log_device:dir { read open getattr search };
 allow lvm qdsp_device:chr_file { getattr };
-allow lvm mmc_block_device:blk_file { getattr };
 allow lvm modem_block_device:blk_file { getattr read write };
 allow lvm modem_efs_partition_device:blk_file { getattr };
 allow lvm rpmb_device:blk_file { getattr };

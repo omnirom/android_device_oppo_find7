@@ -10,9 +10,7 @@ export PATH=/sbin
 if [ -e /dev/lvpool/userdata ]; then
     /sbin/static/busybox cp /fstab.qcom.lvm /fstab.qcom
     /sbin/static/busybox cp /etc/twrp.fstab.lvm /etc/twrp.fstab
-    /sbin/static/busybox cp /init.fs.rc.lvm /init.fs.rc
 else
     /sbin/static/busybox cp /fstab.qcom.std /fstab.qcom
     /sbin/static/busybox cp /etc/twrp.fstab.std /etc/twrp.fstab
-    /sbin/static/busybox cp /init.fs.rc.std /init.fs.rc
 fi
