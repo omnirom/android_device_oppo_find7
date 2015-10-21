@@ -24,13 +24,6 @@ TARGET_INIT_VENDOR_LIB := libinit_find7
 BOARD_SEPOLICY_DIRS += \
     device/oppo/find7/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-    lvm.te \
-    init.te \
-    init_shell.te \
-    file_contexts \
-    device.te
-
 # Recovery:Start
 
 #TODO: Need to determine just how this is used.  There's a slight
