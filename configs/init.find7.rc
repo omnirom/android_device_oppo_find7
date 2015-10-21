@@ -37,6 +37,9 @@ on early-init
     setcon u:r:init:s0
 
 on init
+    # Preload the BoringSSL wrapper
+    export LD_PRELOAD /system/lib/libboringssl-compat.so
+
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
@@ -44,33 +47,32 @@ on init
     #except for ones that are incompatible/will conflict (mostly sdcard0-related)
     #The extra directories are harmless and unused if the other storage
     #config is present
-    mkdir /mnt/shell/emulated 0700 shell shell
-    mkdir /storage/emulated 0555 root root
-    mkdir /mnt/media_rw/usbdisk 0555 root root
-    mkdir /storage/usbdisk 0775 system system
+    #mkdir /mnt/shell/emulated 0700 shell shell
+    #mkdir /storage/emulated 0555 root root
+    #mkdir /mnt/media_rw/sdcard0 0775 media_rw media_rw
 
-    mkdir /mnt/media_rw/sdcard0 0775 media_rw media_rw
+    # Support legacy paths
+    symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
 
-    mkdir /mnt/media_rw/sdcard1 0775 media_rw media_rw
-    mkdir /storage/sdcard1 0775 root root
-
-    #This file was copied as part of lvm_init, and determines some of the
-    #storage configuration environment variables
-    export_rc init.fs.rc
+    #mkdir /mnt/media_rw/sdcard1 0775 media_rw media_rw
+    #mkdir /storage/sdcard1 0775 root root
+    #mkdir /mnt/media_rw/usbdisk 0555 root root
+    #mkdir /storage/usbdisk 0775 system system
 
     # for backwards compatibility
     # Some symlinks conflict with each other, so handle them with a shell script
     # These can't be in lvm_init.sh as that's too early
-    exec /sbin/static/busybox sh /lvm_symlinks.sh
-    symlink /storage/sdcard1 /extSdCard
-    symlink /storage/sdcard1 /mnt/extSdCard
+    #exec /sbin/static/busybox sh /lvm_symlinks.sh
+    #symlink /storage/sdcard1 /extSdCard
+    #symlink /storage/sdcard1 /mnt/extSdCard
 
-    symlink /storage/usbdisk /usbdisk
-    symlink /storage/usbdisk /mnt/usbdisk
+    #symlink /storage/usbdisk /usbdisk
+    #symlink /storage/usbdisk /mnt/usbdisk
 
     # bluetooth
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
-
+    
 on fs
     #This will safely error out on non-lvm configs
     restorecon /dev/mapper/lvpool-userdata
@@ -150,18 +152,23 @@ on boot
     # create symlink for fb1 as HDMI
     symlink /dev/graphics/fb1 /dev/graphics/hdmi
 
-    # Remove write permissions to video related nodes
+    # setup permissions for fb1 related nodes
+    chown system graphics /sys/class/graphics/fb1/hpd
+    chown system graphics /sys/class/graphics/fb1/vendor_name
+    chown system graphics /sys/class/graphics/fb1/product_description
     chmod 0664 /sys/devices/virtual/graphics/fb1/hpd
-    chmod 0664 /sys/devices/virtual/graphics/fb1/video_mode
-    chmod 0664 /sys/devices/virtual/graphics/fb1/format_3d
-
-    # Change owner and group for media server and surface flinger
-    chown system system /sys/devices/virtual/graphics/fb1/format_3d
-    chown system system /sys/devices/virtual/graphics/fb1/hpd
+    chmod 0664 /sys/devices/virtual/graphics/fb1/vendor_name
+    chmod 0664 /sys/devices/virtual/graphics/fb1/product_description
 
     # MDP idle notifier
     chown system graphics /sys/class/graphics/fb0/idle_time
     chmod 0664 /sys/class/graphics/fb0/idle_time
+    chown system graphics /sys/class/graphics/fb0/idle_notify
+    chmod 0664 /sys/class/graphics/fb0/idle_notify
+    
+    # dynamic fps
+    chown system graphics /sys/class/graphics/fb0/dynamic_fps
+    chmod 0664 /sys/class/graphics/fb0/dynamic_fps
 
     #For bridgemgr daemon to inform the USB driver of the correct transport
     chown radio radio /sys/class/android_usb/f_rmnet_smd_sdio/transport
@@ -566,37 +573,7 @@ service diag_mdlog /system/bin/diag_mdlog -s 100
 # on property:gsm.sim.state=READY
 #    start diag_mdlog
 
-# virtual sdcard daemon running as media_rw (1023)
-# Init doesn't handle conditionals well, so we can't disable this depending on if LVM is present or not
-# Fortunately, the emulated storage daemon is harmless if it runs on a non-emulated (non-LVM) configuration.
-# /data/media is empty and no one looks at /mnt/shell/emulated in a non-emulated configuration
-service fuse /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
-    class late_start
-
-#However, this daemon will really screw up LVM configurations.  There's good news though:
-#Unlike the sdcard daemon for emulated storage, these daemons (which are required in KitKat
-#but not 4.3 and earlier) are only run after vold mounts the volume (the name of the
-#service that runs is determined by the fstab)
-#Also - notice that instead of using Oppo's special ext4 driver to make DOS-like permissions, we're
-#using the fuse daemon in a similar manner to emulated storage.  Oppo's ext4 driver really fouls
-#up the underlying permissions, so we do a recursive chown on boot before firing up the daemon.
-#This is dependent on some vold patches to support ext4 - Omni has added support for ext4, exfat,
-#and a few other file systems to vold so people can use those on external SD cards, but it can
-#also be used for internal storage
-service fuse_sdcard0 /system/bin/sh /system/etc/init.sdcard_perms.sh
-    class late_start
-    disabled
-
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
-    disabled
-
-service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
-    class late_start
-    disabled
-
 service loc_launcher /system/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
     class late_start
     group gps qcom_oncrpc inet net_raw qcom_diag net_admin wifi
-
