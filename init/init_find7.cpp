@@ -60,7 +60,9 @@ static void process_cmdline(char *name, int for_emulator)
     }
 }
 
+extern "C" {
 void vendor_load_properties()
 {
     import_kernel_cmdline(0,process_cmdline);
+}
 }
