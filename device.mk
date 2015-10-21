@@ -13,8 +13,6 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.find7.rc:root/init.qcom.rc \
-    $(LOCAL_PATH)/configs/init.fs.rc.std:root/init.fs.rc.std \
-    $(LOCAL_PATH)/configs/init.fs.rc.lvm:root/init.fs.rc.lvm \
     $(LOCAL_PATH)/configs/fstab.find7.std:root/fstab.qcom.std \
     $(LOCAL_PATH)/configs/fstab.find7.lvm:root/fstab.qcom.lvm \
     $(LOCAL_PATH)/configs/init.recovery.find7.rc:root/init.recovery.qcom.rc \
@@ -31,8 +29,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lvm/lvm.conf:root/lvm/etc/lvm.conf
 
 #sdcard permissions fix
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/init.sdcard_perms.sh:system/etc/init.sdcard_perms.sh
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/configs/init.sdcard_perms.sh:system/etc/init.sdcard_perms.sh
 
 # NFC packages
 PRODUCT_PACKAGES += \
