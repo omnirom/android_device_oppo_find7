@@ -537,12 +537,6 @@ service qseecomd /system/bin/qseecomd
     user root
     group root
 
-service mac-update /system/bin/mac-update
-    class late_start
-    user system
-    group system wifi
-    oneshot
-
 service wcnss-service /system/bin/wcnss_service
     class late_start
     user system
