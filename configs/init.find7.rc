@@ -107,10 +107,6 @@ on early-boot
     write /sys/kernel/boot_adsp/boot 1
 
 on boot
-    #Oppo nv dump stuff - probably needed for BT MAC address.
-    #hci_qcomm_init does want to look here
-    mkdir /data/opponvitems  0771 radio radio
-
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
     chmod 2770 /dev/socket/qmux_radio
@@ -544,16 +540,10 @@ service qseecomd /system/bin/qseecomd
     user root
     group root
 
-service mac-update /system/bin/mac-update
-    class late_start
+service wcnss-service /system/bin/logwrapper /system/bin/wcnss_service
+    class main
     user system
-    group system wifi
-    oneshot
-
-service wcnss-service /system/bin/wcnss_service
-    class late_start
-    user system
-    group system wifi
+    group system wifi qcom_diag radio
     oneshot
 
 service time_daemon /system/bin/logwrapper /system/bin/time_daemon
