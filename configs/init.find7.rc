@@ -174,10 +174,6 @@ on boot
 
     chown root system /proc/net/ip_conntrack
 
-    # NFC
-    chmod 0600 /dev/pn544
-    chown nfc nfc /dev/pn544
-
     # Enable DEBUG_SUSPEND, DEBUG_EXIT_SUSPEND, and DEBUG_WAKEUP
     write /sys/module/wakelock/parameters/debug_mask 7
 
