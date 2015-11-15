@@ -1,25 +1,25 @@
 [
   {
-    "remote": "github",
-    "repository": "maxwen/android_hardware_qcom_display-caf-msm8974",
+    "remote": "omnirom",
+    "repository": "android_hardware_qcom_display-caf-msm8974",
     "target_path": "hardware/qcom/display-caf-msm8974",
     "revision": "android-6.0"
   },
   {
-    "remote": "github",
-    "repository": "maxwen/android_hardware_qcom_media-caf-msm8974",
+    "remote": "omnirom",
+    "repository": "android_hardware_qcom_media-caf-msm8974",
     "target_path": "hardware/qcom/media-caf-msm8974",
     "revision": "android-6.0"
   },
   {
-    "remote": "github",
-    "repository": "maxwen/android_hardware_qcom_audio-caf-msm8974",
+    "remote": "omnirom",
+    "repository": "android_hardware_qcom_audio-caf-msm8974",
     "target_path": "hardware/qcom/audio-caf-msm8974",
     "revision": "android-6.0"
   },
   {
-    "remote": "github",
-    "repository": "maxwen/android_device_qcom_caf-sepolicy",
+    "remote": "omnirom",
+    "repository": "android_device_qcom_caf-sepolicy",
     "target_path": "device/qcom/sepolicy",
     "revision": "android-6.0"
   },
@@ -72,9 +72,15 @@
     "revision": "android-6.0-nxp"
   },
   {
-    "remote": "github",
-    "repository": "maxwen/vendor_qcom_opensource_display-frameworks",
+    "remote": "omnirom",
+    "repository": "vendor_qcom_opensource_display-frameworks",
     "target_path": "vendor/qcom/opensource/display-frameworks",
+    "revision": "android-6.0"
+  },
+    {
+    "remote": "omnirom",
+    "repository": "android_packages_services_OmniJaws",
+    "target_path": "packages/services/OmniJaws",
     "revision": "android-6.0"
   }
 ]
