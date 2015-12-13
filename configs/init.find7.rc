@@ -243,6 +243,7 @@ on boot
     chown system system /sys/kernel/touchscreen/camera_enable
     chown system system /sys/kernel/touchscreen/flashlight_enable
     chown system system /sys/kernel/touchscreen/double_tap_enable
+    chown system system /sys/kernel/touchscreen/button_disable
 
     # cpuquiet
     chown system system /sys/devices/system/cpu/cpuquiet/cpuquiet_driver/max_cpus
