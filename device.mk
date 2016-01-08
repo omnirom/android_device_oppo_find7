@@ -26,21 +26,18 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lvm/lvm_init.sh:root/lvm_init.sh \
     $(LOCAL_PATH)/lvm/lvm_init_recovery.sh:recovery/root/sbin/lvm_init_recovery.sh \
-    $(LOCAL_PATH)/lvm/lvm_symlinks.sh:root/lvm_symlinks.sh \
     $(LOCAL_PATH)/lvm/lvm_setprop.sh:root/lvm_setprop.sh \
     $(LOCAL_PATH)/lvm/lvm:root/sbin/lvm \
     $(LOCAL_PATH)/lvm/lvm.conf:root/lvm/etc/lvm.conf
 
-#sdcard permissions fix
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/configs/init.sdcard_perms.sh:system/etc/init.sdcard_perms.sh
-
 # NFC packages
 PRODUCT_PACKAGES += \
+    nfc.msm8974 \
     libnfc \
     libnfc_jni \
     Nfc \
-    Tag
+    Tag \
+    com.android.nfc_extras
 
 # Sensor configuration from Oppo
 PRODUCT_COPY_FILES += \
