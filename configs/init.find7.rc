@@ -43,36 +43,13 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
-    #We make all directories and symlinks for both storage configurations,
-    #except for ones that are incompatible/will conflict (mostly sdcard0-related)
-    #The extra directories are harmless and unused if the other storage
-    #config is present
-    #mkdir /mnt/shell/emulated 0700 shell shell
-    #mkdir /storage/emulated 0555 root root
-    #mkdir /mnt/media_rw/sdcard0 0775 media_rw media_rw
-
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
 
-    #mkdir /mnt/media_rw/sdcard1 0775 media_rw media_rw
-    #mkdir /storage/sdcard1 0775 root root
-    #mkdir /mnt/media_rw/usbdisk 0555 root root
-    #mkdir /storage/usbdisk 0775 system system
-
-    # for backwards compatibility
-    # Some symlinks conflict with each other, so handle them with a shell script
-    # These can't be in lvm_init.sh as that's too early
-    #exec /sbin/static/busybox sh /lvm_symlinks.sh
-    #symlink /storage/sdcard1 /extSdCard
-    #symlink /storage/sdcard1 /mnt/extSdCard
-
-    #symlink /storage/usbdisk /usbdisk
-    #symlink /storage/usbdisk /mnt/usbdisk
-
     # bluetooth
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
-    
+
 on fs
     #This will safely error out on non-lvm configs
     restorecon /dev/mapper/lvpool-userdata
@@ -96,7 +73,7 @@ on fs
 
 on early-boot
     #Last phase of LVM configuration.  setprop requires property service
-    #to be started so we can't put it in lvm_init.sh or lvm_symlinks.sh
+    #to be started so we can't put it in lvm_init.sh
     #Currently we're using the system shell as /system is mounted,
     #but this may need to be reworked to use toolbox+sh to support
     #recovery
