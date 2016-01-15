@@ -1,0 +1,5 @@
+###########################
+# OmniROM find7 sepolicy
+#
+
+allow vold lvm_device:blk_file { read open write getattr ioctl };
