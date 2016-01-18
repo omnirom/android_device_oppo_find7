@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98faad2e_61a230fd",
+        "filename": "configs/fstab.find7.lvm",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2016-01-18T15:28:55Z",
+      "side": 1,
+      "message": "remove nodelalloc,nomblk_io_submit + notrim",
+      "revId": "de6bb10344d1fe2429303fd083cf5916e349c69b",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98faad2e_a15cb81c",
+        "filename": "configs/fstab.find7.std",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2016-01-18T15:28:55Z",
+      "side": 1,
+      "message": "remove nodelalloc,nomblk_io_submit ,notrim",
+      "revId": "de6bb10344d1fe2429303fd083cf5916e349c69b",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98faad2e_819d3cc1",
+        "filename": "configs/fstab.find7.std",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2016-01-18T15:28:55Z",
+      "side": 1,
+      "message": "remove nodelalloc",
+      "revId": "de6bb10344d1fe2429303fd083cf5916e349c69b",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    }
+  ]
+}
