@@ -12,8 +12,6 @@
 #Oppo recovery
 
 echo "Setprop start!"
-if [ -e /dev/lvpool/userdata ]; then
-    /system/bin/setprop ro.crypto.fuse_sdcard true
-else
+if [ ! -e /dev/lvpool/userdata ]; then
     /system/bin/setprop ro.vold.primary_physical 1
 fi
