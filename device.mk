@@ -34,8 +34,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libnfc \
     libnfc_jni \
-    Nfc \
-    Tag
+    Nfc
 
 # Sensor configuration from Oppo
 PRODUCT_COPY_FILES += \
