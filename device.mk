@@ -42,5 +42,4 @@ PRODUCT_COPY_FILES += \
 
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.camera.4k2k.enable=1 \
-    ro.qti.sensors.ir_proximity=true
+    persist.camera.4k2k.enable=1
