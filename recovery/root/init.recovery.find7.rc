@@ -1,0 +1,11 @@
+#These are used to set up LVM
+on early-init
+# set up LVM volumes
+    wait /dev/block/platform/msm_sdcc.1/by-name/userdata
+    wait /dev/block/platform/msm_sdcc.1/by-name/sdcard
+    start lvm_init
+
+service lvm_init /sbin/lvm_init_recovery.sh
+    oneshot
+    disabled
+    seclabel u:r:recovery:s0
