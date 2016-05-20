@@ -34,7 +34,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libnfc \
     libnfc_jni \
-    Nfc
+    Nfc \
+    SnapdragonCamera
 
 # Sensor configuration from Oppo
 PRODUCT_COPY_FILES += \
