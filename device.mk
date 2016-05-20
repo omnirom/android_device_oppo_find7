@@ -30,11 +30,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lvm/lvm:root/sbin/lvm \
     $(LOCAL_PATH)/lvm/lvm.conf:root/lvm/etc/lvm.conf
 
-# NFC packages
+# device specific packages
 PRODUCT_PACKAGES += \
     libnfc \
     libnfc_jni \
-    Nfc
+    Nfc \
+    SnapdragonCamera
 
 # Sensor configuration from Oppo
 PRODUCT_COPY_FILES += \
