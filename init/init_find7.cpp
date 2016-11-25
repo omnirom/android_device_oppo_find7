@@ -32,24 +32,20 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <cutils/properties.h>
 
 #include "vendor_init.h"
-#include "property_service.h"
 #include "log.h"
 #include "util.h"
 
-static void process_cmdline(char *name, int for_emulator)
+static void process_cmdline(const std::string& key, const std::string& value, bool for_emulator)
 {
-    char *value = strchr(name, '=');
-    int name_len = strlen(name);
     int pcb_version;
 
-    if (value == 0) return;
-    *value++ = 0;
-    if (name_len == 0) return;
+    if (key.empty()) return;
 
-    if (!strcmp(name,"oppo.pcb_version")) {
-        pcb_version = atoi(value);
+    if (key == "oppo.pcb_version") {
+        pcb_version = atoi(value.c_str());
         if(pcb_version < 20) {
             property_set("ro.sf.lcd_density", "480");
             property_set("ro.oppo.device", "find7a");
@@ -60,9 +56,7 @@ static void process_cmdline(char *name, int for_emulator)
     }
 }
 
-extern "C" {
 void vendor_load_properties()
 {
-    import_kernel_cmdline(0,process_cmdline);
-}
+    import_kernel_cmdline(false, process_cmdline);
 }

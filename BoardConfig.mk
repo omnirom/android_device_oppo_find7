@@ -20,6 +20,8 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 #Libinit - handle find7a vs find7s
 TARGET_INIT_VENDOR_LIB := libinit_find7
 
+WITH_DEXPREOPT := false
+
 # MUST NOT USE LOCAL_PATH
 BOARD_SEPOLICY_DIRS += \
     device/oppo/find7/sepolicy
