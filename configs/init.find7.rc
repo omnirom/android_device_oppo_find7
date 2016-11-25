@@ -22,21 +22,10 @@ on early-init
     #start before the MMC driver comes up and creates the block devices
     wait /dev/block/platform/msm_sdcc.1/by-name/userdata
     wait /dev/block/platform/msm_sdcc.1/by-name/sdcard
-    #Scan for LVM partitions.  Our lvm.conf restricts this to the userdata and sdcard partitions
-    exec_context u:r:lvm:s0 /sbin/lvm vgscan --mknodes --ignorelockingfailure
-    #Activate any partitions found
-    exec_context u:r:lvm:s0 /sbin/lvm vgchange -aly --ignorelockingfailure
-    #Detect if LVM is active and copy the appropriate fstabs and environment RCs for
-    #the detected configuration.  See the script source for details
-    #Requires busybox to be added to the initial ramdisk of the kernel
-    setcon u:r:lvm:s0
-    exec /sbin/static/busybox sh /lvm_init.sh
-    setcon u:r:init:s0
 
-on early-boot
-    #Last phase of LVM configuration.  setprop requires property service
-    #to be started so we can't put it in lvm_init.sh
-    #Currently we're using the system shell as /system is mounted,
-    #but this may need to be reworked to use toolbox+sh to support
-    #recovery
-    exec /system/bin/sh /lvm_setprop.sh
+    #Scan for LVM partitions.  Our lvm.conf restricts this to the userdata and sdcard partitions
+    exec u:r:lvm:s0 root root -- /sbin/lvm vgscan --mknodes --ignorelockingfailure
+
+    #Activate any partitions found
+    exec u:r:lvm:s0 root root -- /sbin/lvm vgchange -aly --ignorelockingfailure
+

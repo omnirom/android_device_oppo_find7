@@ -6,13 +6,8 @@ type lvm, domain;
 domain_trans(init,rootfs,lvm)
 typeattribute lvm lvm_placeholder;
 
-allow lvm rootfs:file execute_no_trans;
-allow lvm rootfs:file link;
 allow lvm proc:file r_file_perms;
 allow lvm proc:dir search;
-allow lvm rootfs:file create_file_perms;
-allow lvm rootfs:dir create_dir_perms;
-allow lvm rootfs:dir { mounton };
 allow lvm kernel:process { setsched };
 allow lvm labeledfs:filesystem { mount };
 allow lvm ram_device:blk_file { getattr };
