@@ -21,6 +21,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/twrp.fstab.lvm:recovery/root/etc/twrp.fstab.lvm \
     $(LOCAL_PATH)/configs/twrp.fstab.std:recovery/root/etc/twrp.fstab.std
 
+# Audio config files
+PRODUCT_COPY_FILES += \
+		$(LOCAL_PATH)/mixer_paths.xml:/system/etc/mixer_paths.xml
+
 # LVM
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lvm/lvm_init_recovery.sh:recovery/root/sbin/lvm_init_recovery.sh \
