@@ -1,0 +1,20 @@
+on enable-low-power
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "smartmax"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "smartmax"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "smartmax"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "smartmax"
+
+on charger
+    write /sys/devices/system/cpu/cpu1/online 0
+    write /sys/devices/system/cpu/cpu2/online 0
+    write /sys/devices/system/cpu/cpu3/online 0
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
+
+on class_start:late_start
+    trigger enable-low-power
+
+on property:init.svc.recovery=running
+    trigger enable-low-power
+
+on property:dev.bootcomplete=1
+setprop sys.io.scheduler "bfq"
