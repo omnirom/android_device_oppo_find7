@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-import init.oppo.common.rc
+import init.qcom.common.rc
 import init.qcom.power.rc
 
 on early-init

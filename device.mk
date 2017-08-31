@@ -16,6 +16,7 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.find7.rc:root/init.qcom.rc \
+    $(LOCAL_PATH)/configs/init.find7.power.rc:root/init.qcom.power.rc \
     $(LOCAL_PATH)/configs/fstab.find7.lvm:root/fstab.qcom \
     $(LOCAL_PATH)/configs/init.recovery.find7.rc:root/init.recovery.qcom.rc \
     $(LOCAL_PATH)/configs/twrp.fstab.lvm:recovery/root/etc/twrp.fstab.lvm \
