@@ -15,6 +15,7 @@
 #
 
 import init.oppo.common.rc
+import init.qcom.power.rc
 
 on early-init
 # LVM: set up LVM volumes
