@@ -6,8 +6,8 @@
 # Include common makefile
 $(call inherit-product, device/oppo/msm8974-common/common.mk)
 
-$(call inherit-product, frameworks/native/build/phone-xxxhdpi-3072-dalvik-heap.mk)
-$(call inherit-product, frameworks/native/build/phone-xxxhdpi-3072-hwui-memory.mk)
+$(call inherit-product, vendor/omni/config/phone-xxxhdpi-3072-dalvik-heap.mk)
+$(call inherit-product, vendor/omni/config/phone-xxxhdpi-3072-hwui-memory.mk)
 
 LOCAL_PATH := device/oppo/find7
 
@@ -19,8 +19,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.find7.power.rc:root/init.qcom.power.rc \
     $(LOCAL_PATH)/configs/fstab.find7.lvm:root/fstab.qcom \
     $(LOCAL_PATH)/configs/init.recovery.find7.rc:root/init.recovery.qcom.rc \
-    $(LOCAL_PATH)/configs/twrp.fstab.lvm:recovery/root/etc/twrp.fstab.lvm \
-    $(LOCAL_PATH)/configs/twrp.fstab.std:recovery/root/etc/twrp.fstab.std
 
 # Audio config files
 PRODUCT_COPY_FILES += \
@@ -29,11 +27,13 @@ PRODUCT_COPY_FILES += \
 # LVM
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lvm/lvm_init_recovery.sh:recovery/root/sbin/lvm_init_recovery.sh \
+    $(LOCAL_PATH)/lvm/busybox:root/sbin/busybox \
     $(LOCAL_PATH)/lvm/lvm:root/sbin/lvm \
-    $(LOCAL_PATH)/lvm/lvm.conf:root/lvm/etc/lvm.conf
+    $(LOCAL_PATH)/lvm/lvm.conf:root/lvm/etc/lvm.conf \
+    $(LOCAL_PATH)/lvm/lvm.conf:recovery/root/lvm/etc/lvm.conf
 
 # nfc
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     libnfc \
     libnfc_jni \
     Nfc

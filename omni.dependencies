@@ -3,18 +3,12 @@
     "remote": "omnirom",
     "repository": "android_device_oppo_msm8974-common",
     "target_path": "device/oppo/msm8974-common",
-    "revision": "android-7.1"
+    "revision": "android-8.0"
   },
   {
-    "remote": "omnirom",
-    "repository": "android_kernel_oppo_msm8974",
-    "target_path": "kernel/oppo/msm8974",
-    "revision": "android-7.1"
-  },
-  {
-    "remote": "omnirom",
-    "repository": "android_packages_apps_Nfc",
-    "target_path": "packages/apps/Nfc-nxp",
-    "revision": "android-7.1-nxp"
+    "remote": "github",
+    "repository": "LineageOS/android_kernel_oppo_msm8974",
+    "target_path": "kernel/oppo/msm8974.cm",
+    "revision": "lineage-15.0"
   }
 ]

@@ -51,9 +51,12 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="msm8974-user 5.1.1 LMY47V 153 release-keys"
 
 # Inline kernel
-TARGET_KERNEL_SOURCE := kernel/oppo/msm8974
-TARGET_KERNEL_CONFIG := msm8974_find7_defconfig
+#TARGET_KERNEL_SOURCE := kernel/oppo/msm8974
+#TARGET_KERNEL_CONFIG := msm8974_find7_defconfig
+TARGET_KERNEL_SOURCE := kernel/oppo/msm8974.cm
+TARGET_KERNEL_CONFIG := lineageos_find7_defconfig
 
 # Inherit from proprietary blobs
-$(call inherit-product, vendor/oppo/find7a/find7a-vendor.mk)
+$(call inherit-product, vendor/oppo/find7-common/find7-common-vendor.mk)
+
 

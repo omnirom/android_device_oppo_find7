@@ -18,7 +18,7 @@ import init.oppo.common.rc
 import init.qcom.power.rc
 
 on early-init
-# LVM: set up LVM volumes
+    # LVM: set up LVM volumes
     #First wait for the physical volumes to be available.  Init appears to
     #start before the MMC driver comes up and creates the block devices
     wait /dev/block/platform/msm_sdcc.1/by-name/userdata
@@ -30,3 +30,20 @@ on early-init
     #Activate any partitions found
     exec u:r:lvm:s0 root root -- /sbin/lvm vgchange -aly --ignorelockingfailure
 
+service mpdecision /system/bin/mpdecision --avg_comp
+    class main
+    user root
+    group root readproc
+    disabled
+    
+service thermal-engine /system/vendor/bin/thermal-engine
+    class main
+    user root
+    group root
+    socket thermal-send-client stream 0666 system system
+    socket thermal-recv-client stream 0660 system system
+    socket thermal-recv-passive-client stream 0666 system system
+
+on property:ro.debuggable=1
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
