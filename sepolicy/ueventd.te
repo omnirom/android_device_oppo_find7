@@ -1,5 +1,0 @@
-###########################
-# OmniROM find7 sepolicy
-#
-
-allow ueventd lvm:process { sigchld };

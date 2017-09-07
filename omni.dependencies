@@ -7,8 +7,8 @@
   },
   {
     "remote": "github",
-    "repository": "LineageOS/android_kernel_oppo_msm8974",
-    "target_path": "kernel/oppo/msm8974.cm",
-    "revision": "lineage-15.0"
+    "repository": "maxwen/android_kernel_oppo_msm8974",
+    "target_path": "kernel/oppo/msm8974",
+    "revision": "android-8.0"
   }
 ]
