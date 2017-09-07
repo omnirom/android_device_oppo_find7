@@ -46,4 +46,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.4k2k.enable=1 \
     ro.qti.sensors.ir_proximity=true \
-    persist.audio.fluence.voicecall=true
+    persist.audio.fluence.voicecall=true \
+    ro.sf.lcd_density=640 \
+    ro.oppo.device=find7s
