@@ -33,7 +33,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lvm/lvm.conf:recovery/root/lvm/etc/lvm.conf
 
 # nfc
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     libnfc \
     libnfc_jni \
     Nfc

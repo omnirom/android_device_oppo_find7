@@ -55,6 +55,6 @@ TARGET_KERNEL_SOURCE := kernel/oppo/msm8974
 TARGET_KERNEL_CONFIG := omni_find7_defconfig
 
 # Inherit from proprietary blobs
-$(call inherit-product, vendor/oppo/find7-common/find7-common-vendor.mk)
+$(call inherit-product, vendor/oppo/find7a/find7a-vendor.mk)
 
 
