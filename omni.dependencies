@@ -10,5 +10,17 @@
     "repository": "maxwen/android_kernel_oppo_msm8974",
     "target_path": "kernel/oppo/msm8974",
     "revision": "android-8.0"
+  },
+  {
+    "remote": "omnirom",
+    "repository": "android_packages_apps_Nfc",
+    "target_path": "packages/apps/Nfc-nxp",
+    "revision": "android-8.0-nxp"
+  },
+  {
+    "remote": "omnirom",
+    "repository": "android_external_libnfc-nxp",
+    "target_path": "external/libnfc-nxp",
+    "revision": "android-8.0"
   }
 ]
