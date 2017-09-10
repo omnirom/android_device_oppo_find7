@@ -32,11 +32,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <cutils/properties.h>
 
 #include "vendor_init.h"
 #include "log.h"
 #include "util.h"
+#include "property_service.h"
 
 static int pcb_version = -1;
 
@@ -44,25 +44,23 @@ static void process_cmdline(const std::string& key, const std::string& value, bo
 {
     if (key.empty()) return;
 
-    if (key == "oppo.pcb_version") {        
+    if (key == "oppo.pcb_version") {
         pcb_version = std::stoi(value);
-        PLOG(ERROR) << "init_find7:process_cmdline " << key << ":" << value;
     }
 }
 
 void vendor_load_properties()
 {
-    PLOG(ERROR) << "init_find7:vendor_load_properties";
+    LOG(ERROR) << "init_find7:vendor_load_properties";
     import_kernel_cmdline(false, process_cmdline);
     if (pcb_version != -1) {
-        PLOG(ERROR) << "init_find7:vendor_load_properties " << pcb_version;
-        
-        /*if(pcb_version < 20) {
+        LOG(ERROR) << "init_find7:vendor_load_properties " << pcb_version;
+        if(pcb_version < 20) {
             property_set("ro.sf.lcd_density", "480");
             property_set("ro.oppo.device", "find7a");
         } else {
             property_set("ro.sf.lcd_density", "640");
             property_set("ro.oppo.device", "find7s");
-        }*/
+        }
     }
 }
