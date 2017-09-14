@@ -6,8 +6,8 @@
     "revision": "android-8.0"
   },
   {
-    "remote": "github",
-    "repository": "maxwen/android_kernel_oppo_msm8974",
+    "remote": "omnirom",
+    "repository": "android_kernel_oppo_msm8974",
     "target_path": "kernel/oppo/msm8974",
     "revision": "android-8.0"
   },
