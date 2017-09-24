@@ -30,12 +30,6 @@ on early-init
     #Activate any partitions found
     exec u:r:lvm:s0 root root -- /sbin/lvm vgchange -aly --ignorelockingfailure
 
-service mpdecision /system/bin/mpdecision --avg_comp
-    class main
-    user root
-    group root readproc
-    disabled
-    
 service thermal-engine /system/vendor/bin/thermal-engine
     class main
     user root
