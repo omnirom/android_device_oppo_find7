@@ -30,3 +30,11 @@ on early-init
     #Activate any partitions found
     exec u:r:lvm:s0 root root -- /sbin/lvm vgchange -aly --ignorelockingfailure
 
+service thermal-engine /system/bin/thermal-engine
+    class main
+    user root
+    group root
+    socket thermal-send-client stream 0666 system system
+    socket thermal-recv-client stream 0660 system system
+    socket thermal-recv-passive-client stream 0666 system system
+    disabled

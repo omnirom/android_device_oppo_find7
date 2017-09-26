@@ -52,7 +52,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 
 # Inline kernel
 TARGET_KERNEL_SOURCE := kernel/oppo/msm8974
-TARGET_KERNEL_CONFIG := msm8974_find7_defconfig
+TARGET_KERNEL_CONFIG := omni_find7_defconfig
 
 # Inherit from proprietary blobs
 $(call inherit-product, vendor/oppo/find7a/find7a-vendor.mk)
