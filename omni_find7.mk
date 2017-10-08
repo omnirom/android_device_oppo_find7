@@ -29,7 +29,7 @@ $(call inherit-product, vendor/omni/config/gsm.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 # must be before including omni part
-TARGET_BOOTANIMATION_SIZE := 1080x638
+TARGET_BOOTANIMATION_SIZE := 1080p
 
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
